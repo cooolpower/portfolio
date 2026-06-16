@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Container } from "/components/layout/container";
+import { Container } from "@/components/layout/container";
 import * as styles from "./app-layout.css";
 
 interface AppLayoutProps {

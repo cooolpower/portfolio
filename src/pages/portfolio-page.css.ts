@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { vars } from "/styles/theme.css";
+import { vars } from "@/styles/theme.css";
 
 export const container = style({
   display: "flex",
@@ -46,8 +46,8 @@ export const careerHeader = style({
   display: "flex",
   justifyContent: "space-between",
   alignItems: "baseline",
-  selectors: {
-    "@media (max-width: 640px)": {
+  "@media": {
+    "screen and (max-width: 640px)": {
       flexDirection: "column",
       gap: vars.space[2],
     },

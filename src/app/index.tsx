@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { themeClass } from "/styles/theme.css";
+import { themeClass } from "@/styles/theme.css";
 import { App } from "./App";
 
 const rootElement = document.getElementById("root");

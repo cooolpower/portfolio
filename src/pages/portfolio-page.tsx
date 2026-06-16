@@ -1,9 +1,9 @@
 import { ExternalLink, Github, Mail } from "lucide-react";
 import type React from "react";
 import { useState } from "react";
-import { Container, Section } from "/components/layout/container";
-import { Badge } from "/components/ui/badge";
-import { Button } from "/components/ui/button";
+import { Container, Section } from "@/components/layout/container";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,10 +11,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "/components/ui/card";
-import { Input } from "/components/ui/input";
-import { Paragraph, Subtitle, Title } from "/components/ui/typography";
-import { PORTFOLIO_DATA } from "/constants/data";
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Paragraph, Subtitle, Title } from "@/components/ui/typography";
+import { PORTFOLIO_DATA } from "@/constants/data";
 import * as styles from "./portfolio-page.css";
 
 export function PortfolioPage() {
