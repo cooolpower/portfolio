@@ -23,3 +23,22 @@ export const paragraph = style({
   color: vars.color.mutedForeground,
   margin: 0,
 });
+
+export const paragraphBullet = style({
+  fontSize: vars.fontSize.base,
+  lineHeight: vars.lineHeight.short,
+  color: vars.color.mutedForeground,
+  margin: 0,
+  //textIndent: "-13px",
+  //paddingLeft: "12px",
+  marginTop: vars.space[2],
+  // selectors: {
+  //   "&::before": {
+  //     content: "•",
+  //     color: vars.color.ring,
+  //     display: "inline-block",
+  //     width: "1em",
+  //     textIndent: 0
+  //   },
+  // },
+});

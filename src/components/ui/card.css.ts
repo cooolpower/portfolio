@@ -8,6 +8,17 @@ export const card = style({
   color: vars.color.cardForeground,
   display: "flex",
   flexDirection: "column",
+  backdropFilter: "blur(12px)",
+  WebkitBackdropFilter: "blur(12px)",
+  transition:
+    "transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease",
+  selectors: {
+    "&:hover": {
+      transform: "translateY(-6px)",
+      borderColor: vars.color.ring,
+      boxShadow: "0 12px 30px rgba(0, 0, 0, 0.2)",
+    },
+  },
 });
 
 export const header = style({
@@ -22,6 +33,7 @@ export const title = style({
   fontWeight: vars.fontWeight.semibold,
   lineHeight: vars.lineHeight.none,
   margin: 0,
+  color: vars.color.foreground,
 });
 
 export const description = style({
@@ -41,4 +53,5 @@ export const footer = style({
   alignItems: "center",
   padding: `0 ${vars.space[6]} ${vars.space[6]} ${vars.space[6]}`,
   gap: vars.space[2],
+  marginTop: "auto",
 });

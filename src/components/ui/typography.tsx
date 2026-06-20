@@ -17,3 +17,7 @@ export function Subtitle({ children, className = "" }: HeadingProps) {
 export function Paragraph({ children, className = "" }: HeadingProps) {
   return <p className={`${styles.paragraph} ${className}`}>{children}</p>;
 }
+
+export function ParagraphBullet({ children, className = "" }: HeadingProps) {
+  return <p className={`${styles.paragraphBullet} ${className}`}>{children}</p>;
+}
