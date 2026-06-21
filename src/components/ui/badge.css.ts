@@ -10,5 +10,6 @@ export const badge = style({
   padding: `${vars.space[1]} ${vars.space[3]}`,
   fontSize: vars.fontSize.xs,
   fontWeight: vars.fontWeight.medium,
-  color: vars.color.mutedForeground,
+  //color: vars.color.mutedForeground,
+  color: vars.color.badgeForeground
 });

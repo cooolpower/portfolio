@@ -50,9 +50,9 @@ export const experienceList = style({
 
 export const experienceRow = style({
   display: "grid",
-  gridTemplateColumns: "3fr 7fr",
+  gridTemplateColumns: "2fr 8fr",
   gap: vars.space[6],
-  padding: vars.space[4],
+  padding: `${vars.space[6]} ${vars.space[4]}`,
   borderRadius: vars.radii.md,
   transition: "background-color 0.15s ease, transform 0.15s ease",
   cursor: "default",

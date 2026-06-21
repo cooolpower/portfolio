@@ -1,7 +1,7 @@
 import { ExternalLink, Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { PORTFOLIO_DATA_KO, PORTFOLIO_DATA_EN } from "@/constants/data";
-import { useTheme } from "@/components/ui/ThemeContext";
+import { useTheme } from "@/components/ui/useTheme";
 import { useLanguage } from "@/components/ui/LanguageContext";
 import * as styles from "./app-layout.css";
 

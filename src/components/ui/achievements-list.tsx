@@ -13,10 +13,10 @@ export function AchievementsList({ items }: AchievementsListProps) {
     const container = containerRef.current;
     if (!container) return;
 
-    // Check prefers-reduced-motion to avoid unnecessary observer logic
+    // 불필요한 observer 로직을 방지하기 위해 prefers-reduced-motion 설정 확인
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
-      // Instantly make all items visible
+      // 즉시 모든 아이템을 보임 상태로 전환
       setVisibleIndices(new Set(items.map((_, i) => i)));
       return;
     }
@@ -33,7 +33,7 @@ export function AchievementsList({ items }: AchievementsListProps) {
                 next.add(index);
                 return next;
               });
-              // Stop observing once it has become visible
+              // 뷰포트에 노출된 요소는 관찰을 해제함
               observer.unobserve(entry.target);
             }
           }
@@ -41,7 +41,7 @@ export function AchievementsList({ items }: AchievementsListProps) {
       },
       {
         threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px", // triggers slightly before fully in view
+        rootMargin: "0px 0px -50px 0px", // 뷰포트에 완전히 들어오기 직전에 트리거
       }
     );
 
@@ -65,7 +65,7 @@ export function AchievementsList({ items }: AchievementsListProps) {
             data-index={index}
             className={`${styles.listItem} ${isVisible ? "is-visible" : ""}`}
             style={{
-              // Inject custom CSS property for vanilla-extract stagger delay calculation
+              // vanilla-extract의 stagger delay 계산을 위한 커스텀 CSS 변수 주입
               ["--stagger-index" as any]: index,
             }}
           >

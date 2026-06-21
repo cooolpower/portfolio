@@ -12,6 +12,7 @@ export const vars = createThemeContract({
     secondaryForeground: null,
     muted: null,
     mutedForeground: null,
+    badgeForeground: null,
     accent: null,
     accentForeground: null,
     border: null,
@@ -132,7 +133,7 @@ export const darkThemeClass = createTheme(vars, {
     secondaryForeground: "#fafafa",
     muted: "#18181b",
     mutedForeground: "rgba(100, 116, 139, 1)",
-    //mutedForeground: "#94a3b8", // slate-400
+    badgeForeground: "rgba(54, 220, 208, 1)",
     accent: "rgba(100, 255, 218, 0.05)", // teal micro tint
     accentForeground: "#ffffff",
     border: "rgba(255, 255, 255, 0.08)",
@@ -155,6 +156,7 @@ export const lightThemeClass = createTheme(vars, {
     secondaryForeground: "#0f172a",
     muted: "#f1f5f9", // slate-100
     mutedForeground: "#475569", // slate-600
+    badgeForeground: "rgba(54, 220, 208, 1)",
     accent: "rgba(13, 148, 136, 0.06)", // teal-600 tint
     accentForeground: "#0f172a",
     border: "rgba(15, 23, 42, 0.08)",
@@ -217,3 +219,8 @@ globalStyle("a:hover", {
 globalStyle("*", {
   boxSizing: "border-box",
 });
+
+globalStyle("::selection", {
+  color: "#101e40",
+  backgroundColor: "#4dc8fff5",
+})

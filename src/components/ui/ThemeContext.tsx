@@ -1,14 +1,14 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useEffect, useState, type ReactNode } from "react";
 import { darkThemeClass, lightThemeClass } from "@/styles/theme.css";
 
-type Theme = "dark" | "light";
+export type Theme = "dark" | "light";
 
-interface ThemeContextType {
+export interface ThemeContextType {
   theme: Theme;
   toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -20,7 +20,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     localStorage.setItem("theme", theme);
     
-    // Apply theme class to body/html so globalStyle resolves variables correctly
+    // globalStyle이 변수를 올바르게 해석할 수 있도록 body/html에 테마 클래스를 적용합니다.
     const body = document.body;
     body.classList.remove(darkThemeClass, lightThemeClass);
     body.classList.add(theme === "dark" ? darkThemeClass : lightThemeClass);
@@ -35,12 +35,4 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       {children}
     </ThemeContext.Provider>
   );
-}
-
-export function useTheme() {
-  const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider");
-  }
-  return context;
 }

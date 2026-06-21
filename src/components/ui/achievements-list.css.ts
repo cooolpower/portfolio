@@ -30,12 +30,12 @@ export const listItem = style({
   cursor: "default",
   transition: "transform 0.2s ease, color 0.2s ease",
 
-  // Initial animation state
+  // 초기 애니메이션 상태
   opacity: 0,
   transform: "translateY(8px)",
 
   selectors: {
-    // Custom Marker
+    // 커스텀 마커 설정
     "&::before": {
       content: '"▸"',
       position: "absolute",
@@ -46,13 +46,13 @@ export const listItem = style({
       lineHeight: 1,
     },
     
-    // Hover micro-interaction
+    // 마우스 호버 마이크로 인터랙션
     "&:hover": {
       transform: "translateX(4px)",
       color: vars.color.primary,
     },
 
-    // When the item is in view (active animation class applied)
+    // 뷰포트 노출 시 활성화되는 애니메이션 클래스
     "&.is-visible": {
       animationName: fadeUpKeyframes,
       animationDuration: "0.4s",
@@ -62,7 +62,7 @@ export const listItem = style({
     },
   },
 
-  // Fallback for user preferences
+  // 사용자의 모션 감소(reduced-motion) 선호 동작 대응 fallback
   "@media": {
     "(prefers-reduced-motion: reduce)": {
       opacity: 1,
