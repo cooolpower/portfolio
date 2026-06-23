@@ -39,7 +39,8 @@ export const aboutText = style({
 
 export const inlineTextHighlight = style({
   color: vars.color.foreground,
-  fontWeight: vars.fontWeight.semibold,
+  fontWeight: "inherit",
+  //fontWeight: vars.fontWeight.semibold,
 });
 
 export const experienceList = style({
@@ -50,7 +51,7 @@ export const experienceList = style({
 
 export const experienceRow = style({
   display: "grid",
-  gridTemplateColumns: "2fr 8fr",
+  gridTemplateColumns: "3fr 7fr",
   gap: vars.space[6],
   padding: `${vars.space[6]} ${vars.space[4]}`,
   borderRadius: vars.radii.md,
@@ -59,7 +60,7 @@ export const experienceRow = style({
   selectors: {
     "&:hover": {
       //backgroundColor: vars.color.accent,
-      backgroundColor: "rgba(30,41,59,.5)",
+      backgroundColor: vars.color.rowBackground,
       boxShadow: "0 0 #0000"
     },
   },
@@ -77,14 +78,21 @@ export const expDate = style({
   //paddingTop: "4px",
 });
 
-export const expHeader = style({
-  fontSize: vars.fontSize.base,
-  fontWeight: vars.fontWeight.semibold,
-  color: vars.color.foreground,
+export const expTitleContainer = style({
+  display: "flex",
+  flexDirection: "row",
+  gap: vars.space[2],
+  alignItems: "baseline",
+});
+
+export const expRoleTitle = style({
+  fontSize: vars.fontSize.sm,
+  fontWeight: "400",
+  color: "#e3e3e3",
   margin: 0,
 });
 
-export const expSubTitle = style({
+export const expCompanyTitle = style({
   fontSize: vars.fontSize.base,
   color: vars.color.foreground,
   margin: 0,
@@ -92,7 +100,8 @@ export const expSubTitle = style({
 
 export const expDescription = style({
   fontSize: vars.fontSize.base,
-  color: vars.color.mutedForeground,
+  //color: vars.color.mutedForeground,
+  color: "rgb(148, 163, 184)",
   marginTop: vars.space[2],
   lineHeight: vars.lineHeight.short,
 });

@@ -42,3 +42,9 @@ export const paragraphBullet = style({
   //   },
   // },
 });
+
+export const inlineTextHighlight = style({
+  color: vars.color.foreground,
+  fontWeight: "inherit",
+  //fontWeight: vars.fontWeight.semibold,
+});

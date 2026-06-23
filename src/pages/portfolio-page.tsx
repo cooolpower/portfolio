@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Paragraph } from "@/components/ui/typography";
+import { parseHighlight } from "@/utils/parse-highlight";
 import { PORTFOLIO_DATA_KO, PORTFOLIO_DATA_EN } from "@/constants/data";
 import { useLanguage } from "@/components/ui/LanguageContext";
 import { AchievementsList } from "@/components/ui/achievements-list";
@@ -37,21 +38,6 @@ export function PortfolioPage() {
     return undefined;
   }, [isSent]);
 
-  const parseHighlight = (text: string) => {
-    const parts = text.split(/\*\*([^*]+)\*\*/g);
-    return parts.map((part, index) => {
-      // Even indices are regular text, odd indices are bold highlights
-      if (index % 2 === 1) {
-        return (
-          <strong key={part} className={styles.inlineTextHighlight}>
-            {part}
-          </strong>
-        );
-      }
-      return part;
-    });
-  };
-
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.container}>
@@ -71,10 +57,14 @@ export function PortfolioPage() {
                 <div key={career.company} className={styles.experienceRow}>
                   <div className={styles.expDate}>{career.period}</div>
                   <div>
-                    <h3 className={styles.expHeader}>{career.role}</h3>
-                    <h2 className={styles.expSubTitle}>{career.company}</h2>
+                    <div className={styles.expTitleContainer}>
+                      <h2 className={styles.expCompanyTitle}>
+                        {career.company}
+                      </h2>
+                      <h3 className={styles.expRoleTitle}>{career.role}</h3>
+                    </div>
                     <p className={styles.expDescription}>
-                      {career.description}
+                      {parseHighlight(career.description)}
                     </p>
                     <AchievementsList items={career.achievements} />
                     <div className={styles.expTechs}>
@@ -117,7 +107,7 @@ export function PortfolioPage() {
                     </CardHeader>
                     <CardContent>
                       <p className={styles.projectDescription}>
-                        {project.summary}
+                        {parseHighlight(project.summary)}
                       </p>
                       <div className={styles.projectTechs}>
                         {project.techStack.map((tech) => (

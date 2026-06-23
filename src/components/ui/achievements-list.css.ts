@@ -7,7 +7,7 @@ export const listContainer = style({
   margin: `${vars.space[4]} 0`,
   display: "flex",
   flexDirection: "column",
-  gap: vars.space[3],
+  gap: vars.space[1],
 });
 
 export const fadeUpKeyframes = keyframes({
@@ -24,9 +24,10 @@ export const fadeUpKeyframes = keyframes({
 export const listItem = style({
   fontSize: vars.fontSize.sm,
   lineHeight: vars.lineHeight.base,
-  color: vars.color.mutedForeground,
+  //color: vars.color.mutedForeground,
+  color: vars.color.listItemColor,
   position: "relative",
-  paddingLeft: vars.space[5],
+  paddingLeft: vars.space[4],
   cursor: "default",
   transition: "transform 0.2s ease, color 0.2s ease",
 
@@ -41,7 +42,8 @@ export const listItem = style({
       position: "absolute",
       left: 0,
       top: "0.1em",
-      color: vars.color.ring,
+      //color: vars.color.ring,
+      color: vars.color.listItemBulletColor,
       fontSize: "1.1em",
       lineHeight: 1,
     },

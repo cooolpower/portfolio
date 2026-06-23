@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { parseHighlight } from "@/utils/parse-highlight";
 import * as styles from "./achievements-list.css";
 
 interface AchievementsListProps {
@@ -69,7 +70,7 @@ export function AchievementsList({ items }: AchievementsListProps) {
               ["--stagger-index" as any]: index,
             }}
           >
-            {item}
+            {parseHighlight(item)}
           </li>
         );
       })}

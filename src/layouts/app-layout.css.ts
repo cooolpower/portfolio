@@ -7,7 +7,7 @@ export const layout = style({
   padding: `0 ${vars.space[8]}`,
   minHeight: "100vh",
   display: "grid",
-  gridTemplateColumns: "5fr 7fr",
+  gridTemplateColumns: "3fr 9fr",
   gap: "80px",
   alignItems: "start",
   "@media": {
@@ -221,8 +221,8 @@ export const spotlight = style({
   zIndex: 0,
   background: `radial-gradient(
     600px circle at var(--x, 0px) var(--y, 0px),
-    rgba(29, 78, 216, 0.15),
-    transparent 80%
+    ${vars.color.spotlightForeground},
+    ${vars.color.spotlightBackground}
   )`,
   willChange: "background",
   transition: "background 0.15s ease",

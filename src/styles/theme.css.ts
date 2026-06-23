@@ -13,11 +13,17 @@ export const vars = createThemeContract({
     muted: null,
     mutedForeground: null,
     badgeForeground: null,
+    badgeBackground: null,
     accent: null,
     accentForeground: null,
     border: null,
     input: null,
     ring: null,
+    spotlightForeground: null,
+    spotlightBackground: null,
+    rowBackground: null,
+    listItemColor: null,
+    listItemBulletColor: null,
   },
   space: {
     "0": null,
@@ -134,11 +140,17 @@ export const darkThemeClass = createTheme(vars, {
     muted: "#18181b",
     mutedForeground: "rgba(100, 116, 139, 1)",
     badgeForeground: "rgba(54, 220, 208, 1)",
+    badgeBackground: "rgba(100, 255, 218, 0.05)",
     accent: "rgba(100, 255, 218, 0.05)", // teal micro tint
     accentForeground: "#ffffff",
     border: "rgba(255, 255, 255, 0.08)",
     input: "rgba(255, 255, 255, 0.03)",
     ring: "#64ffda", // teal
+    spotlightForeground: "rgba(29, 78, 216, 0.15)",
+    spotlightBackground: "transparent 80%",
+    rowBackground: "rgba(30,41,59,.5)",
+    listItemColor: "rgba(207, 214, 224, 1)",
+    listItemBulletColor: "rgba(255, 255, 255, 0.9)",
   },
 });
 
@@ -156,12 +168,18 @@ export const lightThemeClass = createTheme(vars, {
     secondaryForeground: "#0f172a",
     muted: "#f1f5f9", // slate-100
     mutedForeground: "#475569", // slate-600
-    badgeForeground: "rgba(54, 220, 208, 1)",
+    badgeForeground: "rgb(125 115 115)",
+    badgeBackground: "rgb(0 0 0 / 5%)",
     accent: "rgba(13, 148, 136, 0.06)", // teal-600 tint
     accentForeground: "#0f172a",
     border: "rgba(15, 23, 42, 0.08)",
     input: "rgba(15, 23, 42, 0.03)",
     ring: "#0d9488", // teal-600
+    spotlightForeground: "rgba(224, 236, 247, 1)",
+    spotlightBackground: "#ffffffeb 80%",
+    rowBackground: "rgb(133 133 133 / 6%)",
+    listItemColor: "rgba(93, 93, 93, 1)",
+    listItemBulletColor: "rgb(150 151 151)",
   },
 });
 
