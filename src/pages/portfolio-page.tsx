@@ -77,7 +77,7 @@ export function PortfolioPage() {
               ))}
             </div>
             <a
-              href={profile.github}
+              href={profile.resume}
               target="_blank"
               rel="noreferrer"
               className={styles.resumeLink}

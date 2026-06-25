@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:pdf": "npx tsx scripts/export-data.ts && python3 scripts/generate-pdf.py",
+    "build": "pnpm run build:pdf && tsc && vite build",
     "preview": "vite preview"
   },
   "repository": {
