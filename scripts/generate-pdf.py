@@ -217,15 +217,52 @@ def build_pdf(data, output_filename, lang="ko"):
         
         # Right side: Job Details
         right_flow = []
-        company_display = f"{career['role']} @ <b>{career['company']}</b>"
+        company_name = format_text(career['company'])
+        if career.get('link'):
+            company_display = f"{career['role']} @ <b><a href=\"{career['link']}\" color=\"#0d9488\">{company_name}</a></b>"
+        else:
+            company_display = f"{career['role']} @ <b>{company_name}</b>"
         right_flow.append(Paragraph(company_display, job_title_style))
         right_flow.append(Spacer(1, 2))
         
         if career.get("description"):
             right_flow.append(Paragraph(format_text(career["description"]), job_desc_style))
             
+        # Group achievements by group name
+        grouped_achievements = []
+        current_group = None
+        
         for ach in career.get("achievements", []):
-            right_flow.append(Paragraph(f"&bull; {format_text(ach)}", bullet_style))
+            match = re.match(r'^\[(.*?)\]\s*(.*)$', ach)
+            if match:
+                group_name = match.group(1)
+                text = match.group(2)
+                if current_group and current_group['name'] == group_name:
+                    current_group['items'].append(text)
+                else:
+                    current_group = {'name': group_name, 'items': [text]}
+                    grouped_achievements.append(current_group)
+            else:
+                current_group = {'name': None, 'items': [ach]}
+                grouped_achievements.append(current_group)
+                
+        group_links = career.get('groupLinks', {})
+        for group in grouped_achievements:
+            if group['name']:
+                group_style = ParagraphStyle(
+                    'GroupHeaderStyle', parent=job_title_style, fontSize=8.5, leading=12, spaceBefore=4, spaceAfter=2
+                )
+                display_name = format_text(group['name'])
+                if group_links and group['name'] in group_links:
+                    display_name = f'<a href="{group_links[group["name"]]}" color="#0d9488">{display_name}</a>'
+                right_flow.append(Paragraph(display_name, group_style))
+                for item in group['items']:
+                    right_flow.append(Paragraph(f"&bull; {format_text(item)}", ParagraphStyle(
+                        'GroupBullet', parent=bullet_style, leftIndent=22, firstLineIndent=-10
+                    )))
+            else:
+                for item in group['items']:
+                    right_flow.append(Paragraph(f"&bull; {format_text(item)}", bullet_style))
             
         if career.get("skills"):
             skills_txt = f"<i>Skills: {', '.join(career['skills'])}</i>"

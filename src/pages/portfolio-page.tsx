@@ -58,15 +58,32 @@ export function PortfolioPage() {
                   <div className={styles.expDate}>{career.period}</div>
                   <div>
                     <div className={styles.expTitleContainer}>
-                      <h2 className={styles.expCompanyTitle}>
-                        {career.company}
-                      </h2>
+                      {career.link ? (
+                        <a
+                          href={career.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className={styles.expCompanyLink}
+                        >
+                          <h2 className={styles.expCompanyTitle}>
+                            {career.company}
+                          </h2>
+                          <ExternalLink size={14} className={styles.expLinkIcon} />
+                        </a>
+                      ) : (
+                        <h2 className={styles.expCompanyTitle}>
+                          {career.company}
+                        </h2>
+                      )}
                       <h3 className={styles.expRoleTitle}>{career.role}</h3>
                     </div>
                     <p className={styles.expDescription}>
                       {parseHighlight(career.description)}
                     </p>
-                    <AchievementsList items={career.achievements} />
+                    <AchievementsList
+                      items={career.achievements}
+                      groupLinks={career.groupLinks}
+                    />
                     <div className={styles.expTechs}>
                       {career.skills.map((item) => (
                         <Badge key={item}>{item}</Badge>

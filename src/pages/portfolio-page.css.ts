@@ -92,10 +92,38 @@ export const expRoleTitle = style({
   margin: 0,
 });
 
+export const expCompanyLink = style({
+  display: "inline-flex",
+  alignItems: "center",
+  gap: vars.space[1],
+  textDecoration: "none",
+  color: "inherit",
+  cursor: "pointer",
+});
+
+export const expLinkIcon = style({
+  opacity: 0.5,
+  transition: "opacity 0.2s ease, transform 0.2s ease, color 0.2s ease",
+  color: vars.color.mutedForeground,
+  selectors: {
+    [`${expCompanyLink}:hover &`]: {
+      opacity: 1,
+      transform: "translate(1px, -1px)",
+      color: vars.color.ring,
+    },
+  },
+});
+
 export const expCompanyTitle = style({
   fontSize: vars.fontSize.base,
   color: vars.color.foreground,
   margin: 0,
+  transition: "color 0.2s ease",
+  selectors: {
+    [`${expCompanyLink}:hover &`]: {
+      color: vars.color.ring,
+    },
+  },
 });
 
 export const expDescription = style({

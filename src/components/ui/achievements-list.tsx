@@ -1,14 +1,37 @@
 import { useEffect, useRef, useState } from "react";
+import { ExternalLink } from "lucide-react";
 import { parseHighlight } from "@/utils/parse-highlight";
 import * as styles from "./achievements-list.css";
 
 interface AchievementsListProps {
   items: string[];
+  groupLinks?: Record<string, string>;
 }
 
-export function AchievementsList({ items }: AchievementsListProps) {
-  const containerRef = useRef<HTMLUListElement>(null);
+export function AchievementsList({ items, groupLinks }: AchievementsListProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const [visibleIndices, setVisibleIndices] = useState<Set<number>>(new Set());
+
+  // Group consecutive items with the same [Group] prefix
+  const groups: { name?: string; items: string[] }[] = [];
+  let currentGroup: { name?: string; items: string[] } | null = null;
+
+  for (const item of items) {
+    const match = item.match(/^\[(.*?)\]\s*(.*)$/);
+    if (match) {
+      const groupName = match[1];
+      const text = match[2];
+      if (currentGroup && currentGroup.name === groupName) {
+        currentGroup.items.push(text);
+      } else {
+        currentGroup = { name: groupName, items: [text] };
+        groups.push(currentGroup);
+      }
+    } else {
+      currentGroup = { name: undefined, items: [item] };
+      groups.push(currentGroup);
+    }
+  }
 
   useEffect(() => {
     const container = containerRef.current;
@@ -18,7 +41,7 @@ export function AchievementsList({ items }: AchievementsListProps) {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) {
       // 즉시 모든 아이템을 보임 상태로 전환
-      setVisibleIndices(new Set(items.map((_, i) => i)));
+      setVisibleIndices(new Set(groups.map((_, i) => i)));
       return;
     }
 
@@ -57,23 +80,60 @@ export function AchievementsList({ items }: AchievementsListProps) {
   }, [items]);
 
   return (
-    <ul ref={containerRef} className={styles.listContainer}>
-      {items.map((item, index) => {
-        const isVisible = visibleIndices.has(index);
+    <div ref={containerRef} className={styles.listContainer}>
+      {groups.map((group, groupIndex) => {
+        const isVisible = visibleIndices.has(groupIndex);
+        if (group.name) {
+          return (
+            <div
+              key={group.name}
+              data-index={groupIndex}
+              className={`${styles.groupContainer} ${isVisible ? "is-visible" : ""}`}
+              style={{
+                ["--stagger-index" as any]: groupIndex,
+              }}
+            >
+              {groupLinks && groupLinks[group.name] ? (
+                <a
+                  href={groupLinks[group.name]}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={styles.groupHeaderLink}
+                >
+                  <h4 className={styles.groupHeader}>
+                    {parseHighlight(group.name)}
+                  </h4>
+                  <ExternalLink size={12} className={styles.groupLinkIcon} />
+                </a>
+              ) : (
+                <h4 className={styles.groupHeader}>
+                  {parseHighlight(group.name)}
+                </h4>
+              )}
+              <ul className={styles.subList}>
+                {group.items.map((subItem, subIndex) => (
+                  <li key={subIndex} className={styles.groupListItem}>
+                    {parseHighlight(subItem)}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        }
+
         return (
-          <li
-            key={item}
-            data-index={index}
+          <div
+            key={group.items[0]}
+            data-index={groupIndex}
             className={`${styles.listItem} ${isVisible ? "is-visible" : ""}`}
             style={{
-              // vanilla-extract의 stagger delay 계산을 위한 커스텀 CSS 변수 주입
-              ["--stagger-index" as any]: index,
+              ["--stagger-index" as any]: groupIndex,
             }}
           >
-            {parseHighlight(item)}
-          </li>
+            {parseHighlight(group.items[0])}
+          </div>
         );
       })}
-    </ul>
+    </div>
   );
 }

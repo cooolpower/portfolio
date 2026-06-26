@@ -43,6 +43,8 @@ export interface Career {
   description: string;
   achievements: string[];
   skills: string[];
+  link?: string;
+  groupLinks?: Record<string, string>;
 }
 
 export interface SkillCategory {
@@ -81,6 +83,13 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       role: "FE플랫폼 팀 팀원",
       period: "2024.05 - 2026.01",
       description: "**플랫폼 레벨 기여** 및 **실시간 AI 채팅**, **외부 파트너십 API 연동** 주도.",
+      link: "https://www.jobkorea.co.kr",
+      groupLinks: {
+        "플랫폼 레벨 기여": "https://www.jobkorea.co.kr",
+        "잡코리아 대규모 리뉴얼": "https://www.jobkorea.co.kr",
+        "AI 채팅": "https://www.jobkorea.co.kr",
+        "토스 Open API (토스알바)": "https://alba.toss.im",
+      },
       achievements: [
         "[플랫폼 레벨 기여] **공통 헤더 컴포넌트 설계 및 개발**을 통한 팀 내 협업 컴포넌트 표준화",
         "[플랫폼 레벨 기여] **Admin 기반 메뉴 관리 구조 설계** 및 **동적 렌더링 구현**",
@@ -106,6 +115,12 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       role: "웹퍼블리셔",
       period: "2016.02 - 2016.07",
       description: "**잡코리아, 알바몬, 게임잡** 서비스의 웹 표준화 및 웹 접근성 인증 대응.",
+      link: "http://www.kistemp.co.kr",
+      groupLinks: {
+        "잡코리아": "https://www.jobkorea.co.kr",
+        "알바몬": "https://www.albamon.com",
+        "게임잡": "https://www.gamejob.co.kr",
+      },
       achievements: [
         "[잡코리아] **웹 접근성 인증마크 획득**을 위한 마크업 구조 개선 및 접근성 대응",
         "[잡코리아] **레거시 코드 구조 개선 및 유지보수**",
@@ -145,7 +160,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
     },
     {
       company: "주식회사 센트비젼",
-      role: "Dongik9 / WithUsIMC / SHAREBLING 웹퍼블리셔",
+      role: "웹퍼블리셔",
       period: "2014.10 - 2015.04",
       description: "모바일 앱 및 웹 플랫폼의 **반응형 UI 퍼블리싱 구현**.",
       achievements: [
@@ -160,7 +175,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
     },
     {
       company: "톰앤래빗",
-      role: "SHAREBLING Version1 웹퍼블리셔",
+      role: "웹퍼블리셔",
       period: "2014.05 - 2014.10",
       description: "쇼핑몰 및 서비스 **UI 퍼블리싱 대응**.",
       achievements: [
@@ -171,7 +186,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       skills: ["html", "css", "js", "cross browsing", "responsive design"],
     },
     {
-      company: "홍콩 현지 기업 (홍콩정부 e-book)",
+      company: "MedBirdie",
       role: "웹퍼블리셔 (해외경험)",
       period: "2013.02 - 2014.02",
       description: "**홍콩정부 e-book** 프로젝트 및 **KEYPAD 엔터테인먼트 잡지** 서비스 퍼블리싱 설계.",
@@ -186,6 +201,9 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       role: "하나은행 프로젝트 웹퍼블리셔",
       period: "2011.01 - 2012.10",
       description: "**하나은행** 및 계열사 대고객 **웹 표준/웹 접근성(WA) 개편 사업 수행**.",
+      groupLinks: {
+        "하나은행": "https://www.hanabank.com",
+      },
       achievements: [
         "[하나은행] **웹 표준 및 접근성 개선 작업 수행**",
         "[하나은행] **웹 접근성 인증마크 획득 대응**",
@@ -418,6 +436,13 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
       role: "FE Platform Team Engineer",
       period: "2024.05 - 2026.01",
       description: "Led platform-level contributions, real-time AI chatting, and external partner API integrations.",
+      link: "https://www.jobkorea.co.kr",
+      groupLinks: {
+        "Platform-Level Contribution": "https://www.jobkorea.co.kr",
+        "JobKorea Major Renewal": "https://www.jobkorea.co.kr",
+        "AI Chatting": "https://www.jobkorea.co.kr",
+        "Toss Open API (TossAlba)": "https://alba.toss.im",
+      },
       achievements: [
         "[Platform-Level Contribution] **Designed and developed common header components** to standardize team-wide collaborative component libraries",
         "[Platform-Level Contribution] **Architected admin-based menu management engines** and dynamic rendering systems",
@@ -443,6 +468,12 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
       role: "Web Publisher (JobKorea / Albamon / Gamejob)",
       period: "2016.02 - 2016.07",
       description: "Dedicated to Web Standardization and Accessibility Certificate compliance.",
+      link: "http://www.kistemp.co.kr",
+      groupLinks: {
+        "JobKorea": "https://www.jobkorea.co.kr",
+        "Albamon": "https://www.albamon.com",
+        "Gamejob": "https://www.gamejob.co.kr",
+      },
       achievements: [
         "[JobKorea] **Refactored markup architecture to secure Web Accessibility (WA) certificate marks**",
         "[JobKorea] **Maintained legacy code structures and performed layout updates**",
@@ -523,6 +554,9 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
       role: "Web Publisher (Hana Bank)",
       period: "2011.01 - 2012.10",
       description: "Executed web standardization and Web Accessibility (WA) renewals for Hana Bank and affiliates.",
+      groupLinks: {
+        "Hana Bank": "https://www.hanabank.com",
+      },
       achievements: [
         "[Hana Bank] **Formulated web standard and accessibility guidelines and executed markup layouts**",
         "[Hana Bank] **Successfully secured Web Accessibility certificates and led bank renewals**",
