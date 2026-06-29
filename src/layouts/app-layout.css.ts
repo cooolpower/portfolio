@@ -228,5 +228,18 @@ export const spotlight = style({
   transition: "background 0.15s ease",
 });
 
+export const fullWidthLayout = style({
+  width: "100%",
+  minHeight: "100vh",
+  margin: "0 auto",
+  position: "relative",
+});
+
+export const fullWidthContent = style({
+  width: "100%",
+  position: "relative",
+  zIndex: 1,
+});
+
 
 

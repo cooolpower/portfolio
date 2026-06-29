@@ -4,9 +4,10 @@ import { LeftPanel } from "./left-panel";
 
 interface AppLayoutProps {
   children: ReactNode;
+  isFullWidth?: boolean;
 }
 
-export function AppLayout({ children }: AppLayoutProps) {
+export function AppLayout({ children, isFullWidth = false }: AppLayoutProps) {
   useEffect(() => {
     const el = document.documentElement;
     let targetX = 0;
@@ -63,13 +64,16 @@ export function AppLayout({ children }: AppLayoutProps) {
   }, []);
 
   return (
-    <div className={styles.layout}>
+    <div className={isFullWidth ? styles.fullWidthLayout : styles.layout}>
       <div className={styles.spotlight} />
-      {/* Left panel: Sticky header / intro */}
-      <LeftPanel />
+      
+      {!isFullWidth && <LeftPanel />}
 
-      {/* Right panel: Scrollable content */}
-      <main className={styles.rightContent}>{children}</main>
+      {isFullWidth ? (
+        <main className={styles.fullWidthContent}>{children}</main>
+      ) : (
+        <main className={styles.rightContent}>{children}</main>
+      )}
     </div>
   );
 }

@@ -374,6 +374,18 @@
         "title": "Toss Open API 연동 프로젝트",
         "subtitle": "외부 토스 파트너십 서비스 연동을 위한 Open API 구축",
         "role": "서버리스 API 개발자",
+        "image": [
+          {
+            "src": "/projects/jobkorea-common-header.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/toss-alba.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
         "period": {
           "start": "2025.11",
           "end": "2025.12"
@@ -409,13 +421,28 @@
             "label": "인증 안정성",
             "value": "100% 검증"
           }
-        ]
+        ],
+        "year": "2025",
+        "madeAt": "웍스피어 유한책임회사",
+        "isFeatured": true
       },
       {
         "id": "ai-chat",
         "title": "실시간 채팅 및 AI 챗봇 서비스 개발",
         "subtitle": "구직자-기업 연결 실시간 WebSocket 및 AI 채팅 채널 개발",
         "role": "프론트엔드 리드 개발자",
+        "image": [
+          {
+            "src": "/projects/ai-chat.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/ai-chat.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
         "period": {
           "start": "2025.06",
           "end": "2025.10"
@@ -464,7 +491,358 @@
             "label": "체감 전송 속도",
             "value": "낙관적 업데이트 반영"
           }
-        ]
+        ],
+        "year": "2025",
+        "madeAt": "웍스피어 유한책임회사",
+        "isFeatured": true
+      },
+      {
+        "id": "jobkorea-renewal",
+        "title": "잡코리아 대규모 리뉴얼 프로젝트",
+        "subtitle": "메인/검색/이력서/공고 등 핵심 도메인 리뉴얼",
+        "role": "프론트엔드 개발자 (퍼블리싱)",
+        "image": [
+          {
+            "src": "/projects/jobkorea-renewal.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/jobkorea-renewal.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2024.05",
+          "end": "2024.12"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "jQuery"
+          }
+        ],
+        "summary": "핵심 도메인의 대규모 리뉴얼 프로젝트로 UI 구조 개선 및 반응형 웹 마크업 정비, Lighthouse 기반 성능 최적화를 전담했습니다.",
+        "troubleshooting": [],
+        "metrics": [],
+        "links": {
+          "demo": "https://www.jobkorea.co.kr"
+        },
+        "year": "2024",
+        "madeAt": "웍스피어 유한책임회사",
+        "isFeatured": false
+      },
+      {
+        "id": "albamon-renewal",
+        "title": "알바몬 웹 서비스 리뉴얼 및 UI 개선",
+        "subtitle": "레거시 마크업 개선 및 서비스 레이아웃 대응",
+        "role": "웹퍼블리셔",
+        "image": [
+          {
+            "src": "/projects/albamon-renewal.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/albamon-renewal.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2016.02",
+          "end": "2016.07"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "jQuery"
+          }
+        ],
+        "summary": "알바몬 웹 서비스 리뉴얼에 참여하여 재사용 가능한 공통 UI 마크업 제작과 반응형 레이아웃 정비를 담당했습니다.",
+        "troubleshooting": [],
+        "metrics": [],
+        "links": {
+          "demo": "https://www.albamon.com"
+        },
+        "year": "2016",
+        "madeAt": "(주)키스템프그룹",
+        "isFeatured": false
+      },
+      {
+        "id": "mpss-portal",
+        "title": "국민안전처 대국민 서비스 포털 구축",
+        "subtitle": "웹 표준 및 웹 접근성(WA) 품질마크 획득 대응",
+        "role": "웹퍼블리셔",
+        "image": [
+          {
+            "src": "/projects/mpss-portal.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/mpss-portal.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2015.09",
+          "end": "2016.01"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          }
+        ],
+        "summary": "대국민 행정 서비스의 웹 접근성 인증을 위해 W3C 표준 시맨틱 마크업을 전담하고 크로스 브라우징을 완벽히 맞추어 국가 공인 품질인증마크를 획득했습니다.",
+        "troubleshooting": [],
+        "metrics": [],
+        "year": "2015",
+        "madeAt": "혜안",
+        "isFeatured": false
+      },
+      {
+        "id": "hanabank-wa",
+        "title": "하나은행 웹 표준/웹 접근성(WA) 개편 사업",
+        "subtitle": "하나은행 및 주요 계열사 사이트 표준화",
+        "role": "웹퍼블리셔",
+        "image": [
+          {
+            "src": "/projects/hanabank-wa.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/hanabank-wa.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2011.01",
+          "end": "2012.10"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "cross browsing"
+          }
+        ],
+        "summary": "하나은행 및 계열사 사이트 리뉴얼을 주도하며 ION 기반 웹 표준화 지침을 수립하고, 장애우를 위한 스크린 리더 호환성 및 키보드 웹 접근성을 설계했습니다.",
+        "troubleshooting": [],
+        "metrics": [],
+        "links": {
+          "demo": "https://www.hanabank.com"
+        },
+        "year": "2011",
+        "madeAt": "(주)넷트루컨설팅그룹",
+        "isFeatured": false
+      },
+      {
+        "id": "ezwel-welfare",
+        "title": "이지웰복지관 웹 표준화 구축",
+        "subtitle": "웹 표준 프레임워크 설계 및 웹 접근성 품질마크 획득 대응",
+        "role": "웹퍼블리셔",
+        "image": [
+          {
+            "src": "/projects/ezwel-welfare.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/ezwel-welfare.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2015.07",
+          "end": "2015.08"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "Web Accessibility"
+          }
+        ],
+        "summary": "이지웰복지관 복지 포털의 체계적인 UI 개발을 위한 웹 표준화 프레임워크를 설계하고 퍼블리싱 구조 표준화를 통해 국가 공인 웹 접근성 품질인증마크를 획득했습니다.",
+        "troubleshooting": [
+          {
+            "problem": "다양한 보조기기(스크린 리더 등) 지원을 위한 폼 레이아웃 구조의 접근성 호환 결핍.",
+            "solution": "WAI-ARIA 명세를 적용하여 입력 폼 요소의 논리적 연결(label-input 매칭)과 포커싱 순서를 마크업 표준에 맞게 리팩토링.",
+            "impact": "웹 접근성 품질인증마크 심사 통과 및 시각장애인 편의성 대폭 개선."
+          }
+        ],
+        "metrics": [
+          {
+            "label": "접근성 통과율",
+            "value": "100%"
+          },
+          {
+            "label": "인증 획득",
+            "value": "WA 품질마크"
+          }
+        ],
+        "year": "2015",
+        "madeAt": "(주)에이매스컨설팅",
+        "isFeatured": false
+      },
+      {
+        "id": "hongkong-ebook",
+        "title": "홍콩정부 e-book 멀티디바이스 마크업",
+        "subtitle": "글로벌 협업 기반 멀티 디바이스 환경의 웹 최적화 및 레이아웃 구현",
+        "role": "웹퍼블리셔",
+        "image": [
+          {
+            "src": "/projects/hongkong-ebook.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/hongkong-ebook.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2013.02",
+          "end": "2014.02"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "Responsive Design"
+          },
+          {
+            "category": "frontend",
+            "name": "Performance Optimization"
+          }
+        ],
+        "summary": "해외 협업으로 진행된 홍콩정부 e-book 프로젝트의 멀티 디바이스 마크업 및 성능 최적화를 전담하고, 다양한 스크린 해상도를 고려한 고품질 웹 템플릿을 개발했습니다.",
+        "troubleshooting": [
+          {
+            "problem": "방대한 텍스트와 이미지 데이터가 한 페이지에 로드되면서 멀티 디바이스 환경에서의 스크롤 버벅임과 속도 저하 발생.",
+            "solution": "CSS 하드웨어 가속 기법 및 이미지 렌더링 최적화를 진행하고 리소스 레이지 로딩(Lazy Loading)을 구현.",
+            "impact": "모바일 웹 뷰어 환경에서 스크롤 성능 향상 및 초기 로딩 시간 단축."
+          }
+        ],
+        "metrics": [
+          {
+            "label": "렌더링 속도 개선",
+            "value": "성능 최적화"
+          },
+          {
+            "label": "디바이스 대응",
+            "value": "멀티디바이스 호환"
+          }
+        ],
+        "year": "2013",
+        "madeAt": "MedBirdie",
+        "isFeatured": false
+      },
+      {
+        "id": "mirae-asset-vietnam",
+        "title": "미래에셋 베트남 지사 글로벌 웹사이트 구축",
+        "subtitle": "다국어 지원 및 글로벌 규격에 맞춘 기업 웹사이트 퍼블리싱",
+        "role": "웹퍼블리셔",
+        "image": [
+          {
+            "src": "/projects/mirae-asset-vietnam.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/mirae-asset-vietnam.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2007.12",
+          "end": "2007.12"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "cross browsing"
+          }
+        ],
+        "summary": "미래에셋 베트남 지사의 글로벌 시장 진출에 대응하는 다국어 글로벌 웹사이트를 구축했습니다. 지역적 정렬과 브라우저 호환성을 맞추어 글로벌 표준 템플릿을 제공했습니다.",
+        "troubleshooting": [
+          {
+            "problem": "다국어(베트남어, 영어) 폰트 크기 및 텍스트 길이 변화로 인해 각 브라우저에서 레이아웃이 어긋나는 현상.",
+            "solution": "유연한 유동(fluid) 그리드 레이아웃을 채택하고 크로스 브라우징 가이드라인에 맞춘 CSS 정렬 방식 적용.",
+            "impact": "모든 주요 브라우저에서 다국어 레이아웃 깨짐 현상을 방지하고 비주얼 일관성 유지."
+          }
+        ],
+        "metrics": [
+          {
+            "label": "다국어 지원",
+            "value": "베트남어/영어"
+          },
+          {
+            "label": "크로스 브라우징",
+            "value": "호환성 확보"
+          }
+        ],
+        "year": "2007",
+        "madeAt": "미래에셋",
+        "isFeatured": false
       }
     ],
     "skills": [
@@ -876,6 +1254,18 @@
         "title": "Toss Open API Integration",
         "subtitle": "Constructed Open API serverless infrastructure for Toss partnership data syncing",
         "role": "Serverless API Developer",
+        "image": [
+          {
+            "src": "/projects/toss-alba.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/toss-alba.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
         "period": {
           "start": "2025.11",
           "end": "2025.12"
@@ -911,13 +1301,28 @@
             "label": "Auth Validation Rate",
             "value": "100% Secured"
           }
-        ]
+        ],
+        "year": "2025",
+        "madeAt": "Worksphere LLC",
+        "isFeatured": true
       },
       {
         "id": "ai-chat",
         "title": "Real-time AI Chatbot Service",
         "subtitle": "Designed real-time WebSocket messaging and AI channels for recruiters and job seekers",
         "role": "Frontend Lead",
+        "image": [
+          {
+            "src": "/projects/ai-chat.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/ai-chat.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
         "period": {
           "start": "2025.06",
           "end": "2025.10"
@@ -966,7 +1371,358 @@
             "label": "Messaging Latency UI",
             "value": "Optimistic"
           }
-        ]
+        ],
+        "year": "2025",
+        "madeAt": "Worksphere LLC",
+        "isFeatured": true
+      },
+      {
+        "id": "jobkorea-renewal",
+        "title": "JobKorea Service Renewal",
+        "subtitle": "Major frontend layout renewal for JobKorea core web interfaces",
+        "role": "Frontend Developer (Layout Publishing)",
+        "image": [
+          {
+            "src": "/projects/jobkorea-renewal.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/jobkorea-renewal.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2024.05",
+          "end": "2024.12"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "jQuery"
+          }
+        ],
+        "summary": "Participated in rebuilding core domains at JobKorea. Redesigned layout markup structures, ensured responsive constraints, and handled frontend optimizations.",
+        "troubleshooting": [],
+        "metrics": [],
+        "links": {
+          "demo": "https://www.jobkorea.co.kr"
+        },
+        "year": "2024",
+        "madeAt": "Worksphere LLC",
+        "isFeatured": false
+      },
+      {
+        "id": "albamon-renewal",
+        "title": "Albamon Portal UI Enhancements",
+        "subtitle": "Revised markup templates and updated operational stylesheets",
+        "role": "Web Publisher",
+        "image": [
+          {
+            "src": "/projects/albamon-renewal.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/albamon-renewal.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2016.02",
+          "end": "2016.07"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "jQuery"
+          }
+        ],
+        "summary": "Maintained and standardizing stylesheet patterns, optimizing layout components, and creating common interactive controls.",
+        "troubleshooting": [],
+        "metrics": [],
+        "links": {
+          "demo": "https://www.albamon.com"
+        },
+        "year": "2016",
+        "madeAt": "Kistemp Group Co., Ltd.",
+        "isFeatured": false
+      },
+      {
+        "id": "mpss-portal",
+        "title": "Public Safety Portal Portal Publishing",
+        "subtitle": "Secured government accessibility compliance certification",
+        "role": "Web Publisher",
+        "image": [
+          {
+            "src": "/projects/mpss-portal.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/mpss-portal.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2015.09",
+          "end": "2016.01"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          }
+        ],
+        "summary": "Designed and standardizing accessibility patterns aligning with public compliance standards. Delivered 100% clean validation results securing government web standard badges.",
+        "troubleshooting": [],
+        "metrics": [],
+        "year": "2015",
+        "madeAt": "Hyean",
+        "isFeatured": false
+      },
+      {
+        "id": "hanabank-wa",
+        "title": "Hana Bank Web Standardization",
+        "subtitle": "Web accessibility renewal for Hana Bank enterprise portals",
+        "role": "Web Publisher",
+        "image": [
+          {
+            "src": "/projects/hanabank-wa.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/hanabank-wa.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2011.01",
+          "end": "2012.10"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "cross compatibility"
+          }
+        ],
+        "summary": "Drafted corporate publishing templates for bank systems, ensuring seamless assistive screen reader layouts, and debugging browser compatibility issues.",
+        "troubleshooting": [],
+        "metrics": [],
+        "links": {
+          "demo": "https://www.hanabank.com"
+        },
+        "year": "2011",
+        "madeAt": "Netrue Consulting Group",
+        "isFeatured": false
+      },
+      {
+        "id": "ezwel-welfare",
+        "title": "Ezwel Welfare Center Web Standardization",
+        "subtitle": "Web standardization framework and Web Accessibility certification compliance",
+        "role": "Ezwel Welfare Center Project Web Publisher",
+        "image": [
+          {
+            "src": "/projects/ezwel-welfare.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/ezwel-welfare.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2015.07",
+          "end": "2015.08"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "Web Accessibility"
+          }
+        ],
+        "summary": "Designed a web standardization framework for structured UI development on the Ezwel Welfare Center portal and successfully acquired the national Web Accessibility quality mark.",
+        "troubleshooting": [
+          {
+            "problem": "Lack of accessibility compliance in complex form layouts for assistive devices (screen readers).",
+            "solution": "Applied WAI-ARIA specs to map logical label-input matchings and refactored keyboard focus order to align with markup standards.",
+            "impact": "Successfully passed the Web Accessibility audit and significantly improved accessibility for visually impaired users."
+          }
+        ],
+        "metrics": [
+          {
+            "label": "Accessibility Pass Rate",
+            "value": "100%"
+          },
+          {
+            "label": "Certification",
+            "value": "WA Quality Mark"
+          }
+        ],
+        "year": "2015",
+        "madeAt": "A-Mass Consulting",
+        "isFeatured": false
+      },
+      {
+        "id": "hongkong-ebook",
+        "title": "Hong Kong Government e-book Multi-Device Markup",
+        "subtitle": "Multi-device layout implementation and web optimization for global collaboration",
+        "role": "Web Publisher (Overseas Experience)",
+        "image": [
+          {
+            "src": "/projects/hongkong-ebook.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/hongkong-ebook.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2013.02",
+          "end": "2014.02"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "Responsive Design"
+          },
+          {
+            "category": "frontend",
+            "name": "Performance Optimization"
+          }
+        ],
+        "summary": "Led multi-device markup and performance optimization for the Hong Kong Government e-book project as part of an overseas collaboration, delivering responsive templates.",
+        "troubleshooting": [
+          {
+            "problem": "Scroll stuttering and slow page rendering caused by loading large volumes of text and images on a single page in mobile environments.",
+            "solution": "Optimized layouts with CSS hardware acceleration and implemented resource lazy-loading patterns.",
+            "impact": "Greatly improved scroll performance and reduced initial page load times on mobile web viewers."
+          }
+        ],
+        "metrics": [
+          {
+            "label": "Render Performance",
+            "value": "Optimized"
+          },
+          {
+            "label": "Device Compatibility",
+            "value": "Fully Responsive"
+          }
+        ],
+        "year": "2013",
+        "madeAt": "Hong Kong local firm",
+        "isFeatured": false
+      },
+      {
+        "id": "mirae-asset-vietnam",
+        "title": "Mirae Asset Vietnam Branch Global Corporate Website",
+        "subtitle": "Multi-lingual support and global corporate web publishing",
+        "role": "Web Publisher",
+        "image": [
+          {
+            "src": "/projects/mirae-asset-vietnam.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/mirae-asset-vietnam.png",
+            "width": 1280,
+            "height": 720
+          }
+        ],
+        "period": {
+          "start": "2007.12",
+          "end": "2007.12"
+        },
+        "techStack": [
+          {
+            "category": "frontend",
+            "name": "HTML/CSS"
+          },
+          {
+            "category": "frontend",
+            "name": "JavaScript"
+          },
+          {
+            "category": "frontend",
+            "name": "cross browsing"
+          }
+        ],
+        "summary": "Built the multi-lingual global corporate website for Mirae Asset Vietnam branch, ensuring regional alignment and strict cross-browser compatibility.",
+        "troubleshooting": [
+          {
+            "problem": "Layout misalignment across different browsers due to variations in multilingual font sizes and text lengths (Vietnamese & English).",
+            "solution": "Adopted a fluid grid layout and structured CSS alignments conforming to legacy cross-browsing standards.",
+            "impact": "Prevented multilingual layout breakage and maintained visual consistency across all key web browsers."
+          }
+        ],
+        "metrics": [
+          {
+            "label": "Multilingual Support",
+            "value": "VN / EN"
+          },
+          {
+            "label": "Cross-Browsing",
+            "value": "100% Compatible"
+          }
+        ],
+        "year": "2007",
+        "madeAt": "Mirae Asset",
+        "isFeatured": false
       }
     ],
     "skills": [

@@ -21,6 +21,11 @@ export interface Project {
   title: string;
   subtitle: string;
   role: string;
+  image: {
+    src: string;
+    width: number;
+    height: number;
+  }[];
   period: {
     start: string;
     end: string | "Present" | "현재";
@@ -34,6 +39,9 @@ export interface Project {
     demo?: string;
     document?: string;
   };
+  year: string;
+  madeAt?: string;
+  isFeatured?: boolean;
 }
 
 export interface Career {
@@ -68,29 +76,29 @@ export interface PortfolioData {
 }
 
 export const PORTFOLIO_DATA_KO: PortfolioData = {
-  profile: {
-    name: "김현욱",
-    role: "프론트엔드 개발자",
-    tagline: "웹 환경에서 접근성 높고 완성도 높은 사용자 경험을 만듭니다.",
-    aboutMe: "**디자인과 확장성 있는 엔지니어링의 교차점**에서 클린하고 시맨틱한 코드를 작성하며, 훌륭한 UX를 완성하는 미세한 디테일에 가치를 두는 프론트엔드 엔지니어입니다.\n\n이전에는 **웍스피어(Worksphere) FE플랫폼 팀**에서 동적 메뉴 엔진 설계, 접근 제어 등 팀 내 공통 플랫폼 레이어 설계를 주도했습니다. 또한 **잡코리아 핵심 도메인의 대규모 리뉴얼 퍼블리싱** 및 마크업 구조 정비를 이끌었으며, STOMP 프로토콜과 지수 백오프 자동 복구 알고리즘을 결합한 **고가용성 AI 채팅 아키텍처**를 구현했습니다.\n\n더불어 파트너십 서비스인 **토스알바 연동**을 위한 서버리스 API Gateway/Lambda 연동 인프라 구축을 총괄했으며, 하나은행, 알바몬, 게임잡 등 대형 트래픽 서비스의 **웹 표준/웹 접근성 인증마크 획득 대응**과 마크업 표준화를 전담했습니다. 스타트업부터 대기업 플랫폼에 이르는 다양한 크로스 브라우징 및 표준화 경험을 갖추고 있습니다.\n\n개발 외적인 시간에는 최신 웹 명세를 탐독하거나 새로운 UI 컨셉을 리서치하며 충전의 시간을 보냅니다.",
-    github: "https://github.com/cooolpower",
-    email: "developerjameskim@gmail.com",
-    resume: "/resume.pdf",
+  "profile": {
+    "name": "김현욱",
+    "role": "프론트엔드 개발자",
+    "tagline": "웹 환경에서 접근성 높고 완성도 높은 사용자 경험을 만듭니다.",
+    "aboutMe": "**디자인과 확장성 있는 엔지니어링의 교차점**에서 클린하고 시맨틱한 코드를 작성하며, 훌륭한 UX를 완성하는 미세한 디테일에 가치를 두는 프론트엔드 엔지니어입니다.\n\n이전에는 **웍스피어(Worksphere) FE플랫폼 팀**에서 동적 메뉴 엔진 설계, 접근 제어 등 팀 내 공통 플랫폼 레이어 설계를 주도했습니다. 또한 **잡코리아 핵심 도메인의 대규모 리뉴얼 퍼블리싱** 및 마크업 구조 정비를 이끌었으며, STOMP 프로토콜과 지수 백오프 자동 복구 알고리즘을 결합한 **고가용성 AI 채팅 아키텍처**를 구현했습니다.\n\n더불어 파트너십 서비스인 **토스알바 연동**을 위한 서버리스 API Gateway/Lambda 연동 인프라 구축을 총괄했으며, 하나은행, 알바몬, 게임잡 등 대형 트래픽 서비스의 **웹 표준/웹 접근성 인증마크 획득 대응**과 마크업 표준화를 전담했습니다. 스타트업부터 대기업 플랫폼에 이르는 다양한 크로스 브라우징 및 표준화 경험을 갖추고 있습니다.\n\n개발 외적인 시간에는 최신 웹 명세를 탐독하거나 새로운 UI 컨셉을 리서치하며 충전의 시간을 보냅니다.",
+    "github": "https://github.com/cooolpower",
+    "email": "developerjameskim@gmail.com",
+    "resume": "/resume.pdf"
   },
-  careers: [
+  "careers": [
     {
-      company: "웍스피어 유한책임회사",
-      role: "FE플랫폼 팀 팀원",
-      period: "2024.05 - 2026.01",
-      description: "**플랫폼 레벨 기여** 및 **실시간 AI 채팅**, **외부 파트너십 API 연동** 주도.",
-      link: "https://www.jobkorea.co.kr",
-      groupLinks: {
+      "company": "웍스피어 유한책임회사",
+      "role": "FE플랫폼 팀 팀원",
+      "period": "2024.05 - 2026.01",
+      "description": "**플랫폼 레벨 기여** 및 **실시간 AI 채팅**, **외부 파트너십 API 연동** 주도.",
+      "link": "https://www.jobkorea.co.kr",
+      "groupLinks": {
         "플랫폼 레벨 기여": "https://www.jobkorea.co.kr",
         "잡코리아 대규모 리뉴얼": "https://www.jobkorea.co.kr",
         "AI 채팅": "https://www.jobkorea.co.kr",
-        "토스 Open API (토스알바)": "https://alba.toss.im",
+        "토스 Open API (토스알바)": "https://alba.toss.im"
       },
-      achievements: [
+      "achievements": [
         "[플랫폼 레벨 기여] **공통 헤더 컴포넌트 설계 및 개발**을 통한 팀 내 협업 컴포넌트 표준화",
         "[플랫폼 레벨 기여] **Admin 기반 메뉴 관리 구조 설계** 및 **동적 렌더링 구현**",
         "[플랫폼 레벨 기여] **전역 네비게이션 상태 관리 및 접근 제어 로직 구현**",
@@ -106,22 +114,43 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
         "[토스 Open API (토스알바)] **AWS API Gateway + Lambda 서버리스 아키텍처 설계**",
         "[토스 Open API (토스알바)] **내부 데이터 모델 재정의 및 응답 가공 로직 구현**",
         "[토스 Open API (토스알바)] **Stateless 구조 설계**",
-        "[토스 Open API (토스알바)] **Bearer Token 인증 및 요청 검증 로직 구현**",
+        "[토스 Open API (토스알바)] **Bearer Token 인증 및 요청 검증 로직 구현**"
       ],
-      skills: ["html", "css", "js", "react", "next", "typescript", "git", "github", "jira", "confluence", "figma", "vscode", "web standards", "web accessibility", "lighthouse", "performance optimization", "aws lambda", "api gateway", "websocket", "stomp"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "react",
+        "next",
+        "typescript",
+        "git",
+        "github",
+        "jira",
+        "confluence",
+        "figma",
+        "vscode",
+        "web standards",
+        "web accessibility",
+        "lighthouse",
+        "performance optimization",
+        "aws lambda",
+        "api gateway",
+        "websocket",
+        "stomp"
+      ]
     },
     {
-      company: "(주)키스템프그룹",
-      role: "웹퍼블리셔",
-      period: "2016.02 - 2016.07",
-      description: "**잡코리아, 알바몬, 게임잡** 서비스의 웹 표준화 및 웹 접근성 인증 대응.",
-      link: "http://www.kistemp.co.kr",
-      groupLinks: {
+      "company": "(주)키스템프그룹",
+      "role": "웹퍼블리셔",
+      "period": "2016.02 - 2016.07",
+      "description": "**잡코리아, 알바몬, 게임잡** 서비스의 웹 표준화 및 웹 접근성 인증 대응.",
+      "link": "http://www.kistemp.co.kr",
+      "groupLinks": {
         "잡코리아": "https://www.jobkorea.co.kr",
         "알바몬": "https://www.albamon.com",
-        "게임잡": "https://www.gamejob.co.kr",
+        "게임잡": "https://www.gamejob.co.kr"
       },
-      achievements: [
+      "achievements": [
         "[잡코리아] **웹 접근성 인증마크 획득**을 위한 마크업 구조 개선 및 접근성 대응",
         "[잡코리아] **레거시 코드 구조 개선 및 유지보수**",
         "[잡코리아] **웹/모바일 웹 주요 서비스 리뉴얼 참여**",
@@ -130,320 +159,827 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
         "[게임잡] **웹 접근성 인증마크 획득**을 위한 마크업 구조 개선 및 접근성 대응",
         "[게임잡] **레거시 코드 구조 개선 및 유지보수**",
         "[게임잡] **웹/모바일 웹 주요 서비스 리뉴얼 참여**",
-        "[게임잡] **재사용 가능한 공통 UI 컴포넌트 제작**",
+        "[게임잡] **재사용 가능한 공통 UI 컴포넌트 제작**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility", "jquery", "cross browsing"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility",
+        "jquery",
+        "cross browsing"
+      ]
     },
     {
-      company: "혜안",
-      role: "웹퍼블리셔",
-      period: "2015.09 - 2016.01",
-      description: "**국민안전처** 대국민 서비스 웹 퍼블리싱 대응.",
-      achievements: [
+      "company": "혜안",
+      "role": "웹퍼블리셔",
+      "period": "2015.09 - 2016.01",
+      "description": "**국민안전처** 대국민 서비스 웹 퍼블리싱 대응.",
+      "achievements": [
         "[국민안전처] **웹 접근성 인증마크 획득 대응 및 마크업**",
-        "[국민안전처] **웹 표준 기반 퍼블리싱 작업 수행**",
+        "[국민안전처] **웹 표준 기반 퍼블리싱 작업 수행**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility"
+      ]
     },
     {
-      company: "(주)에이매스컨설팅",
-      role: "이지웰복지관 프로젝트 웹퍼블리셔",
-      period: "2015.07 - 2015.08",
-      description: "**이지웰복지관** 웹 서비스 표준화 및 퍼블리싱 가이드라인 수립.",
-      achievements: [
+      "company": "(주)에이매스컨설팅",
+      "role": "이지웰복지관 프로젝트 웹퍼블리셔",
+      "period": "2015.07 - 2015.08",
+      "description": "**이지웰복지관** 웹 서비스 표준화 및 퍼블리싱 가이드라인 수립.",
+      "achievements": [
         "[이지웰복지관] **웹 표준화 및 접근성 개발 작업 수행**",
         "[이지웰복지관] **웹 접근성 인증마크 획득 대응**",
         "[이지웰복지관] **공통 UI 컴포넌트 제작**",
-        "[이지웰복지관] **퍼블리싱 구조 표준화**",
+        "[이지웰복지관] **퍼블리싱 구조 표준화**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility"
+      ]
     },
     {
-      company: "주식회사 센트비젼",
-      role: "웹퍼블리셔",
-      period: "2014.10 - 2015.04",
-      description: "모바일 앱 및 웹 플랫폼의 **반응형 UI 퍼블리싱 구현**.",
-      achievements: [
+      "company": "주식회사 센트비젼",
+      "role": "웹퍼블리셔",
+      "period": "2014.10 - 2015.04",
+      "description": "모바일 앱 및 웹 플랫폼의 **반응형 UI 퍼블리싱 구현**.",
+      "achievements": [
         "[Dongik9] **모바일 앱 UI 퍼블리싱 및 화면 구현**",
         "[Dongik9] **반응형 UI 및 모바일 환경 최적화 작업 수행**",
         "[WithUsIMC] **웹사이트 퍼블리싱 및 UI 구현**",
         "[WithUsIMC] **유지보수 및 마크업 구조 개선 작업 수행**",
         "[SHAREBLING Version2] **서비스 UI 퍼블리싱 및 화면 개발 수행**",
-        "[SHAREBLING Version2] **재사용 가능한 공통 UI 구조 개발 및 유지보수**",
+        "[SHAREBLING Version2] **재사용 가능한 공통 UI 구조 개발 및 유지보수**"
       ],
-      skills: ["html", "css", "js", "responsive design", "mobile optimization"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "responsive design",
+        "mobile optimization"
+      ]
     },
     {
-      company: "톰앤래빗",
-      role: "웹퍼블리셔",
-      period: "2014.05 - 2014.10",
-      description: "쇼핑몰 및 서비스 **UI 퍼블리싱 대응**.",
-      achievements: [
+      "company": "톰앤래빗",
+      "role": "웹퍼블리셔",
+      "period": "2014.05 - 2014.10",
+      "description": "쇼핑몰 및 서비스 **UI 퍼블리싱 대응**.",
+      "achievements": [
         "[SHAREBLING Version1] **서비스 UI 퍼블리싱 및 화면 개발 수행**",
         "[SHAREBLING Version1] **재사용 가능한 공통 UI 구조 개발 및 유지보수**",
-        "[SHAREBLING Version1] **반응형 및 크로스 브라우징 대응**",
+        "[SHAREBLING Version1] **반응형 및 크로스 브라우징 대응**"
       ],
-      skills: ["html", "css", "js", "cross browsing", "responsive design"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "cross browsing",
+        "responsive design"
+      ]
     },
     {
-      company: "MedBirdie",
-      role: "웹퍼블리셔 (해외경험)",
-      period: "2013.02 - 2014.02",
-      description: "**홍콩정부 e-book** 프로젝트 및 **KEYPAD 엔터테인먼트 잡지** 서비스 퍼블리싱 설계.",
-      achievements: [
+      "company": "MedBirdie",
+      "role": "웹퍼블리셔 (해외경험)",
+      "period": "2013.02 - 2014.02",
+      "description": "**홍콩정부 e-book** 프로젝트 및 **KEYPAD 엔터테인먼트 잡지** 서비스 퍼블리싱 설계.",
+      "achievements": [
         "[홍콩정부 e-book] **홍콩정부 e-book 프로젝트 멀티디바이스 마크업 및 최적화 진행**",
-        "[KEYPAD] **KEYPAD 엔터테인먼트 잡지 사이트 및 해외 서비스 퍼블리싱 다수 리드**",
+        "[KEYPAD] **KEYPAD 엔터테인먼트 잡지 사이트 및 해외 서비스 퍼블리싱 다수 리드**"
       ],
-      skills: ["html", "css", "js", "web standards", "performance optimization"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "performance optimization"
+      ]
     },
     {
-      company: "(주)넷트루컨설팅그룹",
-      role: "하나은행 프로젝트 웹퍼블리셔",
-      period: "2011.01 - 2012.10",
-      description: "**하나은행** 및 계열사 대고객 **웹 표준/웹 접근성(WA) 개편 사업 수행**.",
-      groupLinks: {
-        "하나은행": "https://www.hanabank.com",
+      "company": "(주)넷트루컨설팅그룹",
+      "role": "하나은행 프로젝트 웹퍼블리셔",
+      "period": "2011.01 - 2012.10",
+      "description": "**하나은행** 및 계열사 대고객 **웹 표준/웹 접근성(WA) 개편 사업 수행**.",
+      "groupLinks": {
+        "하나은행": "https://www.hanabank.com"
       },
-      achievements: [
+      "achievements": [
         "[하나은행] **웹 표준 및 접근성 개선 작업 수행**",
         "[하나은행] **웹 접근성 인증마크 획득 대응**",
         "[하나은행] **ION 기반 웹사이트 개발**",
         "[하나은행] **하나은행 및 계열사 사이트 리뉴얼 및 유지보수**",
-        "[하나은행] **반응형 및 크로스 브라우징 대응**",
+        "[하나은행] **반응형 및 크로스 브라우징 대응**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility", "cross browsing"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility",
+        "cross browsing"
+      ]
     },
     {
-      company: "R’s Company",
-      role: "웹퍼블리셔 (프리랜서)",
-      period: "2010.05 - 2010.05",
-      description: "**로티플스카이 공식 홈페이지** 구축.",
-      achievements: [
-        "[로티플스카이] **공식 홈페이지 퍼블리싱 개발 수행**",
+      "company": "R’s Company",
+      "role": "웹퍼블리셔 (프리랜서)",
+      "period": "2010.05 - 2010.05",
+      "description": "**로티플스카이 공식 홈페이지** 구축.",
+      "achievements": [
+        "[로티플스카이] **공식 홈페이지 퍼블리싱 개발 수행**"
       ],
-      skills: ["html", "css", "js", "web standards"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards"
+      ]
     },
     {
-      company: "(주)이레메디커뮤니케이션",
-      role: "웹디자이너",
-      period: "2009.11 - 2009.12",
-      description: "병원 웹사이트 구축.",
-      achievements: [
-        "[병원 사이트] **윌스치과 / 본앤본병원 / 스마일신경외과 퍼블리싱 개발 수행**",
+      "company": "(주)이레메디커뮤니케이션",
+      "role": "웹디자이너",
+      "period": "2009.11 - 2009.12",
+      "description": "병원 웹사이트 구축.",
+      "achievements": [
+        "[병원 사이트] **윌스치과 / 본앤본병원 / 스마일신경외과 퍼블리싱 개발 수행**"
       ],
-      skills: ["html", "css", "js", "photoshop", "illustrator"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "photoshop",
+        "illustrator"
+      ]
     },
     {
-      company: "Paran",
-      role: "웹퍼블리셔 (프리랜서)",
-      period: "2009.05 - 2009.05",
-      description: "**Paran.com 웹채팅** 서비스 구현.",
-      achievements: [
+      "company": "Paran",
+      "role": "웹퍼블리셔 (프리랜서)",
+      "period": "2009.05 - 2009.05",
+      "description": "**Paran.com 웹채팅** 서비스 구현.",
+      "achievements": [
         "[Paran.com 웹채팅] **웹 채팅 UI 퍼블리싱 및 인터랙션 구현**",
-        "[Paran.com 웹채팅] **실시간 채팅 화면 마크업 작업 수행**",
+        "[Paran.com 웹채팅] **실시간 채팅 화면 마크업 작업 수행**"
       ],
-      skills: ["html", "css", "js", "web standards"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards"
+      ]
     },
     {
-      company: "온비넷",
-      role: "웹퍼블리셔 (프리랜서)",
-      period: "2008.09 - 2008.09",
-      description: "웹사이트 퍼블리싱 및 유지보수.",
-      achievements: [
+      "company": "온비넷",
+      "role": "웹퍼블리셔 (프리랜서)",
+      "period": "2008.09 - 2008.09",
+      "description": "웹사이트 퍼블리싱 및 유지보수.",
+      "achievements": [
         "[온비넷] **웹사이트 퍼블리싱 및 유지보수**",
-        "[온비넷] **UI 구조 개선 및 콘텐츠 페이지 구현**",
+        "[온비넷] **UI 구조 개선 및 콘텐츠 페이지 구현**"
       ],
-      skills: ["html", "css", "js"],
+      "skills": [
+        "html",
+        "css",
+        "js"
+      ]
     },
     {
-      company: "AllF",
-      role: "웹퍼블리셔 (프리랜서)",
-      period: "2008.01 - 2008.04",
-      description: "올에프 사이트 및 국회의원 이벤트 페이지 퍼블리싱.",
-      achievements: [
+      "company": "AllF",
+      "role": "웹퍼블리셔 (프리랜서)",
+      "period": "2008.01 - 2008.04",
+      "description": "올에프 사이트 및 국회의원 이벤트 페이지 퍼블리싱.",
+      "achievements": [
         "[올에프 사이트] **Admin/Main/Sub 페이지 퍼블리싱 수행**",
         "[올에프 사이트] **공통 레이아웃 및 UI 구조 구현**",
         "[국회의원 이벤트] **이벤트 페이지 퍼블리싱 및 인터랙션 구현**",
-        "[국회의원 이벤트] **프로젝트별 프로모션 UI 개발 수행**",
+        "[국회의원 이벤트] **프로젝트별 프로모션 UI 개발 수행**"
       ],
-      skills: ["html", "css", "js", "web standards"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards"
+      ]
     },
     {
-      company: "미래에셋",
-      role: "웹퍼블리셔 (프리랜서)",
-      period: "2007.12 - 2007.12",
-      description: "**미래에셋 베트남지사** 글로벌 웹사이트 구축.",
-      achievements: [
+      "company": "미래에셋",
+      "role": "웹퍼블리셔 (프리랜서)",
+      "period": "2007.12 - 2007.12",
+      "description": "**미래에셋 베트남지사** 글로벌 웹사이트 구축.",
+      "achievements": [
         "[베트남지사] **글로벌 웹사이트 퍼블리싱 개발 수행**",
-        "[베트남지사] **다국어 UI 개발**",
+        "[베트남지사] **다국어 UI 개발**"
       ],
-      skills: ["html", "css", "js", "cross browsing"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "cross browsing"
+      ]
     },
     {
-      company: "비이티에이치이(주)",
-      role: "웹디자이너",
-      period: "2007.03 - 2007.08",
-      description: "병원 사이트 디자인 및 퍼블리싱 수행.",
-      achievements: [
+      "company": "비이티에이치이(주)",
+      "role": "웹디자이너",
+      "period": "2007.03 - 2007.08",
+      "description": "병원 사이트 디자인 및 퍼블리싱 수행.",
+      "achievements": [
         "[병원 사이트] **로담한의원 등 병원 사이트 디자인 및 퍼블리싱 수행**",
-        "[병원 사이트] **공통 UI 구조 개발**",
+        "[병원 사이트] **공통 UI 구조 개발**"
       ],
-      skills: ["html", "css", "photoshop", "illustrator"],
+      "skills": [
+        "html",
+        "css",
+        "photoshop",
+        "illustrator"
+      ]
     },
     {
-      company: "(주)파이테크놀러지",
-      role: "웹디자이너",
-      period: "2004.11 - 2007.01",
-      description: "**HP 온라인 스토어** 및 공공 플랫폼 퍼블리싱/운영.",
-      achievements: [
+      "company": "(주)파이테크놀러지",
+      "role": "웹디자이너",
+      "period": "2004.11 - 2007.01",
+      "description": "**HP 온라인 스토어** 및 공공 플랫폼 퍼블리싱/운영.",
+      "achievements": [
         "[HP 온라인 스토어] **온라인 스토어 운영 담당 및 유지보수/UI 개선**",
         "[HP 온라인 스토어] **운영 페이지 및 이벤트 페이지 퍼블리싱 작업 수행**",
         "[배움나라] **교육 플랫폼 퍼블리싱 및 UI 구현, 콘텐츠 구조 개선**",
         "[기념사업회/협회] **장보고 기념사업회/한국조선공업협동조합 등 웹사이트 디자인/퍼블리싱**",
         "[기념사업회/협회] **레이아웃 구조 개선 및 콘텐츠 페이지 구현**",
         "[Imperial Academy] **교육 서비스 웹사이트 디자인 및 퍼블리싱 수행**",
-        "[지캐스트] **웹 서비스 디자인 및 퍼블리싱, 마크업 구조 개선 및 유지보수**",
+        "[지캐스트] **웹 서비스 디자인 및 퍼블리싱, 마크업 구조 개선 및 유지보수**"
       ],
-      skills: ["html", "css", "photoshop", "illustrator", "dreamweaver"],
+      "skills": [
+        "html",
+        "css",
+        "photoshop",
+        "illustrator",
+        "dreamweaver"
+      ]
     },
     {
-      company: "(주)와이엠에이젼시",
-      role: "웹디자이너",
-      period: "2004.11 - 2005.12",
-      description: "**재능교육** 교육 콘텐츠 및 홈페이지 구축.",
-      achievements: [
+      "company": "(주)와이엠에이젼시",
+      "role": "웹디자이너",
+      "period": "2004.11 - 2005.12",
+      "description": "**재능교육** 교육 콘텐츠 및 홈페이지 구축.",
+      "achievements": [
         "[재능교육] **Flash 기반 교육 콘텐츠 개발 및 인터랙션 구현**",
         "[파트너사] **Sgp21 / 경원기계 / MBG 웹사이트 UI 디자인 및 퍼블리싱/유지보수**",
         "[파트너사] **레이아웃 구조 개선 및 콘텐츠 페이지 구현**",
         "[헤어시스] **로컬 프로그램 UI 디자인 및 홈페이지 리뉴얼/퍼블리싱**",
         "[유치원] **은아유치원 / 한일유치원 교육 콘텐츠 UI 및 화면 구성/디자인**",
-        "[몽스튜디오] **웹사이트 UI 디자인 및 퍼블리싱 진행**",
+        "[몽스튜디오] **웹사이트 UI 디자인 및 퍼블리싱 진행**"
       ],
-      skills: ["html", "css", "flash", "actionscript", "photoshop", "illustrator"],
-    },
+      "skills": [
+        "html",
+        "css",
+        "flash",
+        "actionscript",
+        "photoshop",
+        "illustrator"
+      ]
+    }
   ],
-  projects: [
+  "projects": [
     {
-      id: "toss-alba",
-      title: "Toss Open API 연동 프로젝트",
-      subtitle: "외부 토스 파트너십 서비스 연동을 위한 Open API 구축",
-      role: "서버리스 API 개발자",
-      period: {
-        start: "2025.11",
-        end: "2025.12",
-      },
-      techStack: [
-        { category: "backend", name: "Node.js" },
-        { category: "backend", name: "AWS Lambda" },
-        { category: "backend", name: "API Gateway" },
-      ],
-      summary: "외부 파트너사인 **토스와의 데이터 연동**을 위한 **Open API 서버리스 인프라 구축** 프로젝트입니다. 내부 데이터를 외부 스펙에 맞게 가공·전달하는 API 구조를 설계하고 인증 및 예외 처리 체계를 구축했습니다.",
-      troubleshooting: [
+      "id": "toss-alba",
+      "title": "Toss Open API 연동 프로젝트",
+      "subtitle": "외부 토스 파트너십 서비스 연동을 위한 Open API 구축",
+      "role": "서버리스 API 개발자",
+      "image": [
         {
-          problem: "서버리스 환경에서 토스 인증 규격(Bearer Token) 및 스펙 검증 결핍 우려.",
-          solution: "AWS API Gateway에 커스텀 Authorizer 및 Bearer Token 인증 검증 핸들러를 Lambda Stateless 구조로 구현.",
-          impact: "서버리스 구조 도입으로 트래픽 무제한 확장성 확보 및 응답 일관성 유지.",
+          "src": "/projects/jobkorea-common-header.png",
+          "width": 1280,
+          "height": 720
         },
+        {
+          "src": "/projects/toss-alba.png",
+          "width": 1280,
+          "height": 720
+        }
       ],
-      metrics: [
-        { label: "운영 비용 절감", value: "서버리스 최적화" },
-        { label: "인증 안정성", value: "100% 검증" },
+      "period": {
+        "start": "2025.11",
+        "end": "2025.12"
+      },
+      "techStack": [
+        {
+          "category": "backend",
+          "name": "Node.js"
+        },
+        {
+          "category": "backend",
+          "name": "AWS Lambda"
+        },
+        {
+          "category": "backend",
+          "name": "API Gateway"
+        }
       ],
+      "summary": "외부 파트너사인 **토스와의 데이터 연동**을 위한 **Open API 서버리스 인프라 구축** 프로젝트입니다. 내부 데이터를 외부 스펙에 맞게 가공·전달하는 API 구조를 설계하고 인증 및 예외 처리 체계를 구축했습니다.",
+      "troubleshooting": [
+        {
+          "problem": "서버리스 환경에서 토스 인증 규격(Bearer Token) 및 스펙 검증 결핍 우려.",
+          "solution": "AWS API Gateway에 커스텀 Authorizer 및 Bearer Token 인증 검증 핸들러를 Lambda Stateless 구조로 구현.",
+          "impact": "서버리스 구조 도입으로 트래픽 무제한 확장성 확보 및 응답 일관성 유지."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "운영 비용 절감",
+          "value": "서버리스 최적화"
+        },
+        {
+          "label": "인증 안정성",
+          "value": "100% 검증"
+        }
+      ],
+      "year": "2025",
+      "madeAt": "웍스피어 유한책임회사",
+      "isFeatured": true
     },
     {
-      id: "ai-chat",
-      title: "실시간 채팅 및 AI 챗봇 서비스 개발",
-      subtitle: "구직자-기업 연결 실시간 WebSocket 및 AI 채팅 채널 개발",
-      role: "프론트엔드 리드 개발자",
-      period: {
-        start: "2025.06",
-        end: "2025.10",
+      "id": "ai-chat",
+      "title": "실시간 채팅 및 AI 챗봇 서비스 개발",
+      "subtitle": "구직자-기업 연결 실시간 WebSocket 및 AI 채팅 채널 개발",
+      "role": "프론트엔드 리드 개발자",
+      "image": [
+        {
+          "src": "/projects/ai-chat.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/ai-chat.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2025.06",
+        "end": "2025.10"
       },
-      techStack: [
-        { category: "frontend", name: "Next.js" },
-        { category: "frontend", name: "TypeScript" },
-        { category: "frontend", name: "Zustand" },
-        { category: "frontend", name: "TanStack Query" },
-        { category: "frontend", name: "vanilla-extract" },
-      ],
-      summary: "채용 플랫폼 내 구직자와 기업 사용자를 연결하는 **실시간 채팅 및 AI 챗봇 서비스**를 개발했습니다. 실시간 메시징 환경에서 **안정적인 상태 동기화**와 **장애 복원 UX**를 구현하는 데 집중했습니다.",
-      troubleshooting: [
+      "techStack": [
         {
-          problem: "모바일 슬립 상태 및 단절 상황에서 WebSocket 연결 단절 후 메시지 누락 및 상태 불일치 발생.",
-          solution: "STOMP 기반 실시간 채널 구독 구조에 지수 백오프(Exponential Backoff)를 포함한 자동 재연결 알고리즘과 낙관적 업데이트(Optimistic Update) 적용.",
-          impact: "네트워크 단절 복구 안정성 100% 확보 및 체감 메시지 전송 속도 향상.",
+          "category": "frontend",
+          "name": "Next.js"
         },
         {
-          problem: "AI 챗봇 메시지의 Markdown 렌더링 처리 시 발생할 수 있는 보안 취약점 노출 위험.",
-          solution: "DOMPurify 라이브러리를 도입하여 XSS 방어를 완벽히 적용하고 iOS Safari의 렌더링 버그에 대응하기 위한 스타일 개선 수행.",
-          impact: "보안 취약점 제로 및 크로스 브라우징(특히 Safari 모바일) 안정성 강화.",
+          "category": "frontend",
+          "name": "TypeScript"
         },
+        {
+          "category": "frontend",
+          "name": "Zustand"
+        },
+        {
+          "category": "frontend",
+          "name": "TanStack Query"
+        },
+        {
+          "category": "frontend",
+          "name": "vanilla-extract"
+        }
       ],
-      metrics: [
-        { label: "자동 복원 성공률", value: "100%" },
-        { label: "체감 전송 속도", value: "낙관적 업데이트 반영" },
+      "summary": "채용 플랫폼 내 구직자와 기업 사용자를 연결하는 **실시간 채팅 및 AI 챗봇 서비스**를 개발했습니다. 실시간 메시징 환경에서 **안정적인 상태 동기화**와 **장애 복원 UX**를 구현하는 데 집중했습니다.",
+      "troubleshooting": [
+        {
+          "problem": "모바일 슬립 상태 및 단절 상황에서 WebSocket 연결 단절 후 메시지 누락 및 상태 불일치 발생.",
+          "solution": "STOMP 기반 실시간 채널 구독 구조에 지수 백오프(Exponential Backoff)를 포함한 자동 재연결 알고리즘과 낙관적 업데이트(Optimistic Update) 적용.",
+          "impact": "네트워크 단절 복구 안정성 100% 확보 및 체감 메시지 전송 속도 향상."
+        },
+        {
+          "problem": "AI 챗봇 메시지의 Markdown 렌더링 처리 시 발생할 수 있는 보안 취약점 노출 위험.",
+          "solution": "DOMPurify 라이브러리를 도입하여 XSS 방어를 완벽히 적용하고 iOS Safari의 렌더링 버그에 대응하기 위한 스타일 개선 수행.",
+          "impact": "보안 취약점 제로 및 크로스 브라우징(특히 Safari 모바일) 안정성 강화."
+        }
       ],
+      "metrics": [
+        {
+          "label": "자동 복원 성공률",
+          "value": "100%"
+        },
+        {
+          "label": "체감 전송 속도",
+          "value": "낙관적 업데이트 반영"
+        }
+      ],
+      "year": "2025",
+      "madeAt": "웍스피어 유한책임회사",
+      "isFeatured": true
     },
+    {
+      "id": "jobkorea-renewal",
+      "title": "잡코리아 대규모 리뉴얼 프로젝트",
+      "subtitle": "메인/검색/이력서/공고 등 핵심 도메인 리뉴얼",
+      "role": "프론트엔드 개발자 (퍼블리싱)",
+      "image": [
+        {
+          "src": "/projects/jobkorea-renewal.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/jobkorea-renewal.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2024.05",
+        "end": "2024.12"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "jQuery"
+        }
+      ],
+      "summary": "핵심 도메인의 대규모 리뉴얼 프로젝트로 UI 구조 개선 및 반응형 웹 마크업 정비, Lighthouse 기반 성능 최적화를 전담했습니다.",
+      "troubleshooting": [],
+      "metrics": [],
+      "links": {
+        "demo": "https://www.jobkorea.co.kr"
+      },
+      "year": "2024",
+      "madeAt": "웍스피어 유한책임회사",
+      "isFeatured": false
+    },
+    {
+      "id": "albamon-renewal",
+      "title": "알바몬 웹 서비스 리뉴얼 및 UI 개선",
+      "subtitle": "레거시 마크업 개선 및 서비스 레이아웃 대응",
+      "role": "웹퍼블리셔",
+      "image": [
+        {
+          "src": "/projects/albamon-renewal.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/albamon-renewal.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2016.02",
+        "end": "2016.07"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "jQuery"
+        }
+      ],
+      "summary": "알바몬 웹 서비스 리뉴얼에 참여하여 재사용 가능한 공통 UI 마크업 제작과 반응형 레이아웃 정비를 담당했습니다.",
+      "troubleshooting": [],
+      "metrics": [],
+      "links": {
+        "demo": "https://www.albamon.com"
+      },
+      "year": "2016",
+      "madeAt": "(주)키스템프그룹",
+      "isFeatured": false
+    },
+    {
+      "id": "mpss-portal",
+      "title": "국민안전처 대국민 서비스 포털 구축",
+      "subtitle": "웹 표준 및 웹 접근성(WA) 품질마크 획득 대응",
+      "role": "웹퍼블리셔",
+      "image": [
+        {
+          "src": "/projects/mpss-portal.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/mpss-portal.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2015.09",
+        "end": "2016.01"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        }
+      ],
+      "summary": "대국민 행정 서비스의 웹 접근성 인증을 위해 W3C 표준 시맨틱 마크업을 전담하고 크로스 브라우징을 완벽히 맞추어 국가 공인 품질인증마크를 획득했습니다.",
+      "troubleshooting": [],
+      "metrics": [],
+      "year": "2015",
+      "madeAt": "혜안",
+      "isFeatured": false
+    },
+    {
+      "id": "hanabank-wa",
+      "title": "하나은행 웹 표준/웹 접근성(WA) 개편 사업",
+      "subtitle": "하나은행 및 주요 계열사 사이트 표준화",
+      "role": "웹퍼블리셔",
+      "image": [
+        {
+          "src": "/projects/hanabank-wa.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/hanabank-wa.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2011.01",
+        "end": "2012.10"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "cross browsing"
+        }
+      ],
+      "summary": "하나은행 및 계열사 사이트 리뉴얼을 주도하며 ION 기반 웹 표준화 지침을 수립하고, 장애우를 위한 스크린 리더 호환성 및 키보드 웹 접근성을 설계했습니다.",
+      "troubleshooting": [],
+      "metrics": [],
+      "links": {
+        "demo": "https://www.hanabank.com"
+      },
+      "year": "2011",
+      "madeAt": "(주)넷트루컨설팅그룹",
+      "isFeatured": false
+    },
+    {
+      "id": "ezwel-welfare",
+      "title": "이지웰복지관 웹 표준화 구축",
+      "subtitle": "웹 표준 프레임워크 설계 및 웹 접근성 품질마크 획득 대응",
+      "role": "웹퍼블리셔",
+      "image": [
+        {
+          "src": "/projects/ezwel-welfare.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/ezwel-welfare.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2015.07",
+        "end": "2015.08"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "Web Accessibility"
+        }
+      ],
+      "summary": "이지웰복지관 복지 포털의 체계적인 UI 개발을 위한 웹 표준화 프레임워크를 설계하고 퍼블리싱 구조 표준화를 통해 국가 공인 웹 접근성 품질인증마크를 획득했습니다.",
+      "troubleshooting": [
+        {
+          "problem": "다양한 보조기기(스크린 리더 등) 지원을 위한 폼 레이아웃 구조의 접근성 호환 결핍.",
+          "solution": "WAI-ARIA 명세를 적용하여 입력 폼 요소의 논리적 연결(label-input 매칭)과 포커싱 순서를 마크업 표준에 맞게 리팩토링.",
+          "impact": "웹 접근성 품질인증마크 심사 통과 및 시각장애인 편의성 대폭 개선."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "접근성 통과율",
+          "value": "100%"
+        },
+        {
+          "label": "인증 획득",
+          "value": "WA 품질마크"
+        }
+      ],
+      "year": "2015",
+      "madeAt": "(주)에이매스컨설팅",
+      "isFeatured": false
+    },
+    {
+      "id": "hongkong-ebook",
+      "title": "홍콩정부 e-book 멀티디바이스 마크업",
+      "subtitle": "글로벌 협업 기반 멀티 디바이스 환경의 웹 최적화 및 레이아웃 구현",
+      "role": "웹퍼블리셔",
+      "image": [
+        {
+          "src": "/projects/hongkong-ebook.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/hongkong-ebook.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2013.02",
+        "end": "2014.02"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "Responsive Design"
+        },
+        {
+          "category": "frontend",
+          "name": "Performance Optimization"
+        }
+      ],
+      "summary": "해외 협업으로 진행된 홍콩정부 e-book 프로젝트의 멀티 디바이스 마크업 및 성능 최적화를 전담하고, 다양한 스크린 해상도를 고려한 고품질 웹 템플릿을 개발했습니다.",
+      "troubleshooting": [
+        {
+          "problem": "방대한 텍스트와 이미지 데이터가 한 페이지에 로드되면서 멀티 디바이스 환경에서의 스크롤 버벅임과 속도 저하 발생.",
+          "solution": "CSS 하드웨어 가속 기법 및 이미지 렌더링 최적화를 진행하고 리소스 레이지 로딩(Lazy Loading)을 구현.",
+          "impact": "모바일 웹 뷰어 환경에서 스크롤 성능 향상 및 초기 로딩 시간 단축."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "렌더링 속도 개선",
+          "value": "성능 최적화"
+        },
+        {
+          "label": "디바이스 대응",
+          "value": "멀티디바이스 호환"
+        }
+      ],
+      "year": "2013",
+      "madeAt": "MedBirdie",
+      "isFeatured": false
+    },
+    {
+      "id": "mirae-asset-vietnam",
+      "title": "미래에셋 베트남 지사 글로벌 웹사이트 구축",
+      "subtitle": "다국어 지원 및 글로벌 규격에 맞춘 기업 웹사이트 퍼블리싱",
+      "role": "웹퍼블리셔",
+      "image": [
+        {
+          "src": "/projects/mirae-asset-vietnam.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/mirae-asset-vietnam.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2007.12",
+        "end": "2007.12"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "cross browsing"
+        }
+      ],
+      "summary": "미래에셋 베트남 지사의 글로벌 시장 진출에 대응하는 다국어 글로벌 웹사이트를 구축했습니다. 지역적 정렬과 브라우저 호환성을 맞추어 글로벌 표준 템플릿을 제공했습니다.",
+      "troubleshooting": [
+        {
+          "problem": "다국어(베트남어, 영어) 폰트 크기 및 텍스트 길이 변화로 인해 각 브라우저에서 레이아웃이 어긋나는 현상.",
+          "solution": "유연한 유동(fluid) 그리드 레이아웃을 채택하고 크로스 브라우징 가이드라인에 맞춘 CSS 정렬 방식 적용.",
+          "impact": "모든 주요 브라우저에서 다국어 레이아웃 깨짐 현상을 방지하고 비주얼 일관성 유지."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "다국어 지원",
+          "value": "베트남어/영어"
+        },
+        {
+          "label": "크로스 브라우징",
+          "value": "호환성 확보"
+        }
+      ],
+      "year": "2007",
+      "madeAt": "미래에셋",
+      "isFeatured": false
+    }
   ],
-  skills: [
+  "skills": [
     {
-      title: "핵심 기술 역량",
-      skills: [
+      "title": "핵심 기술 역량",
+      "skills": [
         "Next.js (App Router)",
         "React",
         "TypeScript",
         "vanilla-extract",
         "Zustand",
         "TanStack Query",
-        "WebSocket (STOMP)",
-      ],
+        "WebSocket (STOMP)"
+      ]
     },
     {
-      title: "백엔드 및 클라우드",
-      skills: [
+      "title": "백엔드 및 클라우드",
+      "skills": [
         "Node.js",
         "AWS API Gateway",
         "AWS Lambda (Serverless)",
         "REST API Design",
-        "Bearer Token Auth",
-      ],
+        "Bearer Token Auth"
+      ]
     },
     {
-      title: "마크업 및 웹 표준",
-      skills: [
+      "title": "마크업 및 웹 표준",
+      "skills": [
         "시맨틱 HTML / CSS",
         "웹 접근성 (접근성 인증마크 획득)",
         "반응형 웹 설계",
-        "크로스 브라우징 대응",
-      ],
-    },
-  ],
+        "크로스 브라우징 대응"
+      ]
+    }
+  ]
 };
 
 export const PORTFOLIO_DATA_EN: PortfolioData = {
-  profile: {
-    name: "James Kim",
-    role: "Frontend Developer",
-    tagline: "I build accessible, pixel-perfect experiences for the web.",
-    aboutMe: "I’m a frontend engineer with a deep passion for building **accessible, pixel-perfect user interfaces** that bridge the gap between design and scalable engineering. I take pride in crafting clean, semantic code and have a sharp eye for the small, critical details that elevate user experience.\n\nPreviously, I was at **Worksphere**, where I designed and built robust platform structures, such as dynamic menu engines and fine-grained navigation controls. I also actively drove frontend architecture, leading the **layout publishing for major service renewals at JobKorea**, and constructed highly reliable, offline-resilient **WebSocket architecture for real-time AI chatting**.\n\nOver the years, I’ve worked across diverse environments — partnering with startups, outsourcing agencies, and major platforms like **Toss Albar**, **Kistemp**, and **Netrue**. These experiences have shaped my expertise in web accessibility standards, cross-browser compatibility, and modular frontend architectures.\n\nIn my spare time, you can usually find me researching new web standards, looking through design concepts, or enjoying my time offline recharging for the next build.",
-    github: "https://github.com/cooolpower",
-    email: "developerjameskim@gmail.com",
-    resume: "/resume_en.pdf",
+  "profile": {
+    "name": "James Kim",
+    "role": "Frontend Developer",
+    "tagline": "I build accessible, pixel-perfect experiences for the web.",
+    "aboutMe": "I’m a frontend engineer with a deep passion for building **accessible, pixel-perfect user interfaces** that bridge the gap between design and scalable engineering. I take pride in crafting clean, semantic code and have a sharp eye for the small, critical details that elevate user experience.\n\nPreviously, I was at **Worksphere**, where I designed and built robust platform structures, such as dynamic menu engines and fine-grained navigation controls. I also actively drove frontend architecture, leading the **layout publishing for major service renewals at JobKorea**, and constructed highly reliable, offline-resilient **WebSocket architecture for real-time AI chatting**.\n\nOver the years, I’ve worked across diverse environments — partnering with startups, outsourcing agencies, and major platforms like **Toss Albar**, **Kistemp**, and **Netrue**. These experiences have shaped my expertise in web accessibility standards, cross-browser compatibility, and modular frontend architectures.\n\nIn my spare time, you can usually find me researching new web standards, looking through design concepts, or enjoying my time offline recharging for the next build.",
+    "github": "https://github.com/cooolpower",
+    "email": "developerjameskim@gmail.com",
+    "resume": "/resume_en.pdf"
   },
-  careers: [
+  "careers": [
     {
-      company: "Worksphere LLC",
-      role: "FE Platform Team Engineer",
-      period: "2024.05 - 2026.01",
-      description: "Led platform-level contributions, real-time AI chatting, and external partner API integrations.",
-      link: "https://www.jobkorea.co.kr",
-      groupLinks: {
+      "company": "Worksphere LLC",
+      "role": "FE Platform Team Engineer",
+      "period": "2024.05 - 2026.01",
+      "description": "Led platform-level contributions, real-time AI chatting, and external partner API integrations.",
+      "link": "https://www.jobkorea.co.kr",
+      "groupLinks": {
         "Platform-Level Contribution": "https://www.jobkorea.co.kr",
         "JobKorea Major Renewal": "https://www.jobkorea.co.kr",
         "AI Chatting": "https://www.jobkorea.co.kr",
-        "Toss Open API (TossAlba)": "https://alba.toss.im",
+        "Toss Open API (TossAlba)": "https://alba.toss.im"
       },
-      achievements: [
+      "achievements": [
         "[Platform-Level Contribution] **Designed and developed common header components** to standardize team-wide collaborative component libraries",
         "[Platform-Level Contribution] **Architected admin-based menu management engines** and dynamic rendering systems",
         "[Platform-Level Contribution] **Implemented global navigation state management and fine-grained access control (RBAC)**",
@@ -459,22 +995,43 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
         "[Toss Open API (TossAlba)] **Architected serverless API infrastructures using AWS API Gateway and Lambda**",
         "[Toss Open API (TossAlba)] **Mapped and processed database records fitting external partner specifications**",
         "[Toss Open API (TossAlba)] **Designed stateless, highly scalable API architectures**",
-        "[Toss Open API (TossAlba)] **Constructed Bearer Token authorization and request validation handlers**",
+        "[Toss Open API (TossAlba)] **Constructed Bearer Token authorization and request validation handlers**"
       ],
-      skills: ["html", "css", "js", "react", "next", "typescript", "git", "github", "jira", "confluence", "figma", "vscode", "web standards", "web accessibility", "lighthouse", "performance optimization", "aws lambda", "api gateway", "websocket", "stomp"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "react",
+        "next",
+        "typescript",
+        "git",
+        "github",
+        "jira",
+        "confluence",
+        "figma",
+        "vscode",
+        "web standards",
+        "web accessibility",
+        "lighthouse",
+        "performance optimization",
+        "aws lambda",
+        "api gateway",
+        "websocket",
+        "stomp"
+      ]
     },
     {
-      company: "Kistemp Group Co., Ltd.",
-      role: "Web Publisher (JobKorea / Albamon / Gamejob)",
-      period: "2016.02 - 2016.07",
-      description: "Dedicated to Web Standardization and Accessibility Certificate compliance.",
-      link: "http://www.kistemp.co.kr",
-      groupLinks: {
+      "company": "Kistemp Group Co., Ltd.",
+      "role": "Web Publisher (JobKorea / Albamon / Gamejob)",
+      "period": "2016.02 - 2016.07",
+      "description": "Dedicated to Web Standardization and Accessibility Certificate compliance.",
+      "link": "http://www.kistemp.co.kr",
+      "groupLinks": {
         "JobKorea": "https://www.jobkorea.co.kr",
         "Albamon": "https://www.albamon.com",
-        "Gamejob": "https://www.gamejob.co.kr",
+        "Gamejob": "https://www.gamejob.co.kr"
       },
-      achievements: [
+      "achievements": [
         "[JobKorea] **Refactored markup architecture to secure Web Accessibility (WA) certificate marks**",
         "[JobKorea] **Maintained legacy code structures and performed layout updates**",
         "[JobKorea] **Took part in web/mobile major service layout renewals**",
@@ -483,292 +1040,799 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
         "[Gamejob] **Refactored markup structures to secure Web Accessibility (WA) certificate marks**",
         "[Gamejob] **Maintained legacy codebases and performed structural optimization**",
         "[Gamejob] **Took part in web/mobile major service layout renewals**",
-        "[Gamejob] **Created reusable common UI markup structures and component templates**",
+        "[Gamejob] **Created reusable common UI markup structures and component templates**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility", "jquery", "cross compatibility"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility",
+        "jquery",
+        "cross compatibility"
+      ]
     },
     {
-      company: "Hyean",
-      role: "Web Publisher (Ministry of Public Safety and Security)",
-      period: "2015.09 - 2016.01",
-      description: "Performed web publishing for public service portals.",
-      achievements: [
+      "company": "Hyean",
+      "role": "Web Publisher (Ministry of Public Safety and Security)",
+      "period": "2015.09 - 2016.01",
+      "description": "Performed web publishing for public service portals.",
+      "achievements": [
         "[Public Safety Portal] **Completed layouts aligning with Web Accessibility guidelines and template guidelines**",
-        "[Public Safety Portal] **Executed semantic markup workflows based on strict W3C web standards**",
+        "[Public Safety Portal] **Executed semantic markup workflows based on strict W3C web standards**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility"
+      ]
     },
     {
-      company: "A-Mass Consulting",
-      role: "Web Publisher (Ezwel Welfare Center)",
-      period: "2015.07 - 2015.08",
-      description: "Established web standardization and publishing guidelines.",
-      achievements: [
+      "company": "A-Mass Consulting",
+      "role": "Web Publisher (Ezwel Welfare Center)",
+      "period": "2015.07 - 2015.08",
+      "description": "Established web standardization and publishing guidelines.",
+      "achievements": [
         "[Ezwel Portal] **Performed web standardization and accessibility enhancement operations**",
         "[Ezwel Portal] **Assisted in getting Web Accessibility certificate marks**",
         "[Ezwel Portal] **Crafted common UI component templates**",
-        "[Ezwel Portal] **Standardized overall publishing structures and stylesheet templates**",
+        "[Ezwel Portal] **Standardized overall publishing structures and stylesheet templates**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility"
+      ]
     },
     {
-      company: "Centvision Co., Ltd.",
-      role: "Web Publisher (Dongik9 / WithUsIMC / SHAREBLING)",
-      period: "2014.10 - 2015.04",
-      description: "Implemented responsive UI layouts for mobile app and web platforms.",
-      achievements: [
+      "company": "Centvision Co., Ltd.",
+      "role": "Web Publisher (Dongik9 / WithUsIMC / SHAREBLING)",
+      "period": "2014.10 - 2015.04",
+      "description": "Implemented responsive UI layouts for mobile app and web platforms.",
+      "achievements": [
         "[Dongik9] **Developed mobile app UI structures and applied mobile optimizations**",
         "[Dongik9] **Built responsive layouts matching mobile screen sizes**",
         "[WithUsIMC] **Developed corporate web layouts and UI mockups**",
         "[WithUsIMC] **Maintained codebases and revised legacy markup codebases**",
         "[SHAREBLING v2] **Developed frontend layouts and catalog views**",
-        "[SHAREBLING v2] **Managed reusable common UI markup configurations and layout styles**",
+        "[SHAREBLING v2] **Managed reusable common UI markup configurations and layout styles**"
       ],
-      skills: ["html", "css", "js", "responsive design", "mobile optimization"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "responsive design",
+        "mobile optimization"
+      ]
     },
     {
-      company: "Tom & Rabbit",
-      role: "SHAREBLING Version1 Web Publisher",
-      period: "2014.05 - 2014.10",
-      description: "Handled e-commerce and portal UI publishing.",
-      achievements: [
+      "company": "Tom & Rabbit",
+      "role": "SHAREBLING Version1 Web Publisher",
+      "period": "2014.05 - 2014.10",
+      "description": "Handled e-commerce and portal UI publishing.",
+      "achievements": [
         "[SHAREBLING v1] **Developed service UI structures while managing responsive constraints**",
         "[SHAREBLING v1] **Designed reusable UI architectures and optimized layout components**",
-        "[SHAREBLING v1] **Managed cross-browsing alignments and device compatibility**",
+        "[SHAREBLING v1] **Managed cross-browsing alignments and device compatibility**"
       ],
-      skills: ["html", "css", "js", "cross browsing", "responsive design"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "cross browsing",
+        "responsive design"
+      ]
     },
     {
-      company: "Hong Kong local firm (Hong Kong government e-book)",
-      role: "Web Publisher (Overseas Experience)",
-      period: "2013.02 - 2014.02",
-      description: "Collaborated on the Hong Kong Government e-book project and KEYPAD magazine site layouts.",
-      achievements: [
+      "company": "Hong Kong local firm (Hong Kong government e-book)",
+      "role": "Web Publisher (Overseas Experience)",
+      "period": "2013.02 - 2014.02",
+      "description": "Collaborated on the Hong Kong Government e-book project and KEYPAD magazine site layouts.",
+      "achievements": [
         "[e-Book Portal] **Managed multi-device markup and performance optimization for the e-book portal**",
-        "[KEYPAD Magazine] **Led front-facing markup layouts for KEYPAD magazine and overseas clients**",
+        "[KEYPAD Magazine] **Led front-facing markup layouts for KEYPAD magazine and overseas clients**"
       ],
-      skills: ["html", "css", "js", "web standards", "performance optimization"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "performance optimization"
+      ]
     },
     {
-      company: "Netrue Consulting Group",
-      role: "Web Publisher (Hana Bank)",
-      period: "2011.01 - 2012.10",
-      description: "Executed web standardization and Web Accessibility (WA) renewals for Hana Bank and affiliates.",
-      groupLinks: {
-        "Hana Bank": "https://www.hanabank.com",
+      "company": "Netrue Consulting Group",
+      "role": "Web Publisher (Hana Bank)",
+      "period": "2011.01 - 2012.10",
+      "description": "Executed web standardization and Web Accessibility (WA) renewals for Hana Bank and affiliates.",
+      "groupLinks": {
+        "Hana Bank": "https://www.hanabank.com"
       },
-      achievements: [
+      "achievements": [
         "[Hana Bank] **Formulated web standard and accessibility guidelines and executed markup layouts**",
         "[Hana Bank] **Successfully secured Web Accessibility certificates and led bank renewals**",
         "[Hana Bank] **Developed ION-based web portals**",
         "[Hana Bank] **Managed bank affiliate portals and layouts**",
-        "[Hana Bank] **Designed responsive and cross-browser compatible layouts**",
+        "[Hana Bank] **Designed responsive and cross-browser compatible layouts**"
       ],
-      skills: ["html", "css", "js", "web standards", "web accessibility", "cross browsing"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards",
+        "web accessibility",
+        "cross browsing"
+      ]
     },
     {
-      company: "R’s Company",
-      role: "Web Publisher (Freelancer)",
-      period: "2010.05 - 2010.05",
-      description: "Built the Rotiple Sky official website.",
-      achievements: [
-        "[Rotiple Sky] **Completed the official website layout publishing**",
+      "company": "R’s Company",
+      "role": "Web Publisher (Freelancer)",
+      "period": "2010.05 - 2010.05",
+      "description": "Built the Rotiple Sky official website.",
+      "achievements": [
+        "[Rotiple Sky] **Completed the official website layout publishing**"
       ],
-      skills: ["html", "css", "js", "web standards"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards"
+      ]
     },
     {
-      company: "Ire Medi Communication",
-      role: "Web Designer",
-      period: "2009.11 - 2009.12",
-      description: "Built hospital portal web interfaces.",
-      achievements: [
-        "[Hospital Sites] **Completed UI publishing for Wils Dental, Born & Born Hospital, and Smile Neurosurgery**",
+      "company": "Ire Medi Communication",
+      "role": "Web Designer",
+      "period": "2009.11 - 2009.12",
+      "description": "Built hospital portal web interfaces.",
+      "achievements": [
+        "[Hospital Sites] **Completed UI publishing for Wils Dental, Born & Born Hospital, and Smile Neurosurgery**"
       ],
-      skills: ["html", "css", "js", "photoshop", "illustrator"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "photoshop",
+        "illustrator"
+      ]
     },
     {
-      company: "Paran",
-      role: "Web Publisher (Freelancer)",
-      period: "2009.05 - 2009.05",
-      description: "Implemented the web chatting layout for Paran.com.",
-      achievements: [
+      "company": "Paran",
+      "role": "Web Publisher (Freelancer)",
+      "period": "2009.05 - 2009.05",
+      "description": "Implemented the web chatting layout for Paran.com.",
+      "achievements": [
         "[Paran.com Chat] **Developed web chat UI layout and interactive scripts**",
-        "[Paran.com Chat] **Completed real-time chat interface markup**",
+        "[Paran.com Chat] **Completed real-time chat interface markup**"
       ],
-      skills: ["html", "css", "js", "web standards"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards"
+      ]
     },
     {
-      company: "Onbinet",
-      role: "Web Publisher (Freelancer)",
-      period: "2008.09 - 2008.09",
-      description: "Performed layout publishing and site maintenance.",
-      achievements: [
+      "company": "Onbinet",
+      "role": "Web Publisher (Freelancer)",
+      "period": "2008.09 - 2008.09",
+      "description": "Performed layout publishing and site maintenance.",
+      "achievements": [
         "[Onbinet] **Performed website UI publishing and layout maintenance**",
-        "[Onbinet] **Improved UI structure and content page templates**",
+        "[Onbinet] **Improved UI structure and content page templates**"
       ],
-      skills: ["html", "css", "js"],
+      "skills": [
+        "html",
+        "css",
+        "js"
+      ]
     },
     {
-      company: "AllF",
-      role: "Web Publisher (Freelancer)",
-      period: "2008.01 - 2008.04",
-      description: "Published AllF portal site and political campaign promo pages.",
-      achievements: [
+      "company": "AllF",
+      "role": "Web Publisher (Freelancer)",
+      "period": "2008.01 - 2008.04",
+      "description": "Published AllF portal site and political campaign promo pages.",
+      "achievements": [
         "[AllF Site] **Completed Admin, Main, and Sub page layout publishing**",
         "[AllF Site] **Developed common layout components and UI templates**",
         "[Campaign Site] **Created interactive layouts and promotional screens**",
-        "[Campaign Site] **Developed campaign promo pages**",
+        "[Campaign Site] **Developed campaign promo pages**"
       ],
-      skills: ["html", "css", "js", "web standards"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "web standards"
+      ]
     },
     {
-      company: "Mirae Asset",
-      role: "Web Publisher (Freelancer)",
-      period: "2007.12 - 2007.12",
-      description: "Built the global website for Mirae Asset Vietnam branch.",
-      achievements: [
+      "company": "Mirae Asset",
+      "role": "Web Publisher (Freelancer)",
+      "period": "2007.12 - 2007.12",
+      "description": "Built the global website for Mirae Asset Vietnam branch.",
+      "achievements": [
         "[Vietnam Branch] **Completed global web site publishing**",
-        "[Vietnam Branch] **Developed multi-lingual UI templates**",
+        "[Vietnam Branch] **Developed multi-lingual UI templates**"
       ],
-      skills: ["html", "css", "js", "cross browsing"],
+      "skills": [
+        "html",
+        "css",
+        "js",
+        "cross browsing"
+      ]
     },
     {
-      company: "BETHE Co., Ltd.",
-      role: "Web Designer",
-      period: "2007.03 - 2007.08",
-      description: "Designed and published hospital portal sites.",
-      achievements: [
+      "company": "BETHE Co., Ltd.",
+      "role": "Web Designer",
+      "period": "2007.03 - 2007.08",
+      "description": "Designed and published hospital portal sites.",
+      "achievements": [
         "[Hospital Sites] **Designed and published web portals for Rodam Clinic, Banryongam Center, etc.**",
-        "[Hospital Sites] **Developed common UI templates**",
+        "[Hospital Sites] **Developed common UI templates**"
       ],
-      skills: ["html", "css", "photoshop", "illustrator"],
+      "skills": [
+        "html",
+        "css",
+        "photoshop",
+        "illustrator"
+      ]
     },
     {
-      company: "PhyTechnology",
-      role: "Web Designer",
-      period: "2004.11 - 2007.01",
-      description: "Managed HP Online Store layout and public learning portals.",
-      achievements: [
+      "company": "PhyTechnology",
+      "role": "Web Designer",
+      "period": "2004.11 - 2007.01",
+      "description": "Managed HP Online Store layout and public learning portals.",
+      "achievements": [
         "[HP Store] **Operated the online store, improved UI, and published promo pages**",
         "[HP Store] **Completed operational and promotional layouts**",
         "[Learning Portal] **Implemented layout publishing and UI structures for public education platforms**",
         "[Portals] **Designed and published web portals for Jang Bogo Memorial Association, etc.**",
         "[Portals] **Improved layout structure and content pages**",
         "[Imperial Academy] **Designed and published web portals for educational services**",
-        "[G-Cast] **Designed and published web services, optimized markup, and performed maintenance**",
+        "[G-Cast] **Designed and published web services, optimized markup, and performed maintenance**"
       ],
-      skills: ["html", "css", "photoshop", "illustrator", "dreamweaver"],
+      "skills": [
+        "html",
+        "css",
+        "photoshop",
+        "illustrator",
+        "dreamweaver"
+      ]
     },
     {
-      company: "YM Agency",
-      role: "Web Designer",
-      period: "2004.11 - 2005.12",
-      description: "Developed Flash-based interactive content for JEI Corporation.",
-      achievements: [
+      "company": "YM Agency",
+      "role": "Web Designer",
+      "period": "2004.11 - 2005.12",
+      "description": "Developed Flash-based interactive content for JEI Corporation.",
+      "achievements": [
         "[JEI Corp] **Developed Flash-based educational contents and interactions**",
         "[Partners] **Designed and published websites for Sgp21, MBG, etc.**",
         "[Partners] **Improved layout structure and content pages**",
         "[Hairsis] **Designed desktop software UI and published homepage layouts**",
         "[Kindergartens] **Designed and published interactive web pages for kindergartens**",
-        "[Mon Studio] **Designed and published photography studio portals**",
+        "[Mon Studio] **Designed and published photography studio portals**"
       ],
-      skills: ["html", "css", "flash", "actionscript", "photoshop", "illustrator"],
-    },
+      "skills": [
+        "html",
+        "css",
+        "flash",
+        "actionscript",
+        "photoshop",
+        "illustrator"
+      ]
+    }
   ],
-  projects: [
+  "projects": [
     {
-      id: "toss-alba",
-      title: "Toss Open API Integration",
-      subtitle: "Constructed Open API serverless infrastructure for Toss partnership data syncing",
-      role: "Serverless API Developer",
-      period: {
-        start: "2025.11",
-        end: "2025.12",
-      },
-      techStack: [
-        { category: "backend", name: "Node.js" },
-        { category: "backend", name: "AWS Lambda" },
-        { category: "backend", name: "API Gateway" },
-      ],
-      summary: "A serverless infrastructure building project for Toss data sharing. Modeled and transformed internal database records to fit partner specifications while establishing validation and authorization handlers.",
-      troubleshooting: [
+      "id": "toss-alba",
+      "title": "Toss Open API Integration",
+      "subtitle": "Constructed Open API serverless infrastructure for Toss partnership data syncing",
+      "role": "Serverless API Developer",
+      "image": [
         {
-          problem: "Concerns regarding Bearer Token validation and structural verification in a stateless environment.",
-          solution: "Constructed custom API Gateway Authorizers and token decryption handlers integrated with stateless AWS Lambda configurations.",
-          impact: "Succeeded in getting infinite scalability and maintaining 100% stable API response rates.",
+          "src": "/projects/toss-alba.png",
+          "width": 1280,
+          "height": 720
         },
+        {
+          "src": "/projects/toss-alba.png",
+          "width": 1280,
+          "height": 720
+        }
       ],
-      metrics: [
-        { label: "Operation Overhead", value: "Serverless Optimized" },
-        { label: "Auth Validation Rate", value: "100% Secured" },
+      "period": {
+        "start": "2025.11",
+        "end": "2025.12"
+      },
+      "techStack": [
+        {
+          "category": "backend",
+          "name": "Node.js"
+        },
+        {
+          "category": "backend",
+          "name": "AWS Lambda"
+        },
+        {
+          "category": "backend",
+          "name": "API Gateway"
+        }
       ],
+      "summary": "A serverless infrastructure building project for Toss data sharing. Modeled and transformed internal database records to fit partner specifications while establishing validation and authorization handlers.",
+      "troubleshooting": [
+        {
+          "problem": "Concerns regarding Bearer Token validation and structural verification in a stateless environment.",
+          "solution": "Constructed custom API Gateway Authorizers and token decryption handlers integrated with stateless AWS Lambda configurations.",
+          "impact": "Succeeded in getting infinite scalability and maintaining 100% stable API response rates."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "Operation Overhead",
+          "value": "Serverless Optimized"
+        },
+        {
+          "label": "Auth Validation Rate",
+          "value": "100% Secured"
+        }
+      ],
+      "year": "2025",
+      "madeAt": "Worksphere LLC",
+      "isFeatured": true
     },
     {
-      id: "ai-chat",
-      title: "Real-time AI Chatbot Service",
-      subtitle: "Designed real-time WebSocket messaging and AI channels for recruiters and job seekers",
-      role: "Frontend Lead",
-      period: {
-        start: "2025.06",
-        end: "2025.10",
+      "id": "ai-chat",
+      "title": "Real-time AI Chatbot Service",
+      "subtitle": "Designed real-time WebSocket messaging and AI channels for recruiters and job seekers",
+      "role": "Frontend Lead",
+      "image": [
+        {
+          "src": "/projects/ai-chat.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/ai-chat.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2025.06",
+        "end": "2025.10"
       },
-      techStack: [
-        { category: "frontend", name: "Next.js" },
-        { category: "frontend", name: "TypeScript" },
-        { category: "frontend", name: "Zustand" },
-        { category: "frontend", name: "TanStack Query" },
-        { category: "frontend", name: "vanilla-extract" },
-      ],
-      summary: "Developed live messaging interfaces with custom AI chatbots. Focused heavily on designing offline-resilient socket connections and seamless user state syncing.",
-      troubleshooting: [
+      "techStack": [
         {
-          problem: "Mobile sleep states and cellular toggling caused socket disconnection, missing packets, and local/remote state mismatches.",
-          solution: "Established a STOMP subscription model backed by automatic exponential backoff reconnection algorithms and UI optimistic updates.",
-          impact: "Secured 100% automatic recovery rates and significantly boosted perceived messaging speeds.",
+          "category": "frontend",
+          "name": "Next.js"
         },
         {
-          problem: "XSS vulnerability threat when rendering AI markdown formatted text bubbles.",
-          solution: "DOMPurify for absolute layout sanitation and addressed layout rendering bugs on iOS mobile Safari.",
-          impact: "Achieved zero vulnerabilities and enhanced cross-browser UI safety.",
+          "category": "frontend",
+          "name": "TypeScript"
         },
+        {
+          "category": "frontend",
+          "name": "Zustand"
+        },
+        {
+          "category": "frontend",
+          "name": "TanStack Query"
+        },
+        {
+          "category": "frontend",
+          "name": "vanilla-extract"
+        }
       ],
-      metrics: [
-        { label: "Auto-reconnect Success", value: "100%" },
-        { label: "Messaging Latency UI", value: "Optimistic" },
+      "summary": "Developed live messaging interfaces with custom AI chatbots. Focused heavily on designing offline-resilient socket connections and seamless user state syncing.",
+      "troubleshooting": [
+        {
+          "problem": "Mobile sleep states and cellular toggling caused socket disconnection, missing packets, and local/remote state mismatches.",
+          "solution": "Established a STOMP subscription model backed by automatic exponential backoff reconnection algorithms and UI optimistic updates.",
+          "impact": "Secured 100% automatic recovery rates and significantly boosted perceived messaging speeds."
+        },
+        {
+          "problem": "XSS vulnerability threat when rendering AI markdown formatted text bubbles.",
+          "solution": "DOMPurify for absolute layout sanitation and addressed layout rendering bugs on iOS mobile Safari.",
+          "impact": "Achieved zero vulnerabilities and enhanced cross-browser UI safety."
+        }
       ],
+      "metrics": [
+        {
+          "label": "Auto-reconnect Success",
+          "value": "100%"
+        },
+        {
+          "label": "Messaging Latency UI",
+          "value": "Optimistic"
+        }
+      ],
+      "year": "2025",
+      "madeAt": "Worksphere LLC",
+      "isFeatured": true
     },
+    {
+      "id": "jobkorea-renewal",
+      "title": "JobKorea Service Renewal",
+      "subtitle": "Major frontend layout renewal for JobKorea core web interfaces",
+      "role": "Frontend Developer (Layout Publishing)",
+      "image": [
+        {
+          "src": "/projects/jobkorea-renewal.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/jobkorea-renewal.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2024.05",
+        "end": "2024.12"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "jQuery"
+        }
+      ],
+      "summary": "Participated in rebuilding core domains at JobKorea. Redesigned layout markup structures, ensured responsive constraints, and handled frontend optimizations.",
+      "troubleshooting": [],
+      "metrics": [],
+      "links": {
+        "demo": "https://www.jobkorea.co.kr"
+      },
+      "year": "2024",
+      "madeAt": "Worksphere LLC",
+      "isFeatured": false
+    },
+    {
+      "id": "albamon-renewal",
+      "title": "Albamon Portal UI Enhancements",
+      "subtitle": "Revised markup templates and updated operational stylesheets",
+      "role": "Web Publisher",
+      "image": [
+        {
+          "src": "/projects/albamon-renewal.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/albamon-renewal.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2016.02",
+        "end": "2016.07"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "jQuery"
+        }
+      ],
+      "summary": "Maintained and standardizing stylesheet patterns, optimizing layout components, and creating common interactive controls.",
+      "troubleshooting": [],
+      "metrics": [],
+      "links": {
+        "demo": "https://www.albamon.com"
+      },
+      "year": "2016",
+      "madeAt": "Kistemp Group Co., Ltd.",
+      "isFeatured": false
+    },
+    {
+      "id": "mpss-portal",
+      "title": "Public Safety Portal Portal Publishing",
+      "subtitle": "Secured government accessibility compliance certification",
+      "role": "Web Publisher",
+      "image": [
+        {
+          "src": "/projects/mpss-portal.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/mpss-portal.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2015.09",
+        "end": "2016.01"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        }
+      ],
+      "summary": "Designed and standardizing accessibility patterns aligning with public compliance standards. Delivered 100% clean validation results securing government web standard badges.",
+      "troubleshooting": [],
+      "metrics": [],
+      "year": "2015",
+      "madeAt": "Hyean",
+      "isFeatured": false
+    },
+    {
+      "id": "hanabank-wa",
+      "title": "Hana Bank Web Standardization",
+      "subtitle": "Web accessibility renewal for Hana Bank enterprise portals",
+      "role": "Web Publisher",
+      "image": [
+        {
+          "src": "/projects/hanabank-wa.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/hanabank-wa.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2011.01",
+        "end": "2012.10"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "cross compatibility"
+        }
+      ],
+      "summary": "Drafted corporate publishing templates for bank systems, ensuring seamless assistive screen reader layouts, and debugging browser compatibility issues.",
+      "troubleshooting": [],
+      "metrics": [],
+      "links": {
+        "demo": "https://www.hanabank.com"
+      },
+      "year": "2011",
+      "madeAt": "Netrue Consulting Group",
+      "isFeatured": false
+    },
+    {
+      "id": "ezwel-welfare",
+      "title": "Ezwel Welfare Center Web Standardization",
+      "subtitle": "Web standardization framework and Web Accessibility certification compliance",
+      "role": "Ezwel Welfare Center Project Web Publisher",
+      "image": [
+        {
+          "src": "/projects/ezwel-welfare.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/ezwel-welfare.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2015.07",
+        "end": "2015.08"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "Web Accessibility"
+        }
+      ],
+      "summary": "Designed a web standardization framework for structured UI development on the Ezwel Welfare Center portal and successfully acquired the national Web Accessibility quality mark.",
+      "troubleshooting": [
+        {
+          "problem": "Lack of accessibility compliance in complex form layouts for assistive devices (screen readers).",
+          "solution": "Applied WAI-ARIA specs to map logical label-input matchings and refactored keyboard focus order to align with markup standards.",
+          "impact": "Successfully passed the Web Accessibility audit and significantly improved accessibility for visually impaired users."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "Accessibility Pass Rate",
+          "value": "100%"
+        },
+        {
+          "label": "Certification",
+          "value": "WA Quality Mark"
+        }
+      ],
+      "year": "2015",
+      "madeAt": "A-Mass Consulting",
+      "isFeatured": false
+    },
+    {
+      "id": "hongkong-ebook",
+      "title": "Hong Kong Government e-book Multi-Device Markup",
+      "subtitle": "Multi-device layout implementation and web optimization for global collaboration",
+      "role": "Web Publisher (Overseas Experience)",
+      "image": [
+        {
+          "src": "/projects/hongkong-ebook.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/hongkong-ebook.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2013.02",
+        "end": "2014.02"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "Responsive Design"
+        },
+        {
+          "category": "frontend",
+          "name": "Performance Optimization"
+        }
+      ],
+      "summary": "Led multi-device markup and performance optimization for the Hong Kong Government e-book project as part of an overseas collaboration, delivering responsive templates.",
+      "troubleshooting": [
+        {
+          "problem": "Scroll stuttering and slow page rendering caused by loading large volumes of text and images on a single page in mobile environments.",
+          "solution": "Optimized layouts with CSS hardware acceleration and implemented resource lazy-loading patterns.",
+          "impact": "Greatly improved scroll performance and reduced initial page load times on mobile web viewers."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "Render Performance",
+          "value": "Optimized"
+        },
+        {
+          "label": "Device Compatibility",
+          "value": "Fully Responsive"
+        }
+      ],
+      "year": "2013",
+      "madeAt": "Hong Kong local firm",
+      "isFeatured": false
+    },
+    {
+      "id": "mirae-asset-vietnam",
+      "title": "Mirae Asset Vietnam Branch Global Corporate Website",
+      "subtitle": "Multi-lingual support and global corporate web publishing",
+      "role": "Web Publisher",
+      "image": [
+        {
+          "src": "/projects/mirae-asset-vietnam.png",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/mirae-asset-vietnam.png",
+          "width": 1280,
+          "height": 720
+        }
+      ],
+      "period": {
+        "start": "2007.12",
+        "end": "2007.12"
+      },
+      "techStack": [
+        {
+          "category": "frontend",
+          "name": "HTML/CSS"
+        },
+        {
+          "category": "frontend",
+          "name": "JavaScript"
+        },
+        {
+          "category": "frontend",
+          "name": "cross browsing"
+        }
+      ],
+      "summary": "Built the multi-lingual global corporate website for Mirae Asset Vietnam branch, ensuring regional alignment and strict cross-browser compatibility.",
+      "troubleshooting": [
+        {
+          "problem": "Layout misalignment across different browsers due to variations in multilingual font sizes and text lengths (Vietnamese & English).",
+          "solution": "Adopted a fluid grid layout and structured CSS alignments conforming to legacy cross-browsing standards.",
+          "impact": "Prevented multilingual layout breakage and maintained visual consistency across all key web browsers."
+        }
+      ],
+      "metrics": [
+        {
+          "label": "Multilingual Support",
+          "value": "VN / EN"
+        },
+        {
+          "label": "Cross-Browsing",
+          "value": "100% Compatible"
+        }
+      ],
+      "year": "2007",
+      "madeAt": "Mirae Asset",
+      "isFeatured": false
+    }
   ],
-  skills: [
+  "skills": [
     {
-      title: "Core Technologies",
-      skills: [
+      "title": "Core Technologies",
+      "skills": [
         "Next.js (App Router)",
         "React",
         "TypeScript",
         "vanilla-extract",
         "Zustand",
         "TanStack Query",
-        "WebSocket (STOMP)",
-      ],
+        "WebSocket (STOMP)"
+      ]
     },
     {
-      title: "Backend & Cloud",
-      skills: [
+      "title": "Backend & Cloud",
+      "skills": [
         "Node.js",
         "AWS API Gateway",
         "AWS Lambda (Serverless)",
         "REST API Design",
-        "Bearer Token Auth",
-      ],
+        "Bearer Token Auth"
+      ]
     },
     {
-      title: "Markup & Accessibility",
-      skills: [
+      "title": "Markup & Accessibility",
+      "skills": [
         "Semantic HTML / CSS",
         "Web Accessibility (WA Certified)",
         "Responsive Web Layouts",
-        "Cross-Browser Compatibility",
-      ],
-    },
-  ],
+        "Cross-Browser Compatibility"
+      ]
+    }
+  ]
 };

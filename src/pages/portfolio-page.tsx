@@ -7,19 +7,21 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Paragraph } from "@/components/ui/typography";
 import { parseHighlight } from "@/utils/parse-highlight";
-import { PORTFOLIO_DATA_KO, PORTFOLIO_DATA_EN } from "@/constants/data";
+import { PORTFOLIO_DATA_KO, PORTFOLIO_DATA_EN, type Project } from "@/constants/data";
 import { useLanguage } from "@/components/ui/LanguageContext";
 import { AchievementsList } from "@/components/ui/achievements-list";
+import { ProjectDetailModal } from "@/components/ui/project-detail-modal";
 import * as styles from "./portfolio-page.css";
 
 export function PortfolioPage() {
-  const { language, t } = useLanguage();
+  const { language, translate } = useLanguage();
   const data = language === "ko" ? PORTFOLIO_DATA_KO : PORTFOLIO_DATA_EN;
   const { profile, careers, projects, skills } = data;
 
   const [contactName, setContactName] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [isSent, setIsSent] = useState(false);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,7 +53,7 @@ export function PortfolioPage() {
         {/* Experience Section */}
         <Section id="experience">
           <div>
-            <h2 className={styles.sectionLabel}>{t("experience")}</h2>
+            <h2 className={styles.sectionLabel}>{translate("experience")}</h2>
             <div className={styles.experienceList}>
               {careers.map((career) => (
                 <div key={career.company} className={styles.experienceRow}>
@@ -99,7 +101,7 @@ export function PortfolioPage() {
               rel="noreferrer"
               className={styles.resumeLink}
             >
-              {t("viewResume")}
+              {translate("viewResume")}
             </a>
           </div>
         </Section>
@@ -107,34 +109,59 @@ export function PortfolioPage() {
         {/* Projects Section */}
         <Section id="projects">
           <div>
-            <h2 className={styles.sectionLabel}>{t("projects")}</h2>
+            <h2 className={styles.sectionLabel}>{translate("projects")}</h2>
             <div className={styles.projectGrid}>
-              {projects.map((project) => (
-                <div key={project.id} className={styles.projectRow}>
-                  <Card>
-                    <CardHeader>
-                      <div className={styles.projectCardWrapper}>
-                        <div className={styles.projectTitleContainer}>
-                          <CardTitle className={styles.projectTitle}>
-                            {project.title}
-                          </CardTitle>
-                          <ExternalLink size={16} className={styles.linkIcon} />
+              {projects
+                .filter((project) => project.isFeatured)
+                .map((project) => (
+                  <div
+                    key={project.id}
+                    className={styles.projectRow}
+                    onClick={() => setActiveProject(project)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        setActiveProject(project);
+                      }
+                    }}
+                  >
+                    <Card>
+                      <CardHeader>
+                        <div className={styles.projectCardWrapper}>
+                          <div className={styles.projectTitleContainer}>
+                            <CardTitle className={styles.projectTitle}>
+                              {project.title}
+                            </CardTitle>
+                            <ExternalLink size={16} className={styles.linkIcon} />
+                          </div>
                         </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <p className={styles.projectDescription}>
-                        {parseHighlight(project.summary)}
-                      </p>
-                      <div className={styles.projectTechs}>
-                        {project.techStack.map((tech) => (
-                          <Badge key={tech.name}>{tech.name}</Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
+                      </CardHeader>
+                      <CardContent>
+                        <p className={styles.projectDescription}>
+                          {parseHighlight(project.summary)}
+                        </p>
+                        <div className={styles.projectTechs}>
+                          {project.techStack.map((tech) => (
+                            <Badge key={tech.name}>{tech.name}</Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                ))}
+            </div>
+            <div className={styles.archiveLinkContainer}>
+              <button
+                type="button"
+                onClick={() => {
+                  window.history.pushState({}, "", "/archive");
+                  window.dispatchEvent(new Event("pushstate-navigate"));
+                }}
+                className={styles.archiveLink}
+              >
+                {translate("viewArchive")}
+              </button>
             </div>
           </div>
         </Section>
@@ -142,7 +169,7 @@ export function PortfolioPage() {
         {/* Skills Section */}
         <Section id="skills">
           <div>
-            <h2 className={styles.sectionLabel}>{t("skills")}</h2>
+            <h2 className={styles.sectionLabel}>{translate("skills")}</h2>
             <div className={styles.skillsContainer}>
               {skills.map((cat) => (
                 <div key={cat.title} className={styles.skillCategory}>
@@ -161,16 +188,16 @@ export function PortfolioPage() {
         {/* Contact Section */}
         <Section id="contact">
           <div>
-            <h2 className={styles.sectionLabel}>{t("contact")}</h2>
+            <h2 className={styles.sectionLabel}>{translate("contact")}</h2>
             <form className={styles.contactForm} onSubmit={handleContactSubmit}>
               <div className={styles.formField}>
                 <label className={styles.formLabel} htmlFor="contact-name">
-                  {t("contactName")}
+                  {translate("contactName")}
                 </label>
                 <Input
                   id="contact-name"
                   type="text"
-                  placeholder={t("placeholderName")}
+                  placeholder={translate("placeholderName")}
                   value={contactName}
                   onChange={(e) => setContactName(e.target.value)}
                   required
@@ -178,29 +205,35 @@ export function PortfolioPage() {
               </div>
               <div className={styles.formField}>
                 <label className={styles.formLabel} htmlFor="contact-email">
-                  {t("contactEmail")}
+                  {translate("contactEmail")}
                 </label>
                 <Input
                   id="contact-email"
                   type="email"
-                  placeholder={t("placeholderEmail")}
+                  placeholder={translate("placeholderEmail")}
                   value={contactEmail}
                   onChange={(e) => setContactEmail(e.target.value)}
                   required
                 />
               </div>
               <Button type="submit" variant="primary">
-                {t("sendMessage")}
+                {translate("sendMessage")}
               </Button>
               {isSent && (
                 <span className={styles.successMessage}>
-                  {t("successMessage")}
+                  {translate("successMessage")}
                 </span>
               )}
             </form>
           </div>
         </Section>
       </div>
+      {activeProject && (
+        <ProjectDetailModal
+          project={activeProject}
+          onClose={() => setActiveProject(null)}
+        />
+      )}
     </div>
   );
 }

@@ -17,13 +17,13 @@ export const section = style({
 });
 
 export const sectionLabel = style({
-  fontSize: vars.fontSize.xs,
+  fontSize: vars.fontSize.lg,
   letterSpacing: "0.1em",
   textTransform: "uppercase",
   color: vars.color.mutedForeground,
-  marginBottom: vars.space[8],
+  //marginBottom: vars.space[8],
   fontWeight: vars.fontWeight.semibold,
-  margin: `0 0 ${vars.space[8]} 0`,
+  margin: `0 0 ${vars.space[5]} 0`,
 });
 
 export const aboutSection = style({
@@ -164,9 +164,17 @@ export const projectGrid = style({
 });
 
 export const projectRow = style({
+  cursor: "pointer",
+  outline: "none",
+  borderRadius: vars.radii.lg,
+  transition: "background-color 0.2s ease, transform 0.2s ease",
   selectors: {
     "&:hover": {
       backgroundColor: vars.color.accent,
+      transform: "translateY(-2px)",
+    },
+    "&:focus-visible": {
+      boxShadow: `0 0 0 2px ${vars.color.ring}`,
     },
   },
 });
@@ -351,4 +359,28 @@ export const metricValue = style({
 export const metricLabel = style({
   fontSize: vars.fontSize.xs,
   color: vars.color.mutedForeground,
+});
+
+export const archiveLinkContainer = style({
+  marginTop: vars.space[8],
+});
+
+export const archiveLink = style({
+  background: "none",
+  border: "none",
+  padding: 0,
+  fontSize: vars.fontSize.sm,
+  fontWeight: vars.fontWeight.semibold,
+  color: vars.color.foreground,
+  cursor: "pointer",
+  textDecoration: "none",
+  display: "inline-flex",
+  alignItems: "center",
+  transition: "color 0.2s ease, transform 0.2s ease",
+  selectors: {
+    "&:hover": {
+      color: vars.color.ring,
+      transform: "translateX(4px)",
+    },
+  },
 });

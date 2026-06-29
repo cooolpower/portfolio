@@ -1,21 +1,42 @@
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
 
 export type Language = "ko" | "en";
 
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: keyof typeof translations["en"]) => string;
+  translate: (key: keyof (typeof translations)["en"]) => string;
 }
 
 const translations = {
   ko: {
     about: "소개",
-    experience: "경력 사항",
+    experience: "경력사항",
     projects: "프로젝트",
     skills: "보유 기술",
     contact: "연락처",
     viewResume: "이력서 전체 보기 →",
+    viewArchive: "프로젝트 아카이브 전체보기 →",
+    archiveTitle: "모든 프로젝트",
+    archiveSubtitle: "내가 제작하거나 기여한 모든 프로젝트 목록입니다.",
+    backToHome: "← 김현욱",
+    tableYear: "연도",
+    tableProject: "프로젝트",
+    tableMadeAt: "제작처",
+    tableBuiltWith: "기술 스택",
+    tableLink: "링크",
+    closeModal: "닫기",
+    metricsTitle: "핵심 성과",
+    tsTitle: "트러블 슈팅",
+    tsProblem: "문제 상황",
+    tsSolution: "해결 방안",
+    tsImpact: "개선 효과",
     contactName: "이름",
     contactEmail: "이메일 주소",
     placeholderName: "이름을 입력해주세요",
@@ -30,6 +51,21 @@ const translations = {
     skills: "Skills",
     contact: "Contact",
     viewResume: "View Full Résumé →",
+    viewArchive: "View Full Project Archive →",
+    archiveTitle: "All Projects",
+    archiveSubtitle: "A complete list of things I’ve built or contributed to.",
+    backToHome: "← James Kim",
+    tableYear: "Year",
+    tableProject: "Project",
+    tableMadeAt: "Made at",
+    tableBuiltWith: "Built with",
+    tableLink: "Link",
+    closeModal: "Close",
+    metricsTitle: "Key Metrics",
+    tsTitle: "Troubleshooting",
+    tsProblem: "Problem",
+    tsSolution: "Solution",
+    tsImpact: "Impact",
     contactName: "Name",
     contactEmail: "Email Address",
     placeholderName: "Your Name",
@@ -39,7 +75,9 @@ const translations = {
   },
 };
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>(() => {
@@ -52,7 +90,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     localStorage.setItem("language", language);
-    
+
     // Toggle lang class and attribute on body element
     const body = document.body;
     body.classList.remove("lang-ko", "lang-en");
@@ -64,12 +102,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setLanguageState(lang);
   };
 
-  const t = (key: keyof typeof translations["en"]) => {
+  const translate = (key: keyof (typeof translations)["en"]) => {
     return translations[language][key] || translations["en"][key];
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={{ language, setLanguage, translate }}>
       {children}
     </LanguageContext.Provider>
   );

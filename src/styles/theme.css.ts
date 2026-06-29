@@ -149,7 +149,7 @@ export const darkThemeClass = createTheme(vars, {
     spotlightForeground: "rgba(29, 78, 216, 0.15)",
     spotlightBackground: "transparent 80%",
     rowBackground: "rgba(30,41,59,.5)",
-    listItemColor: "rgba(207, 214, 224, 1)",
+    listItemColor: "rgba(164, 168, 174, 1)",
     listItemBulletColor: "rgba(255, 255, 255, 0.9)",
   },
 });

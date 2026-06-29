@@ -8,16 +8,16 @@ import * as styles from "./app-layout.css";
 
 export function LeftPanel() {
   const { theme, toggleTheme } = useTheme();
-  const { language, setLanguage, t } = useLanguage();
+  const { language, setLanguage, translate } = useLanguage();
 
   const data = language === "ko" ? PORTFOLIO_DATA_KO : PORTFOLIO_DATA_EN;
   const { profile } = data;
 
   const navItems = [
-    { id: "about", label: t("about") },
-    { id: "projects", label: t("projects") },
-    { id: "skills", label: t("skills") },
-    { id: "contact", label: t("contact") },
+    { id: "about", label: translate("about") },
+    { id: "projects", label: translate("projects") },
+    { id: "skills", label: translate("skills") },
+    { id: "contact", label: translate("contact") },
   ];
 
   const [activeSection, setActiveSection] = useState("about");
