@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from "react";
 import { ExternalLink } from "lucide-react";
 import { parseHighlight } from "@/utils/parse-highlight";
+import { Badge } from "@/components/ui/badge";
 import * as styles from "./achievements-list.css";
 
 interface AchievementsListProps {
   items: string[];
   groupLinks?: Record<string, string>;
+  projectSkills?: Record<string, string[]>;
 }
 
-export function AchievementsList({ items, groupLinks }: AchievementsListProps) {
+export function AchievementsList({
+  items,
+  groupLinks,
+  projectSkills,
+}: AchievementsListProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [visibleIndices, setVisibleIndices] = useState<Set<number>>(new Set());
 
@@ -117,6 +123,13 @@ export function AchievementsList({ items, groupLinks }: AchievementsListProps) {
                   </li>
                 ))}
               </ul>
+              {projectSkills && group.name && projectSkills[group.name] && (
+                <div className={styles.groupTechs}>
+                  {projectSkills[group.name].map((skill) => (
+                    <Badge key={skill}>{skill}</Badge>
+                  ))}
+                </div>
+              )}
             </div>
           );
         }

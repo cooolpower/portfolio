@@ -33,6 +33,7 @@ export interface Project {
   techStack: TechStack[];
   summary: string;
   troubleshooting: Troubleshooting[];
+  layout?: "landscape" | "portrait";
   metrics: Metric[];
   links?: {
     github?: string;
@@ -53,6 +54,7 @@ export interface Career {
   skills: string[];
   link?: string;
   groupLinks?: Record<string, string>;
+  projectSkills?: Record<string, string[]>;
 }
 
 export interface SkillCategory {
@@ -134,7 +136,13 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
         "stomp",
         "vanilla-extract",
         "zustand"
-      ]
+      ],
+      "projectSkills": {
+        "토스 Open API (토스알바)": ["AWS API Gateway", "AWS Lambda", "Serverless", "Security", "REST API"],
+        "알바몬 AI 채팅": ["React", "WebSocket", "STOMP", "Zustand", "UX Optimization"],
+        "공통 헤더 컴포넌트": ["Next.js", "TypeScript", "Zustand", "AWS S3", "RBAC"],
+        "잡코리아 리뉴얼": ["React", "jQuery", "SCSS", "Lighthouse", "SEO", "Web Accessibility"]
+      }
     },
     {
       "company": "(주)키스템프그룹",
@@ -513,17 +521,48 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       "title": "Toss Open API 연동 프로젝트",
       "subtitle": "외부 토스 파트너십 서비스 연동을 위한 Open API 구축",
       "role": "서버리스 API 개발자",
+      "layout": "portrait",
       "image": [
         {
-          "src": "/projects/jobkorea-common-header.png",
+          "src": "/projects/toss/toss_alba_info_0.jpg",
           "width": 1280,
           "height": 720
         },
         {
-          "src": "/projects/toss-alba.png",
+          "src": "/projects/toss/toss_alba_info_1.mp4",
           "width": 1280,
           "height": 720
-        }
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_2.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_3.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_4.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_5.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        // {
+        //   "src": "/projects/jobkorea-common-header.png",
+        //   "width": 1280,
+        //   "height": 720
+        // },
+        // {
+        //   "src": "/projects/toss-alba.png",
+        //   "width": 1280,
+        //   "height": 720
+        // }
       ],
       "period": {
         "start": "2025.11",
@@ -1249,7 +1288,13 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
         "stomp",
         "vanilla-extract",
         "zustand"
-      ]
+      ],
+      "projectSkills": {
+        "Toss Open API (TossAlba)": ["AWS API Gateway", "AWS Lambda", "Serverless", "Security", "REST API"],
+        "Albamon AI Chatting": ["React", "WebSocket", "STOMP", "Zustand", "UX Optimization"],
+        "Common Header Component": ["Next.js", "TypeScript", "Zustand", "AWS S3", "RBAC"],
+        "JobKorea Renewal": ["React", "jQuery", "SCSS", "Lighthouse", "SEO", "Web Accessibility"]
+      }
     },
     {
       "company": "Kistemp Group Co., Ltd.",
@@ -1628,9 +1673,30 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
       "title": "Toss Open API Integration",
       "subtitle": "Constructed Open API serverless infrastructure for Toss partnership data syncing",
       "role": "Serverless API Developer",
+      "layout": "portrait",
       "image": [
         {
-          "src": "/projects/toss-alba.png",
+          "src": "/projects/toss/toss_alba_info_1.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_2.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_3.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_4.mp4",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "src": "/projects/toss/toss_alba_info_5.mp4",
           "width": 1280,
           "height": 720
         },

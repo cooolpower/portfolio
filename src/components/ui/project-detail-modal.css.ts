@@ -43,7 +43,8 @@ export const modalContent = style({
   border: `1px solid ${vars.color.border}`,
   borderRadius: vars.radii.lg,
   width: "100%",
-  maxWidth: "680px",
+  //maxWidth: "680px",
+  maxWidth: "80%",
   maxHeight: "85vh",
   display: "flex",
   flexDirection: "column",
@@ -127,6 +128,7 @@ export const imageGallery = style({
   overflowX: "auto",
   scrollSnapType: "x mandatory",
   paddingBottom: vars.space[2],
+  minHeight: "280px",
   selectors: {
     "&::-webkit-scrollbar": {
       height: "6px",
@@ -143,35 +145,10 @@ export const imageGallery = style({
 });
 
 export const galleryImage = style({
-  width: "85%",
-  maxWidth: "480px",
-  height: "auto",
-  maxHeight: "280px",
+  width: "100%",
+  maxHeight: "fit-content",
   objectFit: "cover",
   borderRadius: vars.radii.md,
-  border: `1px solid ${vars.color.border}`,
-  flexShrink: 0,
-  scrollSnapAlign: "start",
-  transition: "transform 0.2s ease",
-  selectors: {
-    "&:only-child": {
-      width: "100%",
-      maxWidth: "100%",
-      maxHeight: "360px",
-    },
-  },
-  "@media": {
-    "screen and (max-width: 640px)": {
-      width: "90%",
-      maxHeight: "200px",
-      selectors: {
-        "&:only-child": {
-          width: "100%",
-          maxHeight: "240px",
-        },
-      },
-    },
-  },
 });
 
 export const summaryText = style({
@@ -362,4 +339,166 @@ export const iconSolution = style({
 
 export const iconImpact = style({
   color: "#22c55e",
+});
+
+// Carousel Slider & Video Styles
+export const carouselContainer = style({
+  position: "relative",
+  width: "100%",
+  background: "#080c14",
+  borderRadius: vars.radii.lg,
+  border: `1px solid ${vars.color.border}`,
+  overflow: "hidden",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  aspectRatio: "19/10",
+  minHeight: "360px",
+  "@media": {
+    "screen and (max-width: 640px)": {
+      minHeight: "240px",
+    },
+  },
+});
+
+export const carouselViewport = style({
+  width: "100%",
+  height: "100%",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+});
+
+export const carouselSlide = style({
+  width: "100%",
+  height: "100%",
+  display: "none",
+  alignItems: "center",
+  justifyContent: "center",
+  selectors: {
+    "&.active": {
+      display: "flex",
+    },
+  },
+});
+
+export const galleryVideo = style({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  background: "#000",
+});
+
+export const carouselNavBtn = style({
+  position: "absolute",
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: "40px",
+  height: "40px",
+  borderRadius: "50%",
+  background: "rgba(0, 0, 0, 0.4)",
+  border: "none",
+  color: "#fff",
+  cursor: "pointer",
+  zIndex: 10,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  transition: "background 0.2s ease, transform 0.2s ease",
+  selectors: {
+    "&:hover": {
+      background: "rgba(0, 0, 0, 0.7)",
+      transform: "translateY(-50%) scale(1.05)",
+    },
+    "&:active": {
+      transform: "translateY(-50%) scale(0.95)",
+    },
+  },
+});
+
+export const prevBtn = style([
+  carouselNavBtn,
+  {
+    left: "16px",
+  },
+]);
+
+export const nextBtn = style([
+  carouselNavBtn,
+  {
+    right: "16px",
+  },
+]);
+
+export const carouselCounter = style({
+  position: "absolute",
+  bottom: "16px",
+  right: "16px",
+  padding: "4px 8px",
+  background: "rgba(0, 0, 0, 0.6)",
+  borderRadius: "12px",
+  color: "#fff",
+  fontSize: "11px",
+  fontFamily: "monospace",
+  fontWeight: "bold",
+  zIndex: 10,
+  userSelect: "none",
+});
+
+export const portraitBody = style({
+  "@media": {
+    "screen and (min-width: 769px)": {
+      display: "grid",
+      gridTemplateColumns: "5fr 7fr",
+      gap: vars.space[8],
+      alignItems: "start",
+      height: "calc(85vh - 90px)",
+      overflowY: "hidden",
+    },
+  },
+});
+
+export const portraitContainer = style([
+  carouselContainer,
+  {
+    aspectRatio: "9/14",
+    maxWidth: "320px",
+    width: "100%",
+    margin: "0 auto",
+    minHeight: "unset",
+    "@media": {
+      "screen and (max-width: 640px)": {
+        maxWidth: "280px",
+      },
+    },
+  },
+]);
+
+export const portraitScrollBlock = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vars.space[6],
+  width: "100%",
+  "@media": {
+    "screen and (min-width: 769px)": {
+      height: "100%",
+      overflowY: "auto",
+      paddingRight: vars.space[3],
+      selectors: {
+        "&::-webkit-scrollbar": {
+          width: "4px",
+        },
+        "&::-webkit-scrollbar-track": {
+          backgroundColor: "rgba(0, 0, 0, 0.05)",
+          borderRadius: "2px",
+        },
+        "&::-webkit-scrollbar-thumb": {
+          backgroundColor: "rgba(255, 255, 255, 0.1)",
+          borderRadius: "2px",
+        },
+      },
+    },
+  },
 });

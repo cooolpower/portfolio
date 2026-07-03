@@ -38,6 +38,13 @@ interface ParticleData {
   x: number;
   y: number;
   alive: boolean;
+  flowMode: "one-way" | "two-way";
+}
+
+interface StatsHistoryItem {
+  ts: number;
+  isErr: boolean;
+  latency: number;
 }
 
 interface SvcStats {
@@ -45,6 +52,7 @@ interface SvcStats {
   err: number;
   latencies: number[];
   window: number[]; // timestamps
+  history?: StatsHistoryItem[];
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -88,12 +96,20 @@ const SERVICES: ServiceDef[] = [
 const SVC_Y = [110, 210, 310, 410];
 
 // Path segments per service: Client→Gateway→Service→DB
-function getSegments(svcY: number) {
-  return [
+function getSegments(svcY: number, flowMode: "one-way" | "two-way") {
+  const req = [
     { x1: 90, y1: 260, x2: 175, y2: 260 },
     { x1: 175, y1: 260, x2: 275, y2: 260 },
     { x1: 275, y1: 260, x2: 330, y2: svcY },
     { x1: 440, y1: svcY, x2: 510, y2: svcY },
+  ];
+  if (flowMode === "one-way") return req;
+  return [
+    ...req,
+    { x1: 510, y1: svcY, x2: 440, y2: svcY },
+    { x1: 330, y1: svcY, x2: 275, y2: 260 },
+    { x1: 275, y1: 260, x2: 175, y2: 260 },
+    { x1: 175, y1: 260, x2: 90, y2: 260 },
   ];
 }
 
@@ -145,9 +161,9 @@ function latColor(ms: number) {
   return ms < 200 ? "#00ff88" : ms < 700 ? "#ffd166" : "#ff4d6d";
 }
 function errColor(r: string) {
-  return parseFloat(r) < 5
+  return parseFloat(r) < 3
     ? "#00ff88"
-    : parseFloat(r) < 15
+    : parseFloat(r) < 10
       ? "#ffd166"
       : "#ff4d6d";
 }
@@ -223,30 +239,48 @@ function PulseDot({
   cy,
   r,
   color,
+  active = true,
 }: {
   cx: number;
   cy: number;
   r: number;
   color: string;
+  active?: boolean;
 }) {
   const ref = useRef<SVGCircleElement>(null);
   useEffect(() => {
-    let s = 1;
-    let d = 0.025;
-    let raf = 0;
-    const tick = () => {
-      s += d;
-      if (s > 1.5 || s < 0.6) d *= -1;
+    if (!active) {
       if (ref.current) {
-        ref.current.setAttribute("r", String(r * s));
-        ref.current.setAttribute("opacity", String(0.4 + (s - 0.6) * 0.75));
+        ref.current.setAttribute("r", String(r));
+        ref.current.setAttribute("opacity", "0.3");
       }
-      raf = requestAnimationFrame(tick);
+      return;
+    }
+    let scale = 1;
+    let scaleStep = 0.025;
+    let animationFrameId = 0;
+    const tick = () => {
+      scale += scaleStep;
+      if (scale > 1.5 || scale < 0.6) scaleStep *= -1;
+      if (ref.current) {
+        ref.current.setAttribute("r", String(r * scale));
+        ref.current.setAttribute("opacity", String(0.4 + (scale - 0.6) * 0.75));
+      }
+      animationFrameId = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [r]);
-  return <circle ref={ref} cx={cx} cy={cy} r={r} fill={color} />;
+    animationFrameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [r, active]);
+  return (
+    <circle
+      ref={ref}
+      cx={cx}
+      cy={cy}
+      r={r}
+      fill={active ? color : "#4a5568"}
+      opacity={active ? undefined : 0.3}
+    />
+  );
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -400,6 +434,11 @@ export function MonitorPage() {
   const wsRef = useRef<WebSocket | null>(null);
   const [wsUrl, setWsUrl] = useState("ws://localhost:4001");
   const [wsStatus, setWsStatus] = useState<WsStatus>("disconnected");
+  const [flowMode, setFlowMode] = useState<"one-way" | "two-way">("one-way");
+  const flowModeRef = useRef<"one-way" | "two-way">("one-way");
+  useEffect(() => {
+    flowModeRef.current = flowMode;
+  }, [flowMode]);
 
   // ── Sim ──
   const [simOn, setSimOn] = useState(true);
@@ -426,12 +465,13 @@ export function MonitorPage() {
     err: 0,
     latencies: [] as number[],
     window: [] as number[],
+    history: [] as StatsHistoryItem[],
   });
   const sRef = useRef<Record<string, SvcStats>>(
     Object.fromEntries(
       SERVICES.map((s) => [
         s.id,
-        { req: 0, err: 0, latencies: [], window: [] },
+        { req: 0, err: 0, latencies: [], window: [], history: [] },
       ]),
     ),
   );
@@ -485,6 +525,7 @@ export function MonitorPage() {
       x: 90,
       y: 260,
       alive: true,
+      flowMode: flowModeRef.current,
     });
 
     // Stats
@@ -496,6 +537,10 @@ export function MonitorPage() {
     if (g.latencies.length > 300) g.latencies.shift();
     g.window.push(now);
 
+    const histItem = { ts: now, isErr, latency: evt.latency_ms };
+    if (!g.history) g.history = [];
+    g.history.push(histItem);
+
     const sv = sRef.current[evt.service];
     if (sv) {
       sv.req++;
@@ -503,6 +548,8 @@ export function MonitorPage() {
       sv.latencies.push(evt.latency_ms);
       if (sv.latencies.length > 100) sv.latencies.shift();
       sv.window.push(now);
+      if (!sv.history) sv.history = [];
+      sv.history.push(histItem);
     }
 
     // Flash
@@ -536,14 +583,21 @@ export function MonitorPage() {
   useEffect(() => {
     const t = setInterval(() => {
       const now = Date.now();
+      const limit = now - 15000; // 15 seconds window for sliding stats
       const g = gRef.current;
+
+      // Filter global sliding history
+      g.history = (g.history || []).filter((item) => item.ts > limit);
+      const totalInWindow = g.history.length;
+      const errInWindow = g.history.filter((item) => item.isErr).length;
+
       g.window = g.window.filter((ts) => now - ts < 1000);
       const sorted = [...g.latencies].sort((a, b) => a - b);
       const p50 = pct(sorted, 0.5);
       const p99 = pct(sorted, 0.99);
       const uptime =
-        g.total > 0
-          ? (((g.total - g.err) / g.total) * 100).toFixed(1)
+        totalInWindow > 0
+          ? (((totalInWindow - errInWindow) / totalInWindow) * 100).toFixed(1)
           : "100.0";
       setGUI({
         rps: g.window.length,
@@ -558,13 +612,18 @@ export function MonitorPage() {
         const next: typeof sUI = {};
         for (const [id, sv] of Object.entries(sRef.current)) {
           sv.window = sv.window.filter((ts) => now - ts < 1000);
-          const avgLat = sv.latencies.length
-            ? Math.round(
-                sv.latencies.reduce((a, b) => a + b, 0) / sv.latencies.length,
-              )
+
+          // Filter service sliding history
+          sv.history = (sv.history || []).filter((item) => item.ts > limit);
+          const reqInSvc = sv.history.length;
+          const errInSvc = sv.history.filter((item) => item.isErr).length;
+          const latenciesInSvc = sv.history.map((item) => item.latency);
+
+          const avgLat = reqInSvc
+            ? Math.round(latenciesInSvc.reduce((a, b) => a + b, 0) / reqInSvc)
             : 0;
           const errRate =
-            sv.req > 0 ? ((sv.err / sv.req) * 100).toFixed(1) : "0.0";
+            reqInSvc > 0 ? ((errInSvc / reqInSvc) * 100).toFixed(1) : "0.0";
           next[id] = { rps: sv.window.length, avgLat, errRate };
         }
         return next;
@@ -583,7 +642,7 @@ export function MonitorPage() {
         const alive: ParticleData[] = [];
         for (const p of particlesRef.current) {
           if (!p.alive) continue;
-          const segs = getSegments(SVC_Y[p.svcIdx]);
+          const segs = getSegments(SVC_Y[p.svcIdx], flowModeRef.current);
           if (p.segIdx >= segs.length) {
             p.alive = false;
             continue;
@@ -610,18 +669,23 @@ export function MonitorPage() {
         }
         const NS = "http://www.w3.org/2000/svg";
         for (const p of alive) {
+          const isResponse = flowModeRef.current === "two-way" && p.segIdx >= 4;
+          const tailR = isResponse ? "5" : "9";
+          const dotR = isResponse ? "3" : "5";
+          const tailOpacity = isResponse ? "0.1" : "0.2";
+
           const tail = document.createElementNS(NS, "circle");
           tail.setAttribute("cx", String(p.x));
           tail.setAttribute("cy", String(p.y));
-          tail.setAttribute("r", "9");
+          tail.setAttribute("r", tailR);
           tail.setAttribute("fill", p.color);
-          tail.setAttribute("opacity", "0.2");
+          tail.setAttribute("opacity", tailOpacity);
           layer.appendChild(tail);
 
           const dot = document.createElementNS(NS, "circle");
           dot.setAttribute("cx", String(p.x));
           dot.setAttribute("cy", String(p.y));
-          dot.setAttribute("r", "5");
+          dot.setAttribute("r", dotR);
           dot.setAttribute("fill", p.color);
           dot.setAttribute("filter", "url(#msm-glow)");
           layer.appendChild(dot);
@@ -694,6 +758,24 @@ export function MonitorPage() {
   // ─────────────────────────────────────────────────────────────────────────────
   // RENDER
   // ─────────────────────────────────────────────────────────────────────────────
+  const isSystemActive = wsStatus === "connected" || (simOn && !paused);
+
+  const getGatewayPulseColor = () => {
+    const uptimeVal = parseFloat(gUI.uptime);
+    if (uptimeVal < 90) return "#ff4d6d";
+    if (uptimeVal < 97) return "#ffd166";
+    return "#00ff88";
+  };
+
+  const getSvcPulseColor = (svcId: string) => {
+    const ui = sUI[svcId];
+    if (!ui) return "#00ff88";
+    const errRateVal = parseFloat(ui.errRate);
+    if (errRateVal > 10) return "#ff4d6d";
+    if (errRateVal > 3) return "#ffd166";
+    return "#00ff88";
+  };
+
   const wsDotColor: Record<WsStatus, string> = {
     connected: "#00ff88",
     connecting: "#ffd166",
@@ -708,7 +790,6 @@ export function MonitorPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600&display=swap');
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background: #090d14; }
         @keyframes msm-blink { 0%,100%{opacity:1} 50%{opacity:.2} }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
@@ -871,6 +952,19 @@ export function MonitorPage() {
   "latency_ms": 42        // 지연 시간 (ms)
 }`}
               </pre>
+            </div>
+
+            <div>
+              <p style={{ fontWeight: 600, color: "#e2e8f0", marginBottom: 4 }}>
+                {language === "ko"
+                  ? "4. 실시간 슬라이딩 통계 및 헬스 램프 규격"
+                  : "4. Real-time Sliding Window Stats & Health Indicators"}
+              </p>
+              <p>
+                {language === "ko"
+                  ? "대시보드의 Err% 및 Uptime은 총 누적 값이 아닌 '최근 15초(슬라이딩 윈도우)' 동안 유입된 트래픽만을 기준으로 계산됩니다. 에러율이 3% 초과 시 노란색(주의), 10% 초과 시 빨간색(장애)으로 헬스 램프가 실시간 전환됩니다. 복구(Normal) 모드로 전환하면 15초 이내에 램프가 다시 초록색으로 자동 복귀합니다."
+                  : "The Err% and Uptime indicators are calculated based on a 15-second sliding window. The health indicator lights transition to yellow (Warning) when the error rate exceeds 3%, and red (Critical) when it exceeds 10%. Switching back to Normal mode clears the errors within 15 seconds, returning indicators to green."}
+              </p>
             </div>
           </div>
         )}
@@ -1171,7 +1265,13 @@ export function MonitorPage() {
             >
               :8080
             </text>
-            <PulseDot cx={272} cy={230} r={4} color="#00ff88" />
+            <PulseDot
+              cx={272}
+              cy={230}
+              r={4}
+              color={getGatewayPulseColor()}
+              active={isSystemActive}
+            />
 
             {/* Services */}
             {SERVICES.map((svc, i) => (
@@ -1221,7 +1321,8 @@ export function MonitorPage() {
                   cx={437}
                   cy={SVC_Y[i] - 24 - 5}
                   r={3.5}
-                  color="#00ff88"
+                  color={getSvcPulseColor(svc.id)}
+                  active={isSystemActive}
                 />
                 {/* Live latency badge */}
                 {(sUI[svc.id]?.avgLat ?? 0) > 0 && (
@@ -1313,12 +1414,21 @@ export function MonitorPage() {
                   </span>
                 </div>
                 <MiniBar
-                  label="RPS"
+                  label={flowMode === "two-way" ? "Req RPS" : "RPS"}
                   val={ui.rps}
                   max={50}
                   display={String(ui.rps)}
                   color={svc.color}
                 />
+                {flowMode === "two-way" && (
+                  <MiniBar
+                    label="Resp RPS"
+                    val={ui.rps}
+                    max={50}
+                    display={String(ui.rps)}
+                    color="#9ca3af"
+                  />
+                )}
                 <MiniBar
                   label="Latency"
                   val={ui.avgLat}
@@ -1472,6 +1582,36 @@ export function MonitorPage() {
         >
           {paused ? "Resume" : "Pause"}
         </button>
+
+        <span
+          style={{
+            fontFamily: "monospace",
+            fontSize: 10,
+            color: "#4a5568",
+            alignSelf: "center",
+            marginLeft: 16,
+          }}
+        >
+          {language === "ko" ? "트래픽 흐름:" : "FLOW MODE:"}
+        </span>
+        <button
+          style={{
+            ...css.btn,
+            ...(flowMode === "one-way" ? css.btnActive : {}),
+          }}
+          onClick={() => setFlowMode("one-way")}
+        >
+          {language === "ko" ? "단방향 (요청)" : "One-way (Req)"}
+        </button>
+        <button
+          style={{
+            ...css.btn,
+            ...(flowMode === "two-way" ? css.btnActive : {}),
+          }}
+          onClick={() => setFlowMode("two-way")}
+        >
+          {language === "ko" ? "양방향 (왕복)" : "Two-way (Req & Resp)"}
+        </button>
       </div>
     </div>
   );
@@ -1482,7 +1622,7 @@ export function MonitorPage() {
 // ─────────────────────────────────────────────────────────────────────────────
 const css = {
   root: {
-    background: "#090d14",
+    background: "transparent",
     color: "#e2e8f0",
     fontFamily: "Inter, sans-serif",
     minHeight: "100vh",
@@ -1597,7 +1737,7 @@ const css = {
   canvas: {
     flex: 1,
     minWidth: 0,
-    background: "#0f1520",
+    background: "#090d14",
     border: "1px solid #1e2d42",
     borderRadius: 12,
     overflow: "hidden",

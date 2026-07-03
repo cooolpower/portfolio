@@ -190,3 +190,12 @@ export const groupListItem = style({
   },
 });
 
+export const groupTechs = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: vars.space[2],
+  marginTop: vars.space[2],
+  marginBottom: vars.space[4],
+  paddingLeft: vars.space[2],
+});
+

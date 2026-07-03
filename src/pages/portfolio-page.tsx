@@ -85,12 +85,15 @@ export function PortfolioPage() {
                     <AchievementsList
                       items={career.achievements}
                       groupLinks={career.groupLinks}
+                      projectSkills={career.projectSkills}
                     />
-                    <div className={styles.expTechs}>
-                      {career.skills.map((item) => (
-                        <Badge key={item}>{item}</Badge>
-                      ))}
-                    </div>
+                    {!career.projectSkills && (
+                      <div className={styles.expTechs}>
+                        {career.skills.map((item) => (
+                          <Badge key={item}>{item}</Badge>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
