@@ -139,11 +139,19 @@ export const tdTitle = style([
   },
 ]);
 
+export const projContainer = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: vars.space[3],
+});
+
 export const projTitleText = style({});
 export const projSubtitleText = style({
   fontWeight: vars.fontWeight.normal,
   color: vars.color.mutedForeground,
-  fontSize: vars.fontSize.xs,
+  fontSize: vars.fontSize.sm,
+  wordBreak: "keep-all",
+  lineHeight: 1.5,
 });
 
 export const tdMadeAt = style([

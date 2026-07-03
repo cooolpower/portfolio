@@ -166,6 +166,56 @@ export function PortfolioPage() {
           </div>
         </Section>
 
+        {/* Labs Section */}
+        <Section id="labs">
+          <div>
+            <h2 className={styles.sectionLabel}>{translate("labs")}</h2>
+            <div className={styles.projectGrid}>
+              <div
+                className={styles.projectRow}
+                onClick={() => {
+                  window.history.pushState({}, "", "/monitor");
+                  window.dispatchEvent(new Event("pushstate-navigate"));
+                }}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    window.history.pushState({}, "", "/monitor");
+                    window.dispatchEvent(new Event("pushstate-navigate"));
+                  }
+                }}
+              >
+                <Card>
+                  <CardHeader>
+                    <div className={styles.projectCardWrapper}>
+                      <div className={styles.projectTitleContainer}>
+                        <CardTitle className={styles.projectTitle}>
+                          {language === "ko" ? "실시간 마이크로서비스 모니터링 데모" : "Real-time Microservice Monitor"}
+                        </CardTitle>
+                        <ExternalLink size={16} className={styles.linkIcon} />
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className={styles.projectDescription}>
+                      {language === "ko"
+                        ? "웹소켓(WebSocket) 및 브라우저 자체 시뮬레이터를 활용해 마이크로서비스 간의 실시간 트래픽(RPS, 지연 시간, 에러율)을 역동적인 파티클 애니메이션과 라이브 로그로 시각화하는 모니터링 대시보드 데모입니다."
+                        : "An interactive live monitoring dashboard visualizing real-time microservice traffic (RPS, Latency, Error Rate) using WebSockets and a client-side simulator with dynamic particle animations."}
+                    </p>
+                    <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      <Badge>React</Badge>
+                      <Badge>WebSocket</Badge>
+                      <Badge>SVG Animation</Badge>
+                      <Badge>RAF Optimization</Badge>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </Section>
+
         {/* Skills Section */}
         <Section id="skills">
           <div>

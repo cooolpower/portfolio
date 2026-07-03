@@ -16,6 +16,7 @@ export function LeftPanel() {
   const navItems = [
     { id: "about", label: translate("about") },
     { id: "projects", label: translate("projects") },
+    { id: "labs", label: translate("labs") },
     { id: "skills", label: translate("skills") },
     { id: "contact", label: translate("contact") },
   ];

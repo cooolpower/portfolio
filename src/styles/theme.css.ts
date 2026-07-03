@@ -4,6 +4,7 @@ export const vars = createThemeContract({
   color: {
     background: null,
     foreground: null,
+    textHighLight: null,
     card: null,
     cardForeground: null,
     primary: null,
@@ -131,6 +132,7 @@ export const darkThemeClass = createTheme(vars, {
   color: {
     background: "#030303",
     foreground: "#f4f4f5",
+    textHighLight: "rgba(224, 224, 224, 1)",
     card: "rgba(10, 10, 10, 0.7)",
     cardForeground: "#f4f4f5",
     primary: "#ffffff",
@@ -160,6 +162,7 @@ export const lightThemeClass = createTheme(vars, {
   color: {
     background: "#f8fafc", // slate-50
     foreground: "#0f172a", // slate-900
+    textHighLight: "rgba(46, 46, 46, 1)",
     card: "rgba(255, 255, 255, 0.8)",
     cardForeground: "#0f172a",
     primary: "#0f172a", // slate-900

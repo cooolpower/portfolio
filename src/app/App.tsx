@@ -4,6 +4,7 @@ import { LanguageProvider } from "@/components/ui/LanguageContext";
 import { AppLayout } from "@/layouts/app-layout";
 import { PortfolioPage } from "@/pages/portfolio-page";
 import { ArchivePage } from "@/pages/archive-page";
+import { MonitorPage } from "@/pages/monitor-page";
 
 export function App() {
   const [currentPath, setCurrentPath] = useState(() => window.location.pathname);
@@ -33,6 +34,10 @@ export function App() {
           <AppLayout isFullWidth>
             <ArchivePage />
           </AppLayout>
+        ) : currentPath === "/monitor" ? (
+          <AppLayout isFullWidth>
+            <MonitorPage />
+          </AppLayout>
         ) : (
           <AppLayout>
             <PortfolioPage />
@@ -42,5 +47,6 @@ export function App() {
     </ThemeProvider>
   );
 }
+
 
 
