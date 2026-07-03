@@ -1080,7 +1080,7 @@ export function MonitorPage() {
             />
             <text
               x="51"
-              y="256"
+              y="251"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="15"
@@ -1090,7 +1090,7 @@ export function MonitorPage() {
             </text>
             <text
               x="51"
-              y="272"
+              y="268"
               textAnchor="middle"
               fontFamily="sans-serif"
               fontSize="9"
@@ -1101,7 +1101,7 @@ export function MonitorPage() {
             </text>
             <text
               x="51"
-              y="283"
+              y="280"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
@@ -1153,7 +1153,7 @@ export function MonitorPage() {
             </text>
             <text
               x="225"
-              y="281"
+              y="274"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
@@ -1163,7 +1163,7 @@ export function MonitorPage() {
             </text>
             <text
               x="225"
-              y="290"
+              y="285"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
@@ -1188,7 +1188,7 @@ export function MonitorPage() {
                 />
                 <text
                   x="385"
-                  y={SVC_Y[i] - 6}
+                  y={SVC_Y[i] - 6 - 5}
                   textAnchor="middle"
                   fontFamily="monospace"
                   fontSize="11"
@@ -1198,7 +1198,7 @@ export function MonitorPage() {
                 </text>
                 <text
                   x="385"
-                  y={SVC_Y[i] + 9}
+                  y={SVC_Y[i] + 9 - 5}
                   textAnchor="middle"
                   fontFamily="sans-serif"
                   fontSize="9"
@@ -1209,7 +1209,7 @@ export function MonitorPage() {
                 </text>
                 <text
                   x="385"
-                  y={SVC_Y[i] + 21}
+                  y={SVC_Y[i] + 21 - 5}
                   textAnchor="middle"
                   fontFamily="monospace"
                   fontSize="7"
@@ -1217,12 +1217,17 @@ export function MonitorPage() {
                 >
                   {svc.runtime} · :{svc.port}
                 </text>
-                <PulseDot cx={437} cy={SVC_Y[i] - 24} r={3.5} color="#00ff88" />
+                <PulseDot
+                  cx={437}
+                  cy={SVC_Y[i] - 24 - 5}
+                  r={3.5}
+                  color="#00ff88"
+                />
                 {/* Live latency badge */}
                 {(sUI[svc.id]?.avgLat ?? 0) > 0 && (
                   <text
                     x="340"
-                    y={SVC_Y[i] - 31}
+                    y={SVC_Y[i] - 36 - 5}
                     fontFamily="monospace"
                     fontSize="8"
                     fill={latColor(sUI[svc.id]?.avgLat ?? 0)}
