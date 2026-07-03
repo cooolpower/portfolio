@@ -91,7 +91,7 @@ const SVC_Y = [110, 210, 310, 410];
 function getSegments(svcY: number) {
   return [
     { x1: 90, y1: 260, x2: 175, y2: 260 },
-    { x1: 225, y1: 260, x2: 275, y2: 260 },
+    { x1: 175, y1: 260, x2: 275, y2: 260 },
     { x1: 275, y1: 260, x2: 330, y2: svcY },
     { x1: 440, y1: svcY, x2: 510, y2: svcY },
   ];
@@ -270,7 +270,7 @@ function DbCylinder({
     <g opacity={0.85}>
       <ellipse
         cx={cx}
-        cy={topY}
+        cy={topY + h}
         rx={rx}
         ry={ry}
         fill="#0f1520"
@@ -299,7 +299,7 @@ function DbCylinder({
       />
       <ellipse
         cx={cx}
-        cy={topY + h}
+        cy={topY}
         rx={rx}
         ry={ry}
         fill="#0f1520"
@@ -309,7 +309,7 @@ function DbCylinder({
       />
       <text
         x={cx}
-        y={topY + h / 2 + 4}
+        y={topY + h / 6}
         textAnchor="middle"
         fontFamily="monospace"
         fontSize={9}
@@ -1064,6 +1064,9 @@ export function MonitorPage() {
               EVENT BUS
             </text>
 
+            {/* Particle layer */}
+            <g ref={svgParticlesRef} />
+
             {/* Client */}
             <rect
               x="12"
@@ -1129,7 +1132,7 @@ export function MonitorPage() {
             />
             <text
               x="225"
-              y="250"
+              y="245"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="12"
@@ -1139,7 +1142,7 @@ export function MonitorPage() {
             </text>
             <text
               x="225"
-              y="265"
+              y="272"
               textAnchor="middle"
               fontFamily="sans-serif"
               fontSize="9"
@@ -1150,7 +1153,7 @@ export function MonitorPage() {
             </text>
             <text
               x="225"
-              y="278"
+              y="281"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
@@ -1160,7 +1163,7 @@ export function MonitorPage() {
             </text>
             <text
               x="225"
-              y="289"
+              y="290"
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
@@ -1241,8 +1244,7 @@ export function MonitorPage() {
               />
             ))}
 
-            {/* Particle layer */}
-            <g ref={svgParticlesRef} />
+            {/* Particle layer will render before Client */}
           </svg>
         </div>
 
