@@ -25,6 +25,7 @@ export const vars = createThemeContract({
     rowBackground: null,
     listItemColor: null,
     listItemBulletColor: null,
+    fieldValueColor: null,
   },
   space: {
     "0": null,
@@ -153,6 +154,7 @@ export const darkThemeClass = createTheme(vars, {
     rowBackground: "rgba(30,41,59,.5)",
     listItemColor: "rgba(164, 168, 174, 1)",
     listItemBulletColor: "rgba(255, 255, 255, 0.9)",
+    fieldValueColor: "rgb(135 147 164)",
   },
 });
 
@@ -183,6 +185,7 @@ export const lightThemeClass = createTheme(vars, {
     rowBackground: "rgb(133 133 133 / 6%)",
     listItemColor: "rgba(93, 93, 93, 1)",
     listItemBulletColor: "rgb(150 151 151)",
+    fieldValueColor: "rgb(135 147 164)",
   },
 });
 

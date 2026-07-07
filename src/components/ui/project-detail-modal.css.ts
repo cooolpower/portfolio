@@ -239,10 +239,10 @@ export const troubleCard = style({
   backgroundColor: vars.color.secondary,
   border: `1px solid ${vars.color.border}`,
   borderRadius: vars.radii.lg,
-  padding: vars.space[5],
+  padding: `${vars.space[6]} ${vars.space[6]} ${vars.space[1]} ${vars.space[6]}`,
   display: "flex",
   flexDirection: "column",
-  gap: vars.space[4],
+  gap: 0,
 });
 
 export const boldHighlight = style({
@@ -277,8 +277,8 @@ export const fieldHeader = style({
 });
 
 export const fieldLabel = style({
-  fontSize: vars.fontSize.xs,
-  fontWeight: vars.fontWeight.bold,
+  fontSize: vars.fontSize.sm,
+  //fontWeight: vars.fontWeight.bold,
   textTransform: "uppercase",
   letterSpacing: "0.05em",
   margin: 0,
@@ -287,47 +287,64 @@ export const fieldLabel = style({
 export const fieldValue = style({
   fontSize: vars.fontSize.sm,
   lineHeight: vars.lineHeight.base,
-  color: vars.color.mutedForeground,
+  color: vars.color.fieldValueColor,
   margin: 0,
-  paddingLeft: "24px",
+  paddingLeft: 0,
 });
 
-const troubleFieldBase = style({
-  padding: vars.space[4],
-  borderLeftWidth: "4px",
-  borderLeftStyle: "solid",
-  borderTopRightRadius: vars.radii.md,
-  borderBottomRightRadius: vars.radii.md,
-  borderTopLeftRadius: "0px",
-  borderBottomLeftRadius: "0px",
+export const troubleItem = style({
+  display: "flex",
+  gap: vars.space[4],
+  position: "relative",
+  selectors: {
+    "&:last-child": {
+      marginBottom: 0,
+    },
+  },
+});
+
+export const troubleTimeline = style({
   display: "flex",
   flexDirection: "column",
-  gap: vars.space[1],
+  alignItems: "center",
+  width: "16px",
+  flexShrink: 0,
 });
 
-export const troubleFieldProblem = style([
-  troubleFieldBase,
-  {
-    borderLeftColor: "#ef4444",
-    backgroundColor: "rgba(239, 68, 68, 0.03)",
+export const timelineDot = style({
+  width: "8px",
+  height: "8px",
+  borderRadius: "50%",
+  marginTop: "6px",
+  zIndex: 2,
+  selectors: {
+    "&.problem": {
+      backgroundColor: "#ef4444",
+      boxShadow: "0 0 8px rgba(239, 68, 68, 0.5)",
+    },
+    "&.solution": {
+      backgroundColor: vars.color.ring,
+      boxShadow: `0 0 8px ${vars.color.ring}`,
+    },
+    "&.impact": {
+      backgroundColor: "#22c55e",
+      boxShadow: "0 0 8px rgba(34, 197, 94, 0.5)",
+    },
   },
-]);
+});
 
-export const troubleFieldSolution = style([
-  troubleFieldBase,
-  {
-    borderLeftColor: vars.color.ring,
-    backgroundColor: vars.color.accent,
-  },
-]);
+export const timelineLine = style({
+  width: "2px",
+  flex: 1,
+  backgroundColor: vars.color.border,
+  marginTop: vars.space[2],
+  marginBottom: vars.space[2],
+});
 
-export const troubleFieldImpact = style([
-  troubleFieldBase,
-  {
-    borderLeftColor: "#22c55e",
-    backgroundColor: "rgba(34, 197, 94, 0.03)",
-  },
-]);
+export const troubleContent = style({
+  flex: 1,
+  paddingBottom: vars.space[6],
+});
 
 export const iconProblem = style({
   color: "#ef4444",

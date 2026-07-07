@@ -235,54 +235,71 @@ export function ProjectDetailModal({
             {project.troubleshooting.map((ts, idx) => (
               <div key={idx} className={styles.troubleCard}>
                 {/* Problem */}
-                <div className={styles.troubleFieldProblem}>
-                  <div className={styles.fieldHeader}>
-                    <AlertTriangle
-                      size={16}
-                      className={styles.iconProblem}
-                      aria-hidden="true"
-                    />
-                    <h4 className={styles.fieldLabel}>
-                      {translate("tsProblem")}
-                    </h4>
+                <div className={styles.troubleItem}>
+                  <div className={styles.troubleTimeline}>
+                    <div className={`${styles.timelineDot} problem`} />
+                    <div className={styles.timelineLine} />
                   </div>
-                  <p className={styles.fieldValue}>
-                    {parseRichText(ts.problem)}
-                  </p>
+                  <div className={styles.troubleContent}>
+                    <div className={styles.fieldHeader}>
+                      <AlertTriangle
+                        size={14}
+                        className={styles.iconProblem}
+                        aria-hidden="true"
+                      />
+                      <h4 className={styles.fieldLabel}>
+                        {translate("tsProblem")}
+                      </h4>
+                    </div>
+                    <p className={styles.fieldValue}>
+                      {parseRichText(ts.problem)}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Solution */}
-                <div className={styles.troubleFieldSolution}>
-                  <div className={styles.fieldHeader}>
-                    <Wrench
-                      size={16}
-                      className={styles.iconSolution}
-                      aria-hidden="true"
-                    />
-                    <h4 className={styles.fieldLabel}>
-                      {translate("tsSolution")}
-                    </h4>
+                <div className={styles.troubleItem}>
+                  <div className={styles.troubleTimeline}>
+                    <div className={`${styles.timelineDot} solution`} />
+                    <div className={styles.timelineLine} />
                   </div>
-                  <p className={styles.fieldValue}>
-                    {parseRichText(ts.solution)}
-                  </p>
+                  <div className={styles.troubleContent}>
+                    <div className={styles.fieldHeader}>
+                      <Wrench
+                        size={14}
+                        className={styles.iconSolution}
+                        aria-hidden="true"
+                      />
+                      <h4 className={styles.fieldLabel}>
+                        {translate("tsSolution")}
+                      </h4>
+                    </div>
+                    <p className={styles.fieldValue}>
+                      {parseRichText(ts.solution)}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Impact */}
-                <div className={styles.troubleFieldImpact}>
-                  <div className={styles.fieldHeader}>
-                    <TrendingUp
-                      size={16}
-                      className={styles.iconImpact}
-                      aria-hidden="true"
-                    />
-                    <h4 className={styles.fieldLabel}>
-                      {translate("tsImpact")}
-                    </h4>
+                <div className={styles.troubleItem}>
+                  <div className={styles.troubleTimeline}>
+                    <div className={`${styles.timelineDot} impact`} />
                   </div>
-                  <p className={styles.fieldValue}>
-                    {parseRichText(ts.impact, true)}
-                  </p>
+                  <div className={styles.troubleContent} style={{ paddingBottom: 0 }}>
+                    <div className={styles.fieldHeader}>
+                      <TrendingUp
+                        size={14}
+                        className={styles.iconImpact}
+                        aria-hidden="true"
+                      />
+                      <h4 className={styles.fieldLabel}>
+                        {translate("tsImpact")}
+                      </h4>
+                    </div>
+                    <p className={styles.fieldValue}>
+                      {parseRichText(ts.impact, true)}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}

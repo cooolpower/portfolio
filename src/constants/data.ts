@@ -192,7 +192,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
     },
     {
       "company": "(주)에이매스컨설팅",
-      "role": "Ezwel Welfare Center Project Web Publisher",
+      "role": "Web Publisher",
       "period": "2015.07 - 2015.08",
       "description": "이지웰복지관 포털의 웹 표준화 프레임워크 설계 및 웹 접근성 품질인증마크 획득 대응을 담당했습니다.",
       "achievements": [
@@ -257,6 +257,9 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       "role": "Web Publisher (Overseas Experience)",
       "period": "2013.02 - 2014.02",
       "description": "홍콩 정부 발주 공공 프로젝트 및 글로벌 교육 e-book, 잡지 서비스 UI/UX 퍼블리싱 설계를 담당했습니다.",
+      "groupLinks": {
+        "KEYPAD 사이트 리뉴얼":"https://web.archive.org/web/20130808061820/http://www.keypad.com.hk/#"
+      },
       "achievements": [
         "[홍콩 내 중고등학생용 e-book] **홍콩 정부 발주 초1~고3 교육 콘텐츠 대상 e-book 플랫폼 UI/UX 퍼블리싱 총괄 개발**",
         "[Telitelo project] **홍콩 정부 발주 GIS/지도 기반 서비스 주요 화면 UI 퍼블리싱** 및 jQuery 기반 dynamic UI 인터랙션 구현",
@@ -432,7 +435,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       ]
     },
     {
-      "company": "(주)비이티에이치이 (BETHE)",
+      "company": "(주)비이티에이치이",
       "role": "Web Designer & Publisher",
       "period": "2007.02 - 2007.08",
       "description": "다수의 한의원 및 성형외과 브랜드 웹사이트 구축에 참여하여 모션 UI와 렌더링 최적화를 전담했습니다.",
@@ -609,10 +612,15 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
       "summary": "외부 파트너사인 **토스와의 데이터 연동**을 위한 **Open API 서버리스 인프라 구축** 프로젝트입니다. 내부 데이터를 외부 스펙에 맞게 가공·전달하는 API 구조를 설계하고 인증 및 예외 처리 체계를 구축했습니다.",
       "troubleshooting": [
         {
-          "problem": "서버리스 환경에서 토스 인증 규격(Bearer Token) 및 스펙 검증 결핍 우려.",
-          "solution": "AWS API Gateway에 커스텀 Authorizer 및 Bearer Token 인증 검증 핸들러를 Lambda Stateless 구조로 구현.",
-          "impact": "서버리스 구조 도입으로 트래픽 무제한 확장성 확보 및 응답 일관성 유지."
-        }
+          "problem": "제휴 공고 데이터를 연동할 때, 입력 소스마다 다른 비표준 중간점 기호(・, ㆍ, •) 및 HTML 특수 엔티티가 혼입되어 업종 코드 매핑 사전(PART_NAME_TO_CODE_MAP) 매칭 실패 및 공고 전송 누락 장애 발생.",
+          "solution": "데이터 파이프라인(Lambda) 내에 정규화 함수(normalizeMiddleDot)를 구축하여 비표준 문자들을 유니코드 표준 가운뎃점(·)으로 일괄 통일하고, regex 기반으로 불필요한 제어 기호 및 괄호형 부가 텍스트((청소년불가))를 동적으로 트리밍하는 Sanitizer 모듈을 적용.",
+          "impact": "텍스트 인코딩 깨짐 현상 0건 달성 및 업종 매핑 실패로 인한 전송 유실률 0% 유지."
+        },
+        // {
+        //   "problem": "간편지원(Simple Apply) API 호출 시 '회원 조회 ➡️ 공고 조회 ➡️ 지원분야 조회 ➡️ 지원 요청'으로 이어지는 다단계 마이크로서비스 연쇄 호출(Orchestration) 과정에서 일시적 지연이나 한 구간의 실패가 하위 트랜잭션 전체로 전파되어 시스템 추적이 어렵고 일시적 먹통 오류를 반환함.",
+        //   "solution": "통합 에러 핸들러(createErrorResponse)를 설계하여 하위 서비스별 에러 바운더리를 격리하고, 에러 상황별 전용 예외 규격(MEMBER_NOT_FOUND, INVALID_PAGE_PARAMETER 등)에 따른 고유 에러 코드와 상세 디버깅 컨텍스트를 클라이언트에 일관되게 반환하도록 예외 처리 아키텍처 개편.",
+        //   "impact": "트랜잭션 실패 시 추적 가용성 확보 및 API 디버깅 소요 시간 70% 단축."
+        // }
       ],
       "metrics": [
         {
@@ -1344,7 +1352,7 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
     },
     {
       "company": "A-Mass Consulting",
-      "role": "Ezwel Welfare Center Project Web Publisher",
+      "role": "Web Publisher",
       "period": "2015.07 - 2015.08",
       "description": "Established web standardization framework and publishing structure guidelines for **Ezwel Welfare Center** portal to facilitate systematic UI development.",
       "achievements": [
@@ -1751,9 +1759,14 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
       "summary": "A serverless infrastructure building project for Toss data sharing. Modeled and transformed internal database records to fit partner specifications while establishing validation and authorization handlers.",
       "troubleshooting": [
         {
-          "problem": "Concerns regarding Bearer Token validation and structural verification in a stateless environment.",
-          "solution": "Constructed custom API Gateway Authorizers and token decryption handlers integrated with stateless AWS Lambda configurations.",
-          "impact": "Succeeded in getting infinite scalability and maintaining 100% stable API response rates."
+          "problem": "Character corruption and API data loss issues occurred due to legacy non-standard middle dots (・, ㆍ, •) and HTML special entities in raw outbound records failing to match the mapping table (PART_NAME_TO_CODE_MAP).",
+          "solution": "Created a normalization pipeline (normalizeMiddleDot) inside AWS Lambda to unify irregular symbols into the standard Unicode middle dot (·), alongside regular expression filters to strip control characters and remove parenthesized tag strings like (청소년불가).",
+          "impact": "Successfully resolved all data corruption issues, keeping API data transfer failures at 0%."
+        },
+        {
+          "problem": "During the orchestration of the Simple Apply API (Member ➡️ Recruit ➡️ Field ➡️ Apply), transient network latency or failure at any stage propagated downstream, making debug tracking difficult and returning raw 500 server errors.",
+          "solution": "Designed a unified error handler (createErrorResponse) to establish distinct error boundaries, classifying failures into clear application-level error codes (e.g., MEMBER_NOT_FOUND, INVALID_PAGE_PARAMETER) with rich debugging metadata.",
+          "impact": "Secured reliable microservices transaction traceability and reduced API troubleshooting resolution times by 70%."
         }
       ],
       "metrics": [
