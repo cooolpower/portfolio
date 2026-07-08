@@ -88,7 +88,7 @@ export const expTitleContainer = style({
 export const expRoleTitle = style({
   fontSize: vars.fontSize.sm,
   fontWeight: "400",
-  color: "#e3e3e3",
+  color: vars.color.expRoleTitleColor,
   margin: 0,
 });
 
@@ -116,7 +116,7 @@ export const expLinkIcon = style({
 
 export const expCompanyTitle = style({
   fontSize: vars.fontSize.base,
-  color: vars.color.foreground,
+  color: vars.color.expRoleTitleColor,
   margin: 0,
   transition: "color 0.2s ease",
   selectors: {

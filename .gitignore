@@ -6,3 +6,4 @@ build/
 
 # AI/agent config
 .antigravity/
+.vercel

@@ -90,7 +90,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
   "careers": [
     {
       "company": "웍스피어 유한책임회사 (구 잡코리아)",
-      "role": "FE플랫폼 팀 팀원",
+      "role": "Frontend Developer",
       "period": "2024.05 - 2026.01",
       "description": "공통 UI 라이브러리 설계를 통한 **플랫폼 레벨 기여**를 이끌었으며, 고가용성 **실시간 AI 채팅** 시스템 개발 및 **외부 파트너십 API 연동** 인프라 구축을 주도했습니다.",
       "link": "https://www.jobkorea.co.kr",

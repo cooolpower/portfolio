@@ -1,14 +1,16 @@
-import { ExternalLink, Github, Linkedin, Mail, Sun, Moon } from "lucide-react";
+import { Github, Mail, Sun, Moon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { PORTFOLIO_DATA_KO, PORTFOLIO_DATA_EN } from "@/constants/data";
 import { useTheme } from "@/components/ui/ThemeContext";
 import { useLanguage } from "@/components/ui/LanguageContext";
 import { parseHighlight } from "@/utils/parse-highlight";
+import { EmailModal } from "@/components/ui/email-modal";
 import * as styles from "./app-layout.css";
 
 export function LeftPanel() {
   const { theme, toggleTheme } = useTheme();
   const { language, setLanguage, translate } = useLanguage();
+  const [isEmailModalOpen, setIsEmailModalOpen] = useState(false);
 
   const data = language === "ko" ? PORTFOLIO_DATA_KO : PORTFOLIO_DATA_EN;
   const { profile } = data;
@@ -102,7 +104,8 @@ export function LeftPanel() {
               <Github size={20} />
             </a>
           </li>
-          <li>
+
+          {/* <li>
             <a
               href="https://linkedin.com"
               target="_blank"
@@ -111,13 +114,44 @@ export function LeftPanel() {
             >
               <Linkedin size={20} />
             </a>
-          </li>
+          </li> */}
           <li>
-            <a href={`mailto:${profile.email}`} className={styles.socialIcon}>
+            <button
+              type="button"
+              onClick={() => setIsEmailModalOpen(true)}
+              className={styles.socialIcon}
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+              }}
+              aria-label="Send Email"
+            >
               <Mail size={20} />
-            </a>
+            </button>
           </li>
           <li>
+            <button
+              type="button"
+              onClick={() => setLanguage(language === "ko" ? "en" : "ko")}
+              className={styles.langToggleBtn}
+              aria-label="Toggle Language"
+            >
+              {language === "ko" ? "EN" : "KO"}
+            </button>
+          </li>
+          <li>
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className={styles.themeToggleBtn}
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+          </li>
+          {/* <li>
             <a
               href={profile.github}
               target="_blank"
@@ -126,31 +160,16 @@ export function LeftPanel() {
             >
               <ExternalLink size={20} />
             </a>
-          </li>
+          </li> */}
         </ul>
-
-        <div className={styles.togglersRow}>
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className={styles.themeToggleBtn}
-            aria-label="Toggle Theme"
-          >
-            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setLanguage(language === "ko" ? "en" : "ko")}
-            className={styles.langToggleBtn}
-            aria-label="Toggle Language"
-          >
-            {language === "ko" ? "EN" : "KO"}
-          </button>
-        </div>
       </div>
+
+      {isEmailModalOpen && (
+        <EmailModal
+          recipientEmail={profile.email}
+          onClose={() => setIsEmailModalOpen(false)}
+        />
+      )}
     </aside>
   );
 }
-
-

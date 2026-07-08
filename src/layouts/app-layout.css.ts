@@ -7,7 +7,7 @@ export const layout = style({
   padding: `0 ${vars.space[8]}`,
   minHeight: "100vh",
   display: "grid",
-  gridTemplateColumns: "3fr 9fr",
+  gridTemplateColumns: "4fr 8fr",
   gap: "80px",
   alignItems: "start",
   "@media": {
@@ -27,11 +27,13 @@ export const leftPanel = style({
   flexDirection: "column",
   justifyContent: "space-between",
   padding: `${vars.space[20]} 0`,
+  zIndex: 50,
   "@media": {
     "screen and (max-width: 768px)": {
       position: "relative",
       height: "auto",
       padding: `${vars.space[12]} 0 0 0`,
+      zIndex: 50,
     },
   },
 });
@@ -57,7 +59,7 @@ export const title = style({
   fontWeight: 400,
   //color: vars.color.mutedForeground,
   lineHeight: vars.lineHeight.base,
-  color: "rgb(226 232 240)",
+  color: vars.color.expRoleTitleColor,
   margin: 0,
   marginTop: vars.space[2]
 });
@@ -177,7 +179,8 @@ export const togglersRow = style({
 export const themeToggleBtn = style({
   background: "transparent",
   border: "none",
-  padding: vars.space[2],
+  //padding: vars.space[2],
+  padding: 0,
   color: vars.color.mutedForeground,
   cursor: "pointer",
   display: "inline-flex",
@@ -196,7 +199,8 @@ export const themeToggleBtn = style({
 export const langToggleBtn = style({
   background: "transparent",
   border: "none",
-  padding: `${vars.space[1]} ${vars.space[2]}`,
+  //padding: `${vars.space[1]} ${vars.space[2]}`,
+  padding: 0,
   color: vars.color.mutedForeground,
   cursor: "pointer",
   display: "inline-flex",

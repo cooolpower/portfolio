@@ -1,13 +1,15 @@
 import { ExternalLink } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Section } from "@/components/layout/container";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Paragraph } from "@/components/ui/typography";
 import { parseHighlight } from "@/utils/parse-highlight";
-import { PORTFOLIO_DATA_KO, PORTFOLIO_DATA_EN, type Project } from "@/constants/data";
+import {
+  PORTFOLIO_DATA_KO,
+  PORTFOLIO_DATA_EN,
+  type Project,
+} from "@/constants/data";
 import { useLanguage } from "@/components/ui/LanguageContext";
 import { AchievementsList } from "@/components/ui/achievements-list";
 import { ProjectDetailModal } from "@/components/ui/project-detail-modal";
@@ -18,27 +20,7 @@ export function PortfolioPage() {
   const data = language === "ko" ? PORTFOLIO_DATA_KO : PORTFOLIO_DATA_EN;
   const { profile, careers, projects, skills } = data;
 
-  const [contactName, setContactName] = useState("");
-  const [contactEmail, setContactEmail] = useState("");
-  const [isSent, setIsSent] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
-
-  const handleContactSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (contactName && contactEmail) {
-      setIsSent(true);
-      setContactName("");
-      setContactEmail("");
-    }
-  };
-
-  useEffect(() => {
-    if (isSent) {
-      const timer = setTimeout(() => setIsSent(false), 3000);
-      return () => clearTimeout(timer);
-    }
-    return undefined;
-  }, [isSent]);
 
   return (
     <div className={styles.pageWrapper}>
@@ -70,7 +52,10 @@ export function PortfolioPage() {
                           <h2 className={styles.expCompanyTitle}>
                             {career.company}
                           </h2>
-                          <ExternalLink size={14} className={styles.expLinkIcon} />
+                          <ExternalLink
+                            size={14}
+                            className={styles.expLinkIcon}
+                          />
                         </a>
                       ) : (
                         <h2 className={styles.expCompanyTitle}>
@@ -136,7 +121,10 @@ export function PortfolioPage() {
                             <CardTitle className={styles.projectTitle}>
                               {project.title}
                             </CardTitle>
-                            <ExternalLink size={16} className={styles.linkIcon} />
+                            <ExternalLink
+                              size={16}
+                              className={styles.linkIcon}
+                            />
                           </div>
                         </div>
                       </CardHeader>
@@ -194,7 +182,9 @@ export function PortfolioPage() {
                     <div className={styles.projectCardWrapper}>
                       <div className={styles.projectTitleContainer}>
                         <CardTitle className={styles.projectTitle}>
-                          {language === "ko" ? "실시간 마이크로서비스 모니터링 데모" : "Real-time Microservice Monitor"}
+                          {language === "ko"
+                            ? "실시간 마이크로서비스 모니터링 데모"
+                            : "Real-time Microservice Monitor"}
                         </CardTitle>
                         <ExternalLink size={16} className={styles.linkIcon} />
                       </div>
@@ -206,7 +196,14 @@ export function PortfolioPage() {
                         ? "웹소켓(WebSocket) 및 브라우저 자체 시뮬레이터를 활용해 마이크로서비스 간의 실시간 트래픽(RPS, 지연 시간, 에러율)을 역동적인 파티클 애니메이션과 라이브 로그로 시각화하는 모니터링 대시보드 데모입니다."
                         : "An interactive live monitoring dashboard visualizing real-time microservice traffic (RPS, Latency, Error Rate) using WebSockets and a client-side simulator with dynamic particle animations."}
                     </p>
-                    <div style={{ marginTop: 8, display: "flex", flexWrap: "wrap", gap: 6 }}>
+                    <div
+                      style={{
+                        marginTop: 8,
+                        display: "flex",
+                        flexWrap: "wrap",
+                        gap: 6,
+                      }}
+                    >
                       <Badge>React</Badge>
                       <Badge>WebSocket</Badge>
                       <Badge>SVG Animation</Badge>
@@ -239,7 +236,7 @@ export function PortfolioPage() {
         </Section>
 
         {/* Contact Section */}
-        <Section id="contact">
+        {/* <Section id="contact">
           <div>
             <h2 className={styles.sectionLabel}>{translate("contact")}</h2>
             <form className={styles.contactForm} onSubmit={handleContactSubmit}>
@@ -279,7 +276,7 @@ export function PortfolioPage() {
               )}
             </form>
           </div>
-        </Section>
+        </Section> */}
       </div>
       {activeProject && (
         <ProjectDetailModal

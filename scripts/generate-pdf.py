@@ -219,9 +219,9 @@ def build_pdf(data, output_filename, lang="ko"):
         right_flow = []
         company_name = format_text(career['company'])
         if career.get('link'):
-            company_display = f"{career['role']} @ <b><a href=\"{career['link']}\" color=\"#0d9488\">{company_name}</a></b>"
+            company_display = f"<b><a href=\"{career['link']}\" color=\"#0d9488\">{company_name}</a></b> @ {career['role']}"
         else:
-            company_display = f"{career['role']} @ <b>{company_name}</b>"
+            company_display = f"<b>{company_name}</b> @ {career['role']}"
         right_flow.append(Paragraph(company_display, job_title_style))
         right_flow.append(Spacer(1, 2))
         
