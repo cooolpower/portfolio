@@ -166,7 +166,7 @@ export const lightThemeClass = createTheme(vars, {
   color: {
     background: "#f8fafc", // slate-50
     foreground: "#0f172a", // slate-900
-    textHighLight: "rgba(46, 46, 46, 1)",
+    textHighLight: "rgb(6 6 6)",
     card: "rgba(255, 255, 255, 0.8)",
     cardForeground: "#0f172a",
     primary: "#0f172a", // slate-900
@@ -174,7 +174,7 @@ export const lightThemeClass = createTheme(vars, {
     secondary: "#e2e8f0", // slate-200
     secondaryForeground: "#0f172a",
     muted: "#f1f5f9", // slate-100
-    mutedForeground: "#475569", // slate-600
+    mutedForeground: "rgb(126 126 126)", // slate-600
     badgeForeground: "rgb(125 115 115)",
     badgeBackground: "rgb(0 0 0 / 5%)",
     accent: "rgba(13, 148, 136, 0.06)", // teal-600 tint

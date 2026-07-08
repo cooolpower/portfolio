@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback, useMemo } from "react";
 import { ArrowLeft, Info, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "@/components/ui/LanguageContext";
+import { useTheme } from "@/components/ui/ThemeContext";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // TYPES
@@ -8,7 +9,7 @@ import { useLanguage } from "@/components/ui/LanguageContext";
 interface ServiceDef {
   id: string;
   label: string;
-  color: string;
+  color: string | { light: string; dark: string };
   port: number;
   runtime: string;
   db: string;
@@ -62,7 +63,7 @@ const SERVICES: ServiceDef[] = [
   {
     id: "user",
     label: "User Service",
-    color: "#a855f7",
+    color: { light: "rgba(139, 92, 246, 1)", dark: "#a855f7" },
     port: 3001,
     runtime: "Node.js",
     db: "PostgreSQL",
@@ -70,7 +71,7 @@ const SERVICES: ServiceDef[] = [
   {
     id: "order",
     label: "Order Service",
-    color: "#00d4ff",
+    color: { light: "rgba(0, 179, 255, 1)", dark: "#00d4ff" },
     port: 3002,
     runtime: "Go",
     db: "MongoDB",
@@ -78,7 +79,7 @@ const SERVICES: ServiceDef[] = [
   {
     id: "payment",
     label: "Payment Service",
-    color: "#00ff88",
+    color: { light: "rgba(0, 179, 136, 1)", dark: "#00ff88" },
     port: 3003,
     runtime: "Python",
     db: "PostgreSQL",
@@ -86,7 +87,7 @@ const SERVICES: ServiceDef[] = [
   {
     id: "notif",
     label: "Notif Service",
-    color: "#ffd166",
+    color: { light: "rgba(255, 179, 102, 1)", dark: "#ffd166" },
     port: 3004,
     runtime: "Node.js",
     db: "Redis",
@@ -175,13 +176,16 @@ function upColor(u: string) {
       : "#ff4d6d";
 }
 function methodColor(m: string) {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
+
   return (
     (
       {
-        GET: "#00ff88",
-        POST: "#00d4ff",
-        PUT: "#ffd166",
-        DELETE: "#ff4d6d",
+        GET: isLight ? "#00b388" : "#00ff88",
+        POST: isLight ? "#0096d2" : "#00d4ff",
+        PUT: isLight ? "#a36c00" : "#ffd166",
+        DELETE: isLight ? "#d2304b" : "#ff4d6d",
       } as Record<string, string>
     )[m] ?? "#9ca3af"
   );
@@ -291,15 +295,18 @@ function DbCylinder({
   topY,
   color,
   label,
+  isLight = false,
 }: {
   cx: number;
   topY: number;
   color: string;
   label: string;
+  isLight?: boolean;
 }) {
   const rx = 42;
   const ry = 14;
   const h = 24;
+  const fillCol = isLight ? "#f1f5f9" : "#0f1520";
   return (
     <g opacity={0.85}>
       <ellipse
@@ -307,12 +314,12 @@ function DbCylinder({
         cy={topY + h}
         rx={rx}
         ry={ry}
-        fill="#0f1520"
+        fill={fillCol}
         stroke={color}
         strokeWidth={1}
         strokeOpacity={0.7}
       />
-      <rect x={cx - rx} y={topY} width={rx * 2} height={h} fill="#0f1520" />
+      <rect x={cx - rx} y={topY} width={rx * 2} height={h} fill={fillCol} />
       <line
         x1={cx - rx}
         y1={topY}
@@ -336,7 +343,7 @@ function DbCylinder({
         cy={topY}
         rx={rx}
         ry={ry}
-        fill="#0f1520"
+        fill={fillCol}
         stroke={color}
         strokeWidth={1}
         strokeOpacity={0.7}
@@ -372,6 +379,8 @@ function MiniBar({
   display: string;
   color: string;
 }) {
+  const { theme } = useTheme();
+  const isLight = theme === "light";
   const w = Math.min(100, (val / max) * 100);
   return (
     <div
@@ -381,7 +390,7 @@ function MiniBar({
         style={{
           fontFamily: "monospace",
           fontSize: 9,
-          color: "#4a5568",
+          color: isLight ? "#64748b" : "#4a5568",
           width: 50,
           flexShrink: 0,
         }}
@@ -392,7 +401,7 @@ function MiniBar({
         style={{
           flex: 1,
           height: 4,
-          background: "#2a3a4e",
+          background: isLight ? "#e2e8f0" : "#2a3a4e",
           borderRadius: 2,
           overflow: "hidden",
         }}
@@ -411,7 +420,7 @@ function MiniBar({
         style={{
           fontFamily: "monospace",
           fontSize: 9,
-          color: "#e2e8f0",
+          color: isLight ? "#475569" : "#e2e8f0",
           width: 38,
           textAlign: "right",
           flexShrink: 0,
@@ -428,6 +437,106 @@ function MiniBar({
 // ─────────────────────────────────────────────────────────────────────────────
 export function MonitorPage() {
   const { language } = useLanguage();
+  const { theme } = useTheme();
+  const isLight = theme === "light";
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const services = useMemo(() => {
+    return SERVICES.map((s) => ({
+      ...s,
+      color:
+        typeof s.color === "string"
+          ? s.color
+          : isLight
+            ? s.color.light
+            : s.color.dark,
+    }));
+  }, [isLight]);
+
+  const css = {
+    ...baseCss,
+    root: {
+      ...baseCss.root,
+      color: isLight ? "#1e293b" : "#e2e8f0",
+    },
+    backBtn: {
+      ...baseCss.backBtn,
+      color: isLight ? "#475569" : "#9ca3af",
+    },
+    h1: {
+      ...baseCss.h1,
+      color: isLight ? "#0f172a" : "#fff",
+    },
+    wsBar: {
+      ...baseCss.wsBar,
+      background: isLight ? "#f1f5f9" : "#0f1520",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+    },
+    wsInput: {
+      ...baseCss.wsInput,
+      background: isLight ? "#ffffff" : "#121c2a",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+      color: isLight ? "#1e293b" : "#e2e8f0",
+    },
+    stat: {
+      ...baseCss.stat,
+      background: isLight ? "#f1f5f9" : "#0f1520",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+    },
+    statVal: {
+      ...baseCss.statVal,
+      color: isLight ? "#0f172a" : "#fff",
+    },
+    canvas: {
+      ...baseCss.canvas,
+      background: isLight ? "#f8fafc" : "#090d14",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+      aspectRatio: "640 / 520",
+      flex: isMobile ? "none" : 1,
+      width: "100%",
+    },
+    card: {
+      ...baseCss.card,
+      background: isLight ? "#f1f5f9" : "#0f1520",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+      color: isLight ? "#1e293b" : "#e2e8f0",
+    },
+    logWrap: {
+      ...baseCss.logWrap,
+      background: isLight ? "#f1f5f9" : "#0f1520",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+    },
+    btn: {
+      ...baseCss.btn,
+      background: isLight ? "#f1f5f9" : "#0f1520",
+      borderColor: isLight ? "#cbd5e1" : "#1e2d42",
+      color: isLight ? "#334155" : "#e2e8f0",
+    },
+    eyebrow: {
+      ...baseCss.eyebrow,
+      color: isLight ? "rgb(0 162 255)" : "#00d4ff",
+    },
+    main: {
+      ...baseCss.main,
+      flexDirection: isMobile ? ("column" as const) : ("row" as const),
+      gap: isMobile ? 20 : 14,
+    },
+    side: {
+      ...baseCss.side,
+      width: isMobile ? "100%" : 230,
+    },
+  };
+
   const [showGuide, setShowGuide] = useState(true);
 
   // ── WS ──
@@ -499,85 +608,88 @@ export function MonitorPage() {
   const [flash, setFlash] = useState<Record<string, "ok" | "err">>({});
 
   // ─── Ingest event ───────────────────────────────────────────────────────────
-  const ingest = useCallback((evt: TrafficEvent) => {
-    if (pausedRef.current) return;
-    const svcIdx = SERVICES.findIndex((s) => s.id === evt.service);
-    if (svcIdx < 0) return;
+  const ingest = useCallback(
+    (evt: TrafficEvent) => {
+      if (pausedRef.current) return;
+      const svcIdx = services.findIndex((s) => s.id === evt.service);
+      if (svcIdx < 0) return;
 
-    const isErr = evt.status >= 400;
-    const color = SERVICES[svcIdx].color;
-    const speed =
-      simModeRef.current === "slow"
-        ? 0.01
-        : simModeRef.current === "spike"
-          ? 0.036
-          : 0.022;
+      const isErr = evt.status >= 400;
+      const color = services[svcIdx].color;
+      const speed =
+        simModeRef.current === "slow"
+          ? 0.01
+          : simModeRef.current === "spike"
+            ? 0.036
+            : 0.022;
 
-    // Spawn particle
-    particlesRef.current.push({
-      id: uid(),
-      svcIdx,
-      color,
-      isErr,
-      segIdx: 0,
-      t: 0,
-      speed,
-      x: 90,
-      y: 260,
-      alive: true,
-      flowMode: flowModeRef.current,
-    });
-
-    // Stats
-    const now = Date.now();
-    const g = gRef.current;
-    g.total++;
-    if (isErr) g.err++;
-    g.latencies.push(evt.latency_ms);
-    if (g.latencies.length > 300) g.latencies.shift();
-    g.window.push(now);
-
-    const histItem = { ts: now, isErr, latency: evt.latency_ms };
-    if (!g.history) g.history = [];
-    g.history.push(histItem);
-
-    const sv = sRef.current[evt.service];
-    if (sv) {
-      sv.req++;
-      if (isErr) sv.err++;
-      sv.latencies.push(evt.latency_ms);
-      if (sv.latencies.length > 100) sv.latencies.shift();
-      sv.window.push(now);
-      if (!sv.history) sv.history = [];
-      sv.history.push(histItem);
-    }
-
-    // Flash
-    setFlash((prev) => ({ ...prev, [evt.service]: isErr ? "err" : "ok" }));
-    setTimeout(() => {
-      setFlash((prev) => {
-        const n = { ...prev };
-        delete n[evt.service];
-        return n;
+      // Spawn particle
+      particlesRef.current.push({
+        id: uid(),
+        svcIdx,
+        color,
+        isErr,
+        segIdx: 0,
+        t: 0,
+        speed,
+        x: 90,
+        y: 260,
+        alive: true,
+        flowMode: flowModeRef.current,
       });
-    }, 350);
 
-    // Log
-    setLogs((prev) =>
-      [
-        {
-          id: uid(),
-          ts: now_ts(),
-          service: evt.service,
-          method: evt.method,
-          path: evt.path,
-          status: evt.status,
-          latency_ms: evt.latency_ms,
-        },
-        ...prev,
-      ].slice(0, 28),
-    );
-  }, []);
+      // Stats
+      const now = Date.now();
+      const g = gRef.current;
+      g.total++;
+      if (isErr) g.err++;
+      g.latencies.push(evt.latency_ms);
+      if (g.latencies.length > 300) g.latencies.shift();
+      g.window.push(now);
+
+      const histItem = { ts: now, isErr, latency: evt.latency_ms };
+      if (!g.history) g.history = [];
+      g.history.push(histItem);
+
+      const sv = sRef.current[evt.service];
+      if (sv) {
+        sv.req++;
+        if (isErr) sv.err++;
+        sv.latencies.push(evt.latency_ms);
+        if (sv.latencies.length > 100) sv.latencies.shift();
+        sv.window.push(now);
+        if (!sv.history) sv.history = [];
+        sv.history.push(histItem);
+      }
+
+      // Flash
+      setFlash((prev) => ({ ...prev, [evt.service]: isErr ? "err" : "ok" }));
+      setTimeout(() => {
+        setFlash((prev) => {
+          const n = { ...prev };
+          delete n[evt.service];
+          return n;
+        });
+      }, 350);
+
+      // Log
+      setLogs((prev) =>
+        [
+          {
+            id: uid(),
+            ts: now_ts(),
+            service: evt.service,
+            method: evt.method,
+            path: evt.path,
+            status: evt.status,
+            latency_ms: evt.latency_ms,
+          },
+          ...prev,
+        ].slice(0, 28),
+      );
+    },
+    [services],
+  );
 
   // ─── Stats tick (1s) ────────────────────────────────────────────────────────
   useEffect(() => {
@@ -818,7 +930,9 @@ export function MonitorPage() {
             <div style={css.eyebrow}>websocket · real-time</div>
             <h1 style={css.h1}>
               Microservice{" "}
-              <span style={{ color: "#00d4ff" }}>Live Monitor</span>
+              <span style={{ color: isLight ? "rgb(0 162 255)" : "#00d4ff" }}>
+                Live Monitor
+              </span>
             </h1>
           </div>
         </div>
@@ -829,8 +943,10 @@ export function MonitorPage() {
         style={{
           width: "100%",
           maxWidth: 980,
-          background: "#0f1520",
-          border: "1px solid #1e2d42",
+          background: isLight ? "rgb(241, 245, 249)" : "#0f1520",
+          border: isLight
+            ? "1px solid rgb(203, 213, 225)"
+            : "1px solid #1e2d42",
           borderRadius: 8,
           padding: 14,
           marginBottom: 14,
@@ -847,7 +963,7 @@ export function MonitorPage() {
             justifyContent: "space-between",
             cursor: "pointer",
             fontWeight: 600,
-            color: "#00d4ff",
+            color: isLight ? "rgb(0 162 255)" : "#00d4ff",
             userSelect: "none",
           }}
         >
@@ -866,7 +982,9 @@ export function MonitorPage() {
           <div
             style={{
               marginTop: 12,
-              borderTop: "1px solid #1e2d42",
+              borderTop: isLight
+                ? "1px solid rgb(203, 213, 225)"
+                : "1px solid #1e2d42",
               paddingTop: 12,
               display: "flex",
               flexDirection: "column",
@@ -874,7 +992,13 @@ export function MonitorPage() {
             }}
           >
             <div>
-              <p style={{ fontWeight: 600, color: "#e2e8f0", marginBottom: 4 }}>
+              <p
+                style={{
+                  fontWeight: 600,
+                  color: isLight ? "rgb(83 86 90)" : "#e2e8f0",
+                  marginBottom: 4,
+                }}
+              >
                 {language === "ko"
                   ? "1. 기본 시뮬레이션 및 배포 환경"
                   : "1. Simulation & Deployment Specs"}
@@ -887,7 +1011,13 @@ export function MonitorPage() {
             </div>
 
             <div>
-              <p style={{ fontWeight: 600, color: "#e2e8f0", marginBottom: 4 }}>
+              <p
+                style={{
+                  fontWeight: 600,
+                  color: isLight ? "rgb(83 86 90)" : "#e2e8f0",
+                  marginBottom: 4,
+                }}
+              >
                 {language === "ko"
                   ? "2. 로컬 웹소켓 서버 연동 방법 (Local Play)"
                   : "2. Local WebSocket Integration"}
@@ -920,7 +1050,13 @@ export function MonitorPage() {
             </div>
 
             <div>
-              <p style={{ fontWeight: 600, color: "#e2e8f0", marginBottom: 4 }}>
+              <p
+                style={{
+                  fontWeight: 600,
+                  color: isLight ? "rgb(83 86 90)" : "#e2e8f0",
+                  marginBottom: 4,
+                }}
+              >
                 {language === "ko"
                   ? "3. 연동 데이터 규격 (JSON Protocol)"
                   : "3. JSON Data Protocol Specs"}
@@ -944,18 +1080,24 @@ export function MonitorPage() {
                 }}
               >
                 {`{
-  "type": "event",
-  "service": "user",      // user, order, payment, notif 중 하나
-  "method": "GET",        // GET, POST, PUT, DELETE
-  "path": "/api/users/me",
-  "status": 200,          // HTTP status (400 이상은 에러 처리)
-  "latency_ms": 42        // 지연 시간 (ms)
-}`}
+                  "type": "event",
+                  "service": "user",      // user, order, payment, notif 중 하나
+                  "method": "GET",        // GET, POST, PUT, DELETE
+                  "path": "/api/users/me",
+                  "status": 200,          // HTTP status (400 이상은 에러 처리)
+                  "latency_ms": 42        // 지연 시간 (ms)
+                }`}
               </pre>
             </div>
 
             <div>
-              <p style={{ fontWeight: 600, color: "#e2e8f0", marginBottom: 4 }}>
+              <p
+                style={{
+                  fontWeight: 600,
+                  color: isLight ? "rgb(83 86 90)" : "#e2e8f0",
+                  marginBottom: 4,
+                }}
+              >
                 {language === "ko"
                   ? "4. 실시간 슬라이딩 통계 및 헬스 램프 규격"
                   : "4. Real-time Sliding Window Stats & Health Indicators"}
@@ -1069,7 +1211,7 @@ export function MonitorPage() {
         <div style={css.canvas}>
           <svg
             viewBox="0 0 640 520"
-            style={{ width: "100%", display: "block" }}
+            style={{ width: "100%", height: "auto", display: "block" }}
           >
             <defs>
               <filter
@@ -1094,13 +1236,17 @@ export function MonitorPage() {
                 <path
                   d="M32 0L0 0 0 32"
                   fill="none"
-                  stroke="#141f2e"
+                  stroke={isLight ? "#cbd5e1" : "#141f2e"}
                   strokeWidth="0.6"
                 />
               </pattern>
             </defs>
 
-            <rect width="640" height="520" fill="#090d14" />
+            <rect
+              width="640"
+              height="520"
+              fill={isLight ? "#f8fafc" : "#090d14"}
+            />
             <rect
               width="640"
               height="520"
@@ -1114,7 +1260,7 @@ export function MonitorPage() {
               y1="260"
               x2="175"
               y2="260"
-              stroke="#1e2d42"
+              stroke={isLight ? "#cbd5e1" : "#1e2d42"}
               strokeWidth="1.5"
             />
             {SERVICES.map((_, i) => (
@@ -1124,7 +1270,7 @@ export function MonitorPage() {
                   y1="260"
                   x2="330"
                   y2={SVC_Y[i]}
-                  stroke="#1e2d42"
+                  stroke={isLight ? "#cbd5e1" : "#1e2d42"}
                   strokeWidth="1.2"
                 />
                 <line
@@ -1132,7 +1278,7 @@ export function MonitorPage() {
                   y1={SVC_Y[i]}
                   x2="510"
                   y2={SVC_Y[i]}
-                  stroke="#1e2d42"
+                  stroke={isLight ? "#cbd5e1" : "#1e2d42"}
                   strokeWidth="1.2"
                 />
               </g>
@@ -1143,7 +1289,7 @@ export function MonitorPage() {
               y1="80"
               x2="385"
               y2="460"
-              stroke="#253448"
+              stroke={isLight ? "#cbd5e1" : "#253448"}
               strokeWidth="1"
               strokeDasharray="5,4"
             />
@@ -1152,7 +1298,7 @@ export function MonitorPage() {
               y="476"
               fontFamily="monospace"
               fontSize="7"
-              fill="#253448"
+              fill={isLight ? "#94a3b8" : "#253448"}
               letterSpacing=".1em"
             >
               EVENT BUS
@@ -1168,8 +1314,8 @@ export function MonitorPage() {
               width="78"
               height="56"
               rx="8"
-              fill="#0f1520"
-              stroke="#2a3a4e"
+              fill={isLight ? "#f1f5f9" : "#0f1520"}
+              stroke={isLight ? "#cbd5e1" : "#2a3a4e"}
               strokeWidth="1.5"
             />
             <text
@@ -1178,7 +1324,7 @@ export function MonitorPage() {
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="15"
-              fill="#6b7280"
+              fill={isLight ? "#475569" : "#6b7280"}
             >
               ⬡
             </text>
@@ -1189,7 +1335,7 @@ export function MonitorPage() {
               fontFamily="sans-serif"
               fontSize="9"
               fontWeight="600"
-              fill="#9ca3af"
+              fill={isLight ? "#334155" : "#9ca3af"}
             >
               CLIENT
             </text>
@@ -1199,7 +1345,7 @@ export function MonitorPage() {
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
-              fill="#4a5568"
+              fill={isLight ? "#94a3b8" : "#4a5568"}
             >
               HTTP/2
             </text>
@@ -1211,7 +1357,7 @@ export function MonitorPage() {
               width="100"
               height="68"
               rx="8"
-              fill="#0f1520"
+              fill={isLight ? "#f1f5f9" : "#0f1520"}
               stroke="#00d4ff"
               strokeWidth="1.5"
             />
@@ -1251,7 +1397,7 @@ export function MonitorPage() {
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
-              fill="#4a5568"
+              fill={isLight ? "#94a3b8" : "#4a5568"}
             >
               auth · lb · rate
             </text>
@@ -1261,7 +1407,7 @@ export function MonitorPage() {
               textAnchor="middle"
               fontFamily="monospace"
               fontSize="7"
-              fill="#4a5568"
+              fill={isLight ? "#94a3b8" : "#4a5568"}
             >
               :8080
             </text>
@@ -1274,7 +1420,7 @@ export function MonitorPage() {
             />
 
             {/* Services */}
-            {SERVICES.map((svc, i) => (
+            {services.map((svc, i) => (
               <g key={svc.id}>
                 <rect
                   x="330"
@@ -1282,7 +1428,7 @@ export function MonitorPage() {
                   width="110"
                   height="56"
                   rx="7"
-                  fill="#0f1520"
+                  fill={isLight ? "#ffffff" : "#111827"}
                   stroke={svc.color}
                   strokeWidth="1.5"
                 />
@@ -1313,7 +1459,7 @@ export function MonitorPage() {
                   textAnchor="middle"
                   fontFamily="monospace"
                   fontSize="7"
-                  fill="#4a5568"
+                  fill={isLight ? "#64748b" : "#94a3b8"}
                 >
                   {svc.runtime} · :{svc.port}
                 </text>
@@ -1340,13 +1486,14 @@ export function MonitorPage() {
             ))}
 
             {/* Databases */}
-            {SERVICES.map((svc, i) => (
+            {services.map((svc, i) => (
               <DbCylinder
                 key={svc.id}
                 cx={560}
                 topY={SVC_Y[i] - 18}
                 color={svc.color}
                 label={svc.db}
+                isLight={isLight}
               />
             ))}
 
@@ -1357,95 +1504,103 @@ export function MonitorPage() {
         {/* Side panel */}
         <div style={css.side}>
           {/* Service cards */}
-          {SERVICES.map((svc) => {
-            const ui = sUI[svc.id] ?? { rps: 0, avgLat: 0, errRate: "0.0" };
-            const fl = flash[svc.id];
-            return (
-              <div
-                key={svc.id}
-                style={{
-                  ...css.card,
-                  borderColor:
-                    fl === "err"
-                      ? "#ff4d6d"
-                      : fl === "ok"
-                        ? svc.color
-                        : "#1e2d42",
-                  transition: "border-color .3s",
-                }}
-              >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: isMobile ? "row" : "column",
+              flexWrap: "wrap",
+              gap: 10,
+              width: "100%",
+            }}
+          >
+            {services.map((svc) => {
+              const ui = sUI[svc.id] ?? { rps: 0, avgLat: 0, errRate: "0.0" };
+              const fl = flash[svc.id];
+              return (
                 <div
+                  key={svc.id}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 7,
-                    marginBottom: 8,
+                    ...css.card,
+                    flex: isMobile ? "1 1 calc(50% - 5px)" : undefined,
+                    minWidth: isMobile ? 140 : undefined,
+                    ...(fl === "err" && { borderColor: "#ff4d6d" }),
+                    ...(fl === "ok" && { borderColor: svc.color }),
+                    transition: "border-color .3s",
                   }}
                 >
                   <div
                     style={{
-                      width: 7,
-                      height: 7,
-                      borderRadius: "50%",
-                      background: svc.color,
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: 11,
-                      fontWeight: 600,
-                      textTransform: "uppercase",
-                      letterSpacing: ".07em",
-                      color: svc.color,
-                      flex: 1,
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 7,
+                      marginBottom: 8,
                     }}
                   >
-                    {svc.label}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "monospace",
-                      fontSize: 9,
-                      color: "#4a5568",
-                    }}
-                  >
-                    :{svc.port}
-                  </span>
-                </div>
-                <MiniBar
-                  label={flowMode === "two-way" ? "Req RPS" : "RPS"}
-                  val={ui.rps}
-                  max={50}
-                  display={String(ui.rps)}
-                  color={svc.color}
-                />
-                {flowMode === "two-way" && (
+                    <div
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: "50%",
+                        background: svc.color,
+                        flexShrink: 0,
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: ".07em",
+                        color: svc.color,
+                        flex: 1,
+                      }}
+                    >
+                      {svc.label}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "monospace",
+                        fontSize: 9,
+                        color: "#4a5568",
+                      }}
+                    >
+                      :{svc.port}
+                    </span>
+                  </div>
                   <MiniBar
-                    label="Resp RPS"
+                    label={flowMode === "two-way" ? "Req RPS" : "RPS"}
                     val={ui.rps}
                     max={50}
                     display={String(ui.rps)}
-                    color="#9ca3af"
+                    color={svc.color}
                   />
-                )}
-                <MiniBar
-                  label="Latency"
-                  val={ui.avgLat}
-                  max={1000}
-                  display={ui.avgLat + "ms"}
-                  color={latColor(ui.avgLat)}
-                />
-                <MiniBar
-                  label="Err%"
-                  val={parseFloat(ui.errRate)}
-                  max={20}
-                  display={ui.errRate + "%"}
-                  color={errColor(ui.errRate)}
-                />
-              </div>
-            );
-          })}
+                  {flowMode === "two-way" && (
+                    <MiniBar
+                      label="Resp RPS"
+                      val={ui.rps}
+                      max={50}
+                      display={String(ui.rps)}
+                      color="#9ca3af"
+                    />
+                  )}
+                  <MiniBar
+                    label="Latency"
+                    val={ui.avgLat}
+                    max={1000}
+                    display={ui.avgLat + "ms"}
+                    color={latColor(ui.avgLat)}
+                  />
+                  <MiniBar
+                    label="Err%"
+                    val={parseFloat(ui.errRate)}
+                    max={20}
+                    display={ui.errRate + "%"}
+                    color={errColor(ui.errRate)}
+                  />
+                </div>
+              );
+            })}
+          </div>
 
           {/* Log */}
           <div style={css.logWrap}>
@@ -1475,7 +1630,7 @@ export function MonitorPage() {
                 </div>
               ) : (
                 logs.map((l) => {
-                  const svc = SERVICES.find((s) => s.id === l.service);
+                  const svc = services.find((s) => s.id === l.service);
                   return (
                     <div
                       key={l.id}
@@ -1485,7 +1640,9 @@ export function MonitorPage() {
                         display: "flex",
                         gap: 5,
                         padding: "2px 0",
-                        borderBottom: "1px solid #1e2d42",
+                        borderBottom: isLight
+                          ? "1px solid rgba(212, 216, 223, 1)"
+                          : "1px solid #1e2d42",
                       }}
                     >
                       <span
@@ -1511,14 +1668,23 @@ export function MonitorPage() {
                           overflow: "hidden",
                           textOverflow: "ellipsis",
                           whiteSpace: "nowrap",
-                          color: "#e2e8f0",
+                          color: isLight
+                            ? "rgba(105, 111, 118, 1)"
+                            : "rgba(226, 232, 240, 1)",
                         }}
                       >
                         {l.path}
                       </span>
                       <span
                         style={{
-                          color: l.status < 400 ? "#00ff88" : "#ff4d6d",
+                          color:
+                            l.status < 400
+                              ? isLight
+                                ? "#00b388"
+                                : "#00ff88"
+                              : isLight
+                                ? "#d2304b"
+                                : "#ff4d6d",
                           width: 28,
                           flexShrink: 0,
                           textAlign: "right",
@@ -1551,67 +1717,101 @@ export function MonitorPage() {
           display: "flex",
           gap: 8,
           flexWrap: "wrap",
-          justifyContent: "center",
+          justifyContent: isMobile ? "flex-start" : "center",
           width: "100%",
           maxWidth: 980,
           marginTop: 14,
         }}
       >
-        <span
+        <div
           style={{
-            fontFamily: "monospace",
-            fontSize: 10,
-            color: "#4a5568",
-            alignSelf: "center",
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: "center",
+            gap: 8,
+            width: isMobile ? "100%" : "auto",
           }}
         >
-          SIM MODE:
-        </span>
-        {(["normal", "spike", "error", "slow"] as SimMode[]).map((m) => (
-          <button
-            key={m}
-            style={{ ...css.btn, ...(simMode === m ? css.btnActive : {}) }}
-            onClick={() => setSimMode(m)}
+          <span
+            style={{
+              fontFamily: "monospace",
+              fontSize: 10,
+              color: "#4a5568",
+              alignSelf: isMobile ? "flex-start" : "center",
+            }}
           >
-            {m}
-          </button>
-        ))}
-        <button
-          style={{ ...css.btn, ...(paused ? css.btnActive : {}) }}
-          onClick={() => setPaused((v) => !v)}
-        >
-          {paused ? "Resume" : "Pause"}
-        </button>
-
-        <span
+            SIM MODE:
+          </span>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "8px",
+              width: isMobile ? "100%" : "unset",
+            }}
+          >
+            {(["normal", "spike", "error", "slow"] as SimMode[]).map((m) => (
+              <button
+                key={m}
+                style={{ ...css.btn, ...(simMode === m ? css.btnActive : {}) }}
+                onClick={() => setSimMode(m)}
+              >
+                {m}
+              </button>
+            ))}
+            <button
+              style={{ ...css.btn, ...(paused ? css.btnActive : {}) }}
+              onClick={() => setPaused((v) => !v)}
+            >
+              {paused ? "Resume" : "Pause"}
+            </button>
+          </div>
+        </div>
+        <div
           style={{
-            fontFamily: "monospace",
-            fontSize: 10,
-            color: "#4a5568",
-            alignSelf: "center",
-            marginLeft: 16,
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: "center",
+            gap: 8,
           }}
         >
-          {language === "ko" ? "트래픽 흐름:" : "FLOW MODE:"}
-        </span>
-        <button
-          style={{
-            ...css.btn,
-            ...(flowMode === "one-way" ? css.btnActive : {}),
-          }}
-          onClick={() => setFlowMode("one-way")}
-        >
-          {language === "ko" ? "단방향 (요청)" : "One-way (Req)"}
-        </button>
-        <button
-          style={{
-            ...css.btn,
-            ...(flowMode === "two-way" ? css.btnActive : {}),
-          }}
-          onClick={() => setFlowMode("two-way")}
-        >
-          {language === "ko" ? "양방향 (왕복)" : "Two-way (Req & Resp)"}
-        </button>
+          <span
+            style={{
+              fontFamily: "monospace",
+              fontSize: 10,
+              color: "#4a5568",
+              alignSelf: isMobile ? "flex-start" : "center",
+              marginLeft: isMobile ? 0 : 16,
+            }}
+          >
+            {language === "ko" ? "트래픽 흐름:" : "FLOW MODE:"}
+          </span>
+          <div
+            style={{
+              display: "flex",
+              gap: "8px",
+            }}
+          >
+            <button
+              style={{
+                ...css.btn,
+                ...(flowMode === "one-way" ? css.btnActive : {}),
+              }}
+              onClick={() => setFlowMode("one-way")}
+            >
+              {language === "ko" ? "단방향 (요청)" : "One-way (Req)"}
+            </button>
+            <button
+              style={{
+                ...css.btn,
+                ...(flowMode === "two-way" ? css.btnActive : {}),
+              }}
+              onClick={() => setFlowMode("two-way")}
+            >
+              {language === "ko" ? "양방향 (왕복)" : "Two-way (Req & Resp)"}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -1620,7 +1820,7 @@ export function MonitorPage() {
 // ─────────────────────────────────────────────────────────────────────────────
 // STYLES
 // ─────────────────────────────────────────────────────────────────────────────
-const css = {
+const baseCss = {
   root: {
     background: "transparent",
     color: "#e2e8f0",
