@@ -638,8 +638,8 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
     },
     {
       "id": "ai-chat",
-      "title": "알바몬 AI 채팅 개선",
-      "subtitle": "구직자-기업 연결 실시간 WebSocket 및 AI 채팅 채널 개발",
+      "title": "알바몬 AI 챗봇 개발 및 실시간 채팅 서비스 고도화",
+      "subtitle": "AI 챗봇 서비스 신규 개발 및 기존 실시간 채팅 슬립 상태 대응과 UX 고도화",
       "role": "프론트엔드 리드 개발자",
       "layout": "portrait",
       "image": [
@@ -749,6 +749,11 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
           "problem": "모바일 환경 슬립 상태 진입 및 셀룰러 전환 시 소켓 연결 해제로 인한 메시지 유실 및 싱크 불일치.",
           "solution": "STOMP 구독 모델 기반의 자동 재연결 로직 및 지수 백오프 전략을 설계하고, 클라이언트 단에서 낙관적 업데이트를 적용했습니다.",
           "impact": "소켓 복구율 100% 달성 및 체감 전송 속도 향상으로 사용자 이탈률을 방지했습니다."
+        },
+        {
+          "problem": "Redis 캐시로부터 일괄 수신되는 데이터 특성으로 인해 실시간 대화 피드백(스트리밍 인터랙션)을 저해하고, 비정형 텍스트 렌더링 시 XSS 보안 위협 상존.",
+          "solution": "브라우저 단에서 텍스트를 실시간으로 분할 처리하는 타이핑 애니메이션 에뮬레이터를 설계해 대화형 UX를 연출하고, DOMPurify 필터를 도입해 비정형 마크다운의 악성 스크립트 실행 방어.",
+          "impact": "서버 스트리밍 인프라의 변경 없이도 사용자 대화 몰입도를 향상시키고, XSS 보안 취약점을 차단하여 챗봇 크로스 브라우징 안정성 확보."
         }
       ],
       "metrics": [
@@ -1821,8 +1826,8 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
     },
     {
       "id": "ai-chat",
-      "title": "Albamon AI Chat Improvement",
-      "subtitle": "Designed real-time WebSocket messaging and AI channels for recruiters and job seekers",
+      "title": "Albamon AI Chatbot Integration & Live Chat Service Enhancement",
+      "subtitle": "New development of custom AI chatbot services and enhancement of sleep state recovery & UX in live chat",
       "role": "Frontend Lead",
       "image": [
         {
@@ -1898,9 +1903,9 @@ export const PORTFOLIO_DATA_EN: PortfolioData = {
           "impact": "Secured 100% automatic recovery rates and significantly boosted perceived messaging speeds."
         },
         {
-          "problem": "XSS vulnerability threat when rendering AI markdown formatted text bubbles.",
-          "solution": "DOMPurify for absolute layout sanitation and addressed layout rendering bugs on iOS mobile Safari.",
-          "impact": "Achieved zero vulnerabilities and enhanced cross-browser UI safety."
+          "problem": "Redis cache infrastructure sent message data in single chunks, hindering chat conversational cues (streaming UX), and presented potential XSS security risks when rendering raw text.",
+          "solution": "Engineered a simulated client-side typing animation emulator to mimic streaming feedback, integrated DOMPurify for sanitization, and eliminated iOS rendering quirks.",
+          "impact": "Elevated user conversational experience without backend streaming changes, while achieving zero XSS vulnerabilities and securing cross-browser safety."
         }
       ],
       "metrics": [
