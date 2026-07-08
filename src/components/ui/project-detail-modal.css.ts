@@ -44,7 +44,7 @@ export const modalContent = style({
   borderRadius: vars.radii.lg,
   width: "100%",
   //maxWidth: "680px",
-  maxWidth: "80%",
+  maxWidth: "90%",
   maxHeight: "85vh",
   display: "flex",
   flexDirection: "column",
@@ -144,9 +144,16 @@ export const imageGallery = style({
   },
 });
 
-export const galleryImage = style({
+export const galleryImageLandscape = style({
   width: "100%",
   maxHeight: "fit-content",
+  objectFit: "cover",
+  borderRadius: vars.radii.md,
+});
+
+export const galleryImagePortrait = style({
+  height: "100%",
+  maxWidth: "fit-content",
   objectFit: "cover",
   borderRadius: vars.radii.md,
 });

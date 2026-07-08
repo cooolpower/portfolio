@@ -155,9 +155,7 @@ export function ProjectDetailModal({
   const renderTextContents = () => (
     <>
       <div className={styles.sectionBlock}>
-        <p className={styles.summaryText}>
-          {parseHighlight(project.summary)}
-        </p>
+        <p className={styles.summaryText}>{parseHighlight(project.summary)}</p>
       </div>
 
       {/* Links */}
@@ -213,9 +211,7 @@ export function ProjectDetailModal({
       {/* Metrics */}
       {project.metrics && project.metrics.length > 0 && (
         <div className={styles.sectionBlock}>
-          <h3 className={styles.subBlockTitle}>
-            {translate("metricsTitle")}
-          </h3>
+          <h3 className={styles.subBlockTitle}>{translate("metricsTitle")}</h3>
           <div className={styles.metricsGrid}>
             {project.metrics.map((metric) => (
               <div key={metric.label} className={styles.metricCard}>
@@ -285,7 +281,10 @@ export function ProjectDetailModal({
                   <div className={styles.troubleTimeline}>
                     <div className={`${styles.timelineDot} impact`} />
                   </div>
-                  <div className={styles.troubleContent} style={{ paddingBottom: 0 }}>
+                  <div
+                    className={styles.troubleContent}
+                    style={{ paddingBottom: 0 }}
+                  >
                     <div className={styles.fieldHeader}>
                       <TrendingUp
                         size={14}
@@ -379,7 +378,11 @@ export function ProjectDetailModal({
                         <img
                           src={image.src}
                           alt={`${project.title} - ${index + 1}`}
-                          className={styles.galleryImage}
+                          className={
+                            project.layout === "portrait"
+                              ? styles.galleryImagePortrait
+                              : styles.galleryImageLandscape
+                          }
                           width={image.width}
                           height={image.height}
                         />

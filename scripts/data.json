@@ -573,14 +573,50 @@
         "title": "알바몬 AI 채팅 개선",
         "subtitle": "구직자-기업 연결 실시간 WebSocket 및 AI 채팅 채널 개발",
         "role": "프론트엔드 리드 개발자",
+        "layout": "portrait",
         "image": [
           {
-            "src": "/projects/ai-chat.png",
+            "src": "/projects/chat/albachat00.png",
             "width": 1280,
             "height": 720
           },
           {
-            "src": "/projects/ai-chat.png",
+            "src": "/projects/chat/albachat01.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat02.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat03.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat04.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat05.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat06.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat07.png",
+            "width": 1280,
+            "height": 720
+          },
+          {
+            "src": "/projects/chat/albachat08.png",
             "width": 1280,
             "height": 720
           }
