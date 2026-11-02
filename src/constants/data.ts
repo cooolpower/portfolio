@@ -91,7 +91,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
     {
       "company": "인스플래닛",
       "role": "Frontend Developer",
-      "period": "2026.11 - ",
+      "period": "2026.11 - 진행중",
       "description": "CrewLink 내부 프로그램 웹으로 컨버팅",
       "link": "https://www.unknown.co.kr",
       "groupLinks": {
