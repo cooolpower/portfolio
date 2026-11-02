@@ -200,7 +200,7 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
         "cross browsing",
         "photoshop",
         "illustrator",
-        "sass"
+        "scss"
       ]
     },
     {
