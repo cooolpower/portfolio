@@ -89,6 +89,37 @@ export const PORTFOLIO_DATA_KO: PortfolioData = {
   },
   "careers": [
     {
+      "company": "인스플래닛",
+      "role": "Frontend Developer",
+      "period": "2026.11 - ",
+      "description": "CrewLink 내부 프로그램 웹으로 컨버팅",
+      "link": "https://www.unknown.co.kr",
+      "groupLinks": {
+        "[대한항공]": "",
+      },
+      "achievements": [
+        "[대한항공] **승무원용 내부 프로그램 Web으로 컨버팅** ",
+      ],
+      "skills": [
+        "scss",
+        "js",
+        "react",
+        "next",
+        "typescript",
+        "git",
+        "github",
+        "figma",
+        "web standards",
+        "web accessibility",
+      ],
+      "projectSkills": {
+        "대한항공": ["React", "SCSS", "Figma", "Typescript"],
+        "알바몬 AI 채팅": ["React", "WebSocket", "STOMP", "Zustand", "UX Optimization"],
+        "공통 헤더 컴포넌트": ["Next.js", "TypeScript", "Zustand", "AWS S3", "RBAC"],
+        "잡코리아 리뉴얼": ["React", "jQuery", "SCSS", "Lighthouse", "SEO", "Web Accessibility"]
+      }
+    },
+    {
       "company": "웍스피어 유한책임회사 (구 잡코리아)",
       "role": "Frontend Developer",
       "period": "2024.05 - 2026.01",
